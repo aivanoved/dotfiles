@@ -23,3 +23,5 @@ set nohls
 
 set bo=all
 set so=8
+
+set rtp+=/opt/homebrew/bin/fzf
