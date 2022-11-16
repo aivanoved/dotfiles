@@ -37,6 +37,8 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-commentary'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
 
+Plug 'NoahTheDuke/vim-just'
+
 Plug 'blindFS/vim-taskwarrior'
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'tools-life/taskwiki'
