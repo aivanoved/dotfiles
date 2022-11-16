@@ -171,7 +171,7 @@ eval "$(op completion zsh)"; compdef _op op
 
 eval "$(starship init zsh)"
 
-alias :q exit
+alias :q="exit"
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
