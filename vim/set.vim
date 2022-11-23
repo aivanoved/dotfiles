@@ -1,5 +1,7 @@
 set nu
 set rnu
+set signcolumn=yes
+
 set exrc
 
 set backspace=indent,eol,start
