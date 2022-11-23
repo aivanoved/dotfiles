@@ -4,11 +4,39 @@ lowercase(){
     echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/"
 }
 
+check_installed(){
+    echo 'Check for' $1
+    if command -v $1 &> /dev/null; then
+        echo $1 'installed'
+        return 0
+    else
+        echo $1 'not installed'
+        return 1
+    fi
+}
+
+install_package(){
+    for package in $@; do
+        if ! check_installed $package; then
+            echo 'Installing' $package
+            exec $(install_str) $package
+        fi
+    done
+}
+
+install_str(){
+    if [[ $platform == 'debian' ]]; then
+        echo 'sudo apt-get install'
+    elif [[ $platform == 'macos' ]]; then
+        echo 'brew install'
+    fi 
+}
+
 install_curl(){
-    if [[ $1 == 'debian' ]]; then
-        command -v curl &> /dev/null || sudo apt-get install curl
-    elif [[ $1 == 'macos' ]]; then
-        command -v curl &> /dev/null || \
+    if [[ $platform == 'debian' ]]; then
+        check_installed 'curl' || sudo apt-get install curl
+    elif [[ $platform == 'macos' ]]; then
+        check_installed 'curl' || \
         { echo 'curl should come with macos' && \
         \
         return 1; }
@@ -16,26 +44,20 @@ install_curl(){
 }
 
 install_package_manager(){
-    if [[ $1 == 'debian' ]]; then
+    if [[ $platform == 'debian' ]]; then
         echo 'debian comes with apt-get'
-    elif [[ $1 == 'macos' ]]; then
-        command -v brew &> /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    elif [[ $platform == 'macos' ]]; then
+        echo 'Installing package manager'
+        check_installed 'brew' || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
 }
 
 install_zsh(){
-    if [[ $1 == 'debian' ]]; then
-        command -v zsh &> /dev/null || \
-        {\
-            sudo apt-get install zsh && \
-            chsh -s /usr/local/bin/zsh; \
-        }
-    elif [[ $1 == 'macos' ]]; then
-        command -v zsh &> /dev/null || \
-        {\
-            brew install zsh && \
-            chsh -s $(brew --prefix)/bin/zsh; \
-        }
+    install_package zsh
+    if [[ $platform == 'debian' ]]; then
+        chsh -s /usr/local/bin/zsh
+    elif [[ $platform == 'macos' ]]; then
+        chsh -s $(brew --prefix)/bin/zsh; \
     fi
 }
 
@@ -66,8 +88,8 @@ case $osname in
         ;;
 esac
 
-echo $platform
+echo 'platform' $platform
 
-install_curl $platform
-install_package_manager $platform
-install_zsh $platform
+install_curl
+install_package_manager
+install_zsh
