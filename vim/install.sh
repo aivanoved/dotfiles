@@ -11,6 +11,10 @@ for f in `fd --hidden --extension vim .`; do
     ln -s ~/dotfiles/vim/$f ~/.vim/plugin/$f
 done
 
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim -c 'PlugInstall|q|q'
+
 rm -rf ~/.vim/coc-settings.json
 ln -s ~/dotfiles/vim/coc-settings.json ~/.vim/coc-settings.json
 
