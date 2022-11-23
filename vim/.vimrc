@@ -1,5 +1,3 @@
-let g:ale_disable_lsp = 1
-
 call plug#begin("~/.vim/plugged")
 
 Plug 'chriskempson/base16-vim'
