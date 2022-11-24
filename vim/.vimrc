@@ -11,8 +11,17 @@ Plug 'junegunn/vader.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'ryanoasis/vim-devicons'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/glyph-palette.vim'
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ludovicchabant/vim-gutentags'
+
+Plug 'yggdroot/indentLine'
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'mhinz/vim-startify'
 
 Plug 'mbbill/undotree'
 
