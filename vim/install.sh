@@ -19,3 +19,8 @@ rm -rf ~/.vim/coc-settings.json
 ln -s ~/dotfiles/vim/coc-settings.json ~/.vim/coc-settings.json
 
 ./coc-extensions.sh
+
+
+
+rm -rf ~/.vim/coc-pyright-conda.sh
+ln -s ~/dotfiles/vim/coc-pyright-conda.sh ~/.vim/coc-pyright-conda.sh
