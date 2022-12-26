@@ -189,7 +189,7 @@ source "$HOME/.cargo/env"
 
 neofetch
 
-eval $(op signin)
+op whoami || eval $(op signin)
 source ~/.zshsecretenv
 
 eval "$(op completion zsh)"; compdef _op op
