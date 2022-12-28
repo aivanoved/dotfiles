@@ -199,10 +199,16 @@ eval "$(starship init zsh)"
 alias :q='exit'
 alias :e='$EDITOR'
 alias :e\!='sudo $EDITOR'
-alias :ve='$EDITOR ~/.zshrc'
-alias :vr='source ~/.zshrc'
 
-alias :vevim='$EDITOR ~/.vimrc'
+export ZSHRC='~/.zshrc'
+
+
+
+alias :ve='$EDITOR $ZSHRC'
+alias :vr='source $ZSHRC'
+
+export VIMRC='~/.vimrc'
+alias :vevim='$EDITOR $VIMRC'
 
 bindkey jj vi-cmd-mode
 
