@@ -200,12 +200,12 @@ alias :q='exit'
 alias :e='$EDITOR'
 alias :e\!='sudo $EDITOR'
 
-export ZSHRC='~/.zshrc'
+export ZSHRC='$HOME/.zshrc'
 
 alias :ve='$EDITOR $ZSHRC'
 alias :vr='source $ZSHRC'
 
-export VIMRC='~/.vimrc'
+export VIMRC='$HOME/.vimrc'
 
 alias :vevim='$EDITOR $VIMRC'
 
