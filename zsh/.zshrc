@@ -202,12 +202,11 @@ alias :e\!='sudo $EDITOR'
 
 export ZSHRC='~/.zshrc'
 
-
-
 alias :ve='$EDITOR $ZSHRC'
 alias :vr='source $ZSHRC'
 
 export VIMRC='~/.vimrc'
+
 alias :vevim='$EDITOR $VIMRC'
 
 bindkey jj vi-cmd-mode
