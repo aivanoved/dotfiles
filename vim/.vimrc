@@ -65,4 +65,6 @@ call plug#end()
 syntax enable
 filetype plugin indent on
 
+let mapleader="\<space>"
+
 let g:rustfmt_autosave = 1
