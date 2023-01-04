@@ -42,6 +42,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
 
 Plug 'troydm/zoomwintab.vim'
+Plug 'MattesGroeger/vim-bookmarks'
 
 Plug 'rbong/vim-flog'
 Plug 'chrisbra/unicode.vim'
