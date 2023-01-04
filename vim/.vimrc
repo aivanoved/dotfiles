@@ -41,6 +41,8 @@ Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
 
+Plug 'troydm/zoomwintab.vim'
+
 Plug 'rbong/vim-flog'
 Plug 'chrisbra/unicode.vim'
 
