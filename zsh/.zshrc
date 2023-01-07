@@ -211,16 +211,16 @@ alias :vevim="$EDITOR $VIMRC"
 
 alias tmux='direnv exec / tmux'
 
-if [ -f '~/.zshenv' ]; then
+if [ -f "${HOME}/.zshenv" ]; then
     source ~/.zshenv
 fi
 
 op whoami || eval $(op signin)
-if [ -f '~/.zshsecretenv' ]; then
+if [ -f "${HOME}/.zshsecretenv" ]; then
     source ~/.zshsecretenv
 fi
 
-if [ -f '~/.zshlocal' ]; then
+if [ -f "${HOME}/.zshlocal" ]; then
     source ~/.zshlocal
 fi
 
