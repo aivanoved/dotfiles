@@ -211,18 +211,18 @@ alias :vevim="$EDITOR $VIMRC"
 
 alias tmux='direnv exec / tmux'
 
-if [ -f "${HOME}/.zshenv" ]; then
-    source ~/.zshenv
-fi
+_safe_source(){
+    if [ -f $1 ]; then
+        source $1
+    fi
+}
+
+_safe_source ~/.zshenv
 
 op whoami || eval $(op signin)
-if [ -f "${HOME}/.zshsecretenv" ]; then
-    source ~/.zshsecretenv
-fi
+_safe_source ~/.zshsecretenv
 
-if [ -f "${HOME}/.zshlocal" ]; then
-    source ~/.zshlocal
-fi
+_safe_source ~/.zshlocal
 
 bindkey jj vi-cmd-mode
 
