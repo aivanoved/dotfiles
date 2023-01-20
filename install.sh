@@ -29,7 +29,7 @@ install_str(){
         echo 'sudo apt-get install'
     elif [[ $platform == 'macos' ]]; then
         echo 'brew install'
-    fi 
+    fi
 }
 
 install_curl(){
