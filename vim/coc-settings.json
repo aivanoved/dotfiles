@@ -1,4 +1,11 @@
 {
     "diagnostic.displayByAle": true,
+    "suggest.autoTrigger": "none",
+    "suggest.noselect": true,
+    "suggest.virtualText": true,
+    "suggest.floatConfig.rounded": true,
+    "codeLens.enable": true,
+    "codeLens.position": "top",
+    "pyright.testing.provider": "pytest",
     "python.pythonPath": "~/.vim/coc-pyright-conda.sh"
 }
