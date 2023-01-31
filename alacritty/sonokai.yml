@@ -1,16 +1,16 @@
 # original theme https://github.com/sainnhe/sonokai
 colors:
-  # Default colors
+  # default colors
   primary:
     background: '0x2c2e34'
     foreground: '0xe2e2e3'
 
-  # Cursor colors
+  # cursor colors
   cursor:
     text: '0xff261e'
     cursor: '0xff261e'
 
-  # Normal colors
+  # normal colors
   normal:
     black:   '0x181819'
     red:     '0xfc5d7c'
