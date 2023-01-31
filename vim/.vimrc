@@ -5,6 +5,7 @@ Plug 'mswift42/vim-themes'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'tribela/vim-transparent'
 
 Plug 'junegunn/vader.vim'
 
@@ -26,6 +27,9 @@ Plug 'mhinz/vim-startify'
 Plug 'mbbill/undotree'
 
 Plug 'rust-lang/rust.vim'
+
+Plug 'rbgrouleff/bclose.vim'
+Plug 'francoiscabrol/ranger.vim'
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
