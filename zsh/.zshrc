@@ -143,3 +143,5 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
 autoload -U +X bashcompinit && bashcompinit
+
+fpath+=${ZDOTDIR:-~}/.zsh_functions
