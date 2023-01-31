@@ -6,7 +6,7 @@
     "codeLens.enable": true,
     "suggest.floatConfig": {
         "border": true,
-        rounded: true
+        "rounded": true
     },
     "diagnostic.floatConfig": {
         "border": true
