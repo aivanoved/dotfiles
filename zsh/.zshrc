@@ -6,6 +6,7 @@ plugins=(
     git
     web-search
     1password
+    asdf
     dirhistory
     copybuffer
     ag
@@ -137,11 +138,23 @@ fi
 
 _safe_source ~/.zshlocal
 
+eval "$(gitconfig completion zsh)"; compdef _gitconfig gitconfig
+eval "$(helm-cr completion zsh)"; compdef _cr helm-cr
+eval "$(ct completion zsh)"; compdef _ct ct
+eval "$(helm diff completion zsh)"; compdef _diff helm-diff
+
+export REDO_HISTORY_PATH="$HOME/.zshhistory"
+source "$(redo alias-file)"
+bindkey -s '^e' 'redo^M'
+
 bindkey jj vi-cmd-mode
 
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+fpath=(${ASDF_DIR}/completions $fpath)
+
 autoload -U +X bashcompinit && bashcompinit
 
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"

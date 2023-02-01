@@ -1,0 +1,10 @@
+[core]
+	excludesfile = ~/.gitignore_global
+[diff]
+    tool = difftastic
+
+[difftool]
+    prompt = false
+
+[difftool "difftastic"]
+    cmd = difft "$LOCAL" "$REMOTE"
