@@ -99,6 +99,18 @@ export VIMRC="$HOME/.vimrc"
 
 alias :vevim="$EDITOR $VIMRC"
 
+alias e="exa -lFh"
+
+alias eS="exa -1FShs name"
+alias ea="exa -lFh"
+alias edot="exa -ld .*"
+alias el="exa -l"
+alias er="exa -tRFh"
+alias esa="exa -lah"
+alias esn="exa -1"
+alias esr="exa -lRFh"
+alias et="exa -lFht modified"
+
 alias tmux='direnv exec / tmux'
 
 
@@ -155,6 +167,8 @@ bindkey '^[[B' history-substring-search-down
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 fpath=(${ASDF_DIR}/completions $fpath)
 
-autoload -U +X bashcompinit && bashcompinit
+autoload -U +X bashcompinit
+compinit
+bashcompinit
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/asdf-direnv/zshrc"
