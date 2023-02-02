@@ -1,7 +1,9 @@
-export PATH=/usr/local/bin:$PATH
-export PATH=~/.local/bin:$PATH
+typeset -U path
+
+path+=(/usr/local/bin $path)
+path+=(~/.local/bin $path)
 
 export EDITOR=vim
 
 . "$HOME/.cargo/env"
-export PATH="$HOME/git-fuzzy/bin:$PATH"
+path+=($HOME/git-fuzzy/bin $path)

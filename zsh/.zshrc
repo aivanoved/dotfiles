@@ -126,6 +126,8 @@ _safe_source ~/.zshenv
 op whoami || eval $(op signin)
 _safe_source ~/.zshsecretenv
 
+export PATH
+
 ssh-add -l &> /dev/null
 
 if [[ "$?" == 2 ]]; then
