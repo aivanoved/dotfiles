@@ -1,7 +1,7 @@
 typeset -U path
 
-path+=(/usr/local/bin $path)
-path+=(~/.local/bin $path)
+path=(/usr/local/bin $path)
+path=(~/.local/bin $path)
 
 export EDITOR=vim
 
