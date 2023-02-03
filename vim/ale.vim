@@ -19,7 +19,7 @@ let g:ale_fixers= {
 \}
 let g:ale_fix_on_save = 1
 
-let g:ale_rust_carge_use_clippy = 1
+let g:ale_rust_cargo_use_clippy = 1
 
 let g:ale_hover_cursor = 0
 let g:ale_cursor_detail = 1
