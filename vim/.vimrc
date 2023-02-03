@@ -23,6 +23,8 @@ Plug 'rust-lang/rust.vim'
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-eunuch'
 Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
 Plug 'svermeulen/vim-subversive'
