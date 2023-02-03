@@ -1,5 +1,3 @@
-let mapleader="\<space>"
-
 inoremap jj <Esc>
 
 nnoremap m d
