@@ -13,3 +13,5 @@ done
 
 rm -rf ~/.vim/coc-settings.json
 ln -s ~/dotfiles/vim/coc-settings.json ~/.vim/coc-settings.json
+
+./coc-extensions.sh
