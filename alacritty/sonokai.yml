@@ -7,8 +7,8 @@ colors:
 
   # cursor colors
   cursor:
-    text: '0xff261e'
-    cursor: '0xff261e'
+    text: CellBackground
+    cursor: CellForeground
 
   # normal colors
   normal:
