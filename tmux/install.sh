@@ -1,4 +1,5 @@
 rm -rf ~/.tmux.conf
+
 rm -rf ~/.config/tmuxinator/default.yml
 
 ln -s ~/dotfiles/tmux/.tmux.conf ~/.tmux.conf
