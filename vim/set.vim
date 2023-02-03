@@ -28,4 +28,4 @@ set nocompatible
 set bo=all
 set so=8
 
-set rtp+=/opt/homebrew/bin/fzf
+set rtp+=system("which fzf")
