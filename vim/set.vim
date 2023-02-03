@@ -21,6 +21,10 @@ set hidden
 set incsearch
 set nohls
 
+
+
+set nocompatible
+
 set bo=all
 set so=8
 

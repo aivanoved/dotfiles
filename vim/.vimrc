@@ -1,3 +1,5 @@
+let g:ale_disable_lsp = 1
+
 call plug#begin("~/.vim/plugged")
 
 Plug 'chriskempson/base16-vim'
@@ -31,9 +33,13 @@ Plug 'voldikss/vim-floaterm'
 Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
 
-Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-commentary'
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', { 'branch': 'dev' }
+
+Plug 'blindFS/vim-taskwarrior'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'tools-life/taskwiki'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
