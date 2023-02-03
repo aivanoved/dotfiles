@@ -189,6 +189,8 @@ source "$HOME/.cargo/env"
 
 neofetch
 
+source ~/.zshsecretenv
+
 eval "$(op completion zsh)"; compdef _op op
 
 eval "$(starship init zsh)"
