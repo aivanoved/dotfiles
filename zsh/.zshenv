@@ -3,6 +3,4 @@ export PATH=~/.local/bin:$PATH
 
 export EDITOR=vim
 
-source ~/.zshsecretenv
-
 . "$HOME/.cargo/env"
