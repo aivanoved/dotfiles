@@ -6,4 +6,4 @@ path=(~/.local/bin $path)
 export EDITOR=vim
 
 . "$HOME/.cargo/env"
-path+=($HOME/git-fuzzy/bin $path)
+path=($HOME/git-fuzzy/bin $path)
