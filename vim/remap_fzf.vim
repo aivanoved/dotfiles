@@ -1,14 +1,15 @@
 " Mapping selecting mappings
-nnoremap <leader>ff :Files<cr>
-nnoremap <leader>fb :Buffers<cr>
-nnoremap <leader>fgf :GFiles<cr>
-nnoremap <leader>fgs :GFiles?<cr>
-nnoremap <leader>fag :Ag<cr>
-nnoremap <leader>frg :Rg<cr>
-nnoremap <leader>fl :Lines<cr>
-nnoremap <leader>fbl :BLines<cr>
-nnoremap <leader>fhf :History<cr>
-nnoremap <leader>fhc :History:<cr>
-nnoremap <leader>fhs :History/<cr>
-nnoremap <leader>fgc :Commits<cr>
-nnoremap <leader>fgb :BCommits<cr>
+nnoremap <silent> <leader>ff :Files<cr>
+nnoremap <silent> <leader>fF :Files!<cr>
+nnoremap <silent> <leader>fb :Buffers<cr>
+nnoremap <silent> <leader>fgf :GFiles<cr>
+nnoremap <silent> <leader>fgs :GFiles?<cr>
+nnoremap <silent> <leader>fag :Ag<cr>
+nnoremap <silent> <leader>frg :Rg<cr>
+nnoremap <silent> <leader>fl :Lines<cr>
+nnoremap <silent> <leader>fbl :BLines<cr>
+nnoremap <silent> <leader>fhf :History<cr>
+nnoremap <silent> <leader>fhc :History:<cr>
+nnoremap <silent> <leader>fhs :History/<cr>
+nnoremap <silent> <leader>fgc :Commits<cr>
+nnoremap <silent> <leader>fgb :BCommits<cr>
