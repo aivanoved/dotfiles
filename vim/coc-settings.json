@@ -3,8 +3,20 @@
     "suggest.autoTrigger": "none",
     "suggest.noselect": true,
     "suggest.virtualText": true,
-    "suggest.floatConfig.rounded": true,
     "codeLens.enable": true,
+    "suggest.floatConfig": {
+        "border": true,
+        rounded: true
+    },
+    "diagnostic.floatConfig": {
+        "border": true
+    },
+    "signature.floatConfig": {
+        "border": true
+    },
+    "hover.floatConfig": {
+        "border": true
+    },
     "codeLens.position": "top",
     "pyright.testing.provider": "pytest",
     "python.pythonPath": "~/.vim/coc-pyright-conda.sh"

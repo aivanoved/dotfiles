@@ -6,11 +6,12 @@ vim -c 'CocInstall -sync\
     coc-explorer \
     coc-fzf-preview \
     coc-git \
+    coc-vimlsp \
     coc-markdownlint \
-    coc-webview \
     coc-markdown-preview-enhanced \
-    coc-sh \
+    coc-webview \
 \
+    coc-sh \
     coc-yaml \
     coc-yank \
     coc-dictionary \

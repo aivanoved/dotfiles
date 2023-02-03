@@ -2,6 +2,11 @@ set encoding=utf-8
 set updatetime=300
 set shortmess+=c
 
+let g:markdown_fenced_languages = [
+      \ 'vim',
+      \ 'help'
+      \]
+
 " use <tab> to trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
   let col = col('.') - 1
