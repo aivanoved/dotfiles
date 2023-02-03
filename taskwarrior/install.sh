@@ -1,3 +1,3 @@
 rm -rf ~/.taskrc
 
-ln -s ~/dotfiles/direnv/.taskrc ~/.taskrc
+ln -s ~/dotfiles/taskwarrior/.taskrc ~/.taskrc
