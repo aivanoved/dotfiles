@@ -21,6 +21,7 @@ Plug 'mbbill/undotree'
 
 Plug 'rust-lang/rust.vim'
 
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
