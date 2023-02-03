@@ -24,6 +24,8 @@ let g:cursormode_color_map = {
 
 let g:airline#extensions#hunks#coc_git = 1
 
+let g:airline#extensions#zoomwintab#enabled = 1
+
 " unicode symbols
 let g:airline_left_sep = '▶'
 let g:airline_right_sep = '◀'
