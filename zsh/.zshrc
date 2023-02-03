@@ -189,9 +189,6 @@ source "$HOME/.cargo/env"
 
 neofetch
 
-op whoami || eval $(op signin)
-source ~/.zshsecretenv
-
 eval "$(op completion zsh)"; compdef _op op
 
 eval "$(starship init zsh)"
@@ -214,20 +211,18 @@ alias :vevim="$EDITOR $VIMRC"
 
 alias tmux='direnv exec / tmux'
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/~/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/~/miniconda/etc/profile.d/conda.sh" ]; then
-        . "/~/miniconda/etc/profile.d/conda.sh"
-    else
-        export PATH="/~/miniconda/bin:$PATH"
-    fi
+if [ -f '~/.zshenv' ]; then
+    source ~/.zshenv
 fi
-unset __conda_setup
-# <<< conda initialize <<<
+
+op whoami || eval $(op signin)
+if [ -f '~/.zshsecretenv' ]; then
+    source ~/.zshsecretenv
+fi
+
+if [ -f '~/.zshlocal' ]; then
+    source ~/.zshlocal
+fi
 
 bindkey jj vi-cmd-mode
 
