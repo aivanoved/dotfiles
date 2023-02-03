@@ -200,14 +200,14 @@ alias :q='exit'
 alias :e='$EDITOR'
 alias :e\!='sudo $EDITOR'
 
-export ZSHRC='$HOME/.zshrc'
+export ZSHRC="$HOME/.zshrc"
 
-alias :ve='$EDITOR $ZSHRC'
-alias :vr='source $ZSHRC'
+alias :ve="$EDITOR $ZSHRC"
+alias :vr="source $ZSHRC"
 
-export VIMRC='$HOME/.vimrc'
+export VIMRC="$HOME/.vimrc"
 
-alias :vevim='$EDITOR $VIMRC'
+alias :vevim="$EDITOR $VIMRC"
 
 bindkey jj vi-cmd-mode
 
