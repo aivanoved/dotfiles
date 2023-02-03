@@ -1,3 +1,5 @@
+# original source https://github.com/ranger/ranger/wiki/Image-Previews#with-mpv
+
 import subprocess
 import json
 import atexit
