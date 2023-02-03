@@ -113,6 +113,28 @@ _safe_source ~/.zshenv
 op whoami || eval $(op signin)
 _safe_source ~/.zshsecretenv
 
+ssh-add -l &> /dev/null
+
+if [[ "$?" == 2 ]]; then
+
+    test -r "~/.ssh-agent" && \
+        eval "$(~/.ssh-agent)" > /dev/null
+
+    ssh-add -l &> /dev/null
+
+    if [[ "$?" == 2 ]]; then
+        (umask 066; ssh-agent > ~/.ssh-agent)
+        eval "$(~/.ssh-agent)" > /dev/null
+    fi
+
+fi
+
+ssh-add -l &> /dev/null
+
+if [[ "$?" == 1 ]]; then
+    fd --exclude "*pub" . ~/.ssh/keys | xargs ssh-add
+fi
+
 _safe_source ~/.zshlocal
 
 bindkey jj vi-cmd-mode
