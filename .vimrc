@@ -31,6 +31,8 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'rafamadriz/friendly-snippets'
 
+Plug 'rust-lang/rust.vim'
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
@@ -43,9 +45,18 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 call plug#end()
 
-colorscheme vim-atom-dark
+syntax enable
+filetype plugin indent on
+
+set background=dark
+colorscheme sonokai
 
 let g:lsp_use_lua = has('nvim-0.4.0') || (has('lua') && has('patch-8.2.0775'))
+
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = '/home/alex/vim-lsp.log'
+
+let g:asyncomple_log_file = '/home/alex/asyncomple.log'
 
 if executable('pyls')
     " pip install python-language-server
@@ -53,6 +64,7 @@ if executable('pyls')
         \ 'name': 'pyls',
         \ 'cmd': {server_info->['pyls']},
         \ 'allowlist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {'mypy': {'enabled': v:true}}}}
         \ })
 endif
 
@@ -66,6 +78,17 @@ if executable('ccls')
       \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc', 'h'],
       \ })
 endif
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+let g:rustfmt_autosave = 1
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
