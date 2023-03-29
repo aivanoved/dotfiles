@@ -4,8 +4,11 @@ vim -c 'CocInstall -sync\
     coc-esbonio \
     coc-explorer \
     coc-fzf-preview \
+    coc-float-term \
     coc-git \
     coc-json \
+    coc-lightbulb \
+    coc-marketplace \
     coc-markdownlint \
     coc-markdown-preview-enhanced \
     coc-pyright \

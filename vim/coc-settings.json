@@ -8,7 +8,8 @@
     "hover.floatConfig": {
         "border": true
     },
-    "python.pythonPath": "~/.vim/coc-pyright-conda.sh"
+    "lightbulb.enableSign": true,
+    "python.pythonPath": "~/.vim/coc-pyright-conda.sh",
     "pyright.testing.provider": "pytest",
     "signature.floatConfig": {
         "border": true
@@ -21,5 +22,5 @@
         "rounded": true
     },
     "suggest.noselect": true,
-    "suggest.virtualText": true,
+    "suggest.virtualText": true
 }
