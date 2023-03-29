@@ -1,23 +1,23 @@
 {
-    "diagnostic.displayByAle": true,
-    "suggest.autoTrigger": "none",
-    "suggest.noselect": true,
-    "suggest.virtualText": true,
     "codeLens.enable": true,
-    "suggest.floatConfig": {
-        "border": true,
-        "rounded": true
-    },
+    "codeLens.position": "top",
+    "diagnostic.displayByAle": true,
     "diagnostic.floatConfig": {
-        "border": true
-    },
-    "signature.floatConfig": {
         "border": true
     },
     "hover.floatConfig": {
         "border": true
     },
-    "codeLens.position": "top",
-    "pyright.testing.provider": "pytest",
     "python.pythonPath": "~/.vim/coc-pyright-conda.sh"
+    "pyright.testing.provider": "pytest",
+    "signature.floatConfig": {
+        "border": true
+    },
+    "suggest.autoTrigger": "none",
+    "suggest.floatConfig": {
+        "border": true,
+        "rounded": true
+    "suggest.noselect": true,
+    "suggest.virtualText": true,
+    },
 }
