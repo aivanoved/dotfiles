@@ -9,6 +9,7 @@
     "border": true
   },
   "lightbulb.enableSign": true,
+  "pydocstring.formatter": "numpy",
   "python.pythonPath": "~/.vim/coc-pyright-conda.sh",
   "pyright.testing.provider": "pytest",
   "signature.floatConfig": {

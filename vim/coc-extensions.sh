@@ -13,6 +13,7 @@ vim -c 'CocInstall -sync\
 \
     coc-markdown-preview-enhanced \
     coc-prettier \
+    coc-pydocstring \
     coc-pyright \
     coc-rust-analyzer \
     coc-sh \
