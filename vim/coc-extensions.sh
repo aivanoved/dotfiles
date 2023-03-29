@@ -10,10 +10,11 @@ vim -c 'CocInstall -sync\
     coc-lightbulb \
     coc-marketplace \
     coc-markdownlint \
+\
     coc-markdown-preview-enhanced \
+    coc-prettier \
     coc-pyright \
     coc-rust-analyzer \
-\
     coc-sh \
     coc-syntax\
     coc-tag \
