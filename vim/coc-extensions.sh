@@ -1,23 +1,23 @@
 vim -c 'CocInstall -sync\
-    coc-json \
-    coc-pyright \
-    coc-rust-analyzer \
+    coc-dictionary \
+    coc-emoji \
     coc-esbonio \
     coc-explorer \
     coc-fzf-preview \
     coc-git \
-    coc-vimlsp \
+    coc-json \
     coc-markdownlint \
     coc-markdown-preview-enhanced \
-    coc-webview \
+    coc-pyright \
+    coc-rust-analyzer \
 \
     coc-sh \
+    coc-syntax\
+    coc-tag \
+    coc-toml \
+    coc-vimlsp \
+    coc-webview \
+    coc-word \
     coc-yaml \
     coc-yank \
-    coc-dictionary \
-    coc-toml \
-    coc-tag \
-    coc-word \
-    coc-emoji \
-    coc-syntax\
     |q'
