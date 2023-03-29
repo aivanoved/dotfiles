@@ -13,11 +13,13 @@
     "signature.floatConfig": {
         "border": true
     },
+    "signature.hideOnTextChange": true,
     "suggest.autoTrigger": "none",
+    "suggest.defaultSortMethod": "alphabetical",
     "suggest.floatConfig": {
         "border": true,
         "rounded": true
+    },
     "suggest.noselect": true,
     "suggest.virtualText": true,
-    },
 }
