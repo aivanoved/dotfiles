@@ -1,10 +1,21 @@
-nmap <leader>m<space> <Plug>BookmarkToggle
-nmap <leader>mi <Plug>BookmarkAnnotate
-nmap <leader>ma <Plug>BookmarkShowAll
-nmap <leader>mj <Plug>BookmarkNext
-nmap <leader>mk <Plug>BookmarkPrev
-nmap <leader>mc <Plug>BookmarkClear
-nmap <leader>mx <Plug>BookmarkClearAll
-nmap <leader>mkk <Plug>BookmarkMoveUp
-nmap <leader>mjj <Plug>BookmarkMoveDown
-nmap <leader>mg <Plug>BookmarkMoveToLine
+let g:bookmark_save_per_working_dir = 1
+let g:bookmark_manage_per_buffer = 1
+let g:bookmark_center = 1
+
+" Finds the Git super-project directory.
+function! g:BMWorkDirFileLocation()
+    let filename = 'bookmarks'
+    let location = ''
+    if isdirectory('.git')
+        " Current work dir is git's work tree
+        let location = getcwd().'/.git'
+    else
+        " Look upwards (at parents) for a directory named '.git'
+        let location = finddir('.git', '.;')
+    endif
+    if len(location) > 0
+        return location.'/'.filename
+    else
+        return getcwd().'/.'.filename
+    endif
+endfunction
