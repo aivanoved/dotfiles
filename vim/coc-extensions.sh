@@ -19,7 +19,9 @@ vim -c 'CocInstall -sync\
     coc-sh \
     coc-syntax\
     coc-tag \
+    coc-tasks \
     coc-toml \
+    coc-typos \
     coc-vimlsp \
     coc-webview \
     coc-word \
