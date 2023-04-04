@@ -32,7 +32,10 @@ layout_anaconda() {
 
     if type miniconda; then
         local MINICONDA_PATH="$(fd --type d  miniconda ${HOME}| tr -d '\t\r\n')"
-        local ACTIVATE="$MINICONDA_PATH/bin/activate"
+        local ACTIVATE="${MINICONDA_PATH}/bin/activate"
+    else
+        echo "No conda binary found, consider installing conda"
+        exit 1;
     fi;
 
     if [ -n "$1" ]; then
