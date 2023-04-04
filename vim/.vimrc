@@ -9,6 +9,7 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'gosukiwi/vim-atom-dark'
 Plug 'jiangmiao/auto-pairs'
+Plug 'joshdick/onedark.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vader.vim'
