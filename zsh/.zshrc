@@ -152,8 +152,7 @@ fi
 
 _safe_source ~/.zshlocal
 
-eval "$(gitconfig completion zsh)"; compdef _gitconfig gitconfig
-eval "$(helm-cr completion zsh)"; compdef _cr helm-cr
+eval "$(cr completion zsh)"; compdef _cr cr
 eval "$(ct completion zsh)"; compdef _ct ct
 eval "$(helm diff completion zsh)"; compdef _diff helm-diff
 
