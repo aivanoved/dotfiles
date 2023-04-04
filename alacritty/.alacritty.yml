@@ -11,7 +11,7 @@
 import:
   - ~/alacritty.yml
 
-  - ~/.config/alacritty/sonokai.yml
+  - ~/.config/alacritty/themes/one_dark.yml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
