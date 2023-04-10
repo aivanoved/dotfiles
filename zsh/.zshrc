@@ -128,6 +128,9 @@ _safe_source ~/.zshsecretenv
 
 export PATH
 
+
+eval `ssh-agent -s`
+
 ssh-add -l &> /dev/null
 
 if [[ "$?" == 2 ]]; then
@@ -138,7 +141,7 @@ if [[ "$?" == 2 ]]; then
     ssh-add -l &> /dev/null
 
     if [[ "$?" == 2 ]]; then
-        (umask 066; ssh-agent > ~/.ssh-agent)
+        (umask 066; ssh-agent > $HOME/.ssh-agent)
         eval "$(~/.ssh-agent)" > /dev/null
     fi
 
@@ -156,7 +159,7 @@ eval "$(cr completion zsh)"; compdef _cr cr
 eval "$(ct completion zsh)"; compdef _ct ct
 eval "$(helm diff completion zsh)"; compdef _diff helm-diff
 
-export REDO_HISTORY_PATH="$HOME/.zshhistory"
+export REDO_HISTORY_PATH="$HOME/.zsh_history"
 source "$(redo alias-file)"
 bindkey -s '^e' 'redo^M'
 
