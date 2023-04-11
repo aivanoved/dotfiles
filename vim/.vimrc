@@ -26,8 +26,11 @@ Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'puremourning/vimspector'
 Plug 'rafi/awesome-vim-colorschemes'
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 Plug 'rbgrouleff/bclose.vim'
 Plug 'rbong/vim-flog'
+Plug 'roxma/nvim-yarp', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
+Plug 'roxma/vim-hug-neovim-rpc', v:version >= 800 && !has('nvim') ? {} : { 'on': [], 'for': [] }
 Plug 'rust-lang/rust.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'simeji/winresizer'
