@@ -2,6 +2,7 @@ call plug#begin("~/.vim/plugged")
 
 Plug 'airblade/vim-gitgutter'
 Plug 'blindFS/vim-taskwarrior'
+Plug 'catppuccin/vim', { 'as': 'catppuccin'  }
 Plug 'chrisbra/unicode.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-tmux-navigator'
