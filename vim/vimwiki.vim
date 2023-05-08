@@ -1,1 +1,1 @@
-let g:vimwiki_list = [{'path': '$HOME/vimwiki'}, {'path': '~/obsidian', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '$HOME/vimwiki', 'syntax': 'markdown', 'ext': '.md'}, {'path': '~/obsidian', 'syntax': 'markdown', 'ext': '.md'}]
