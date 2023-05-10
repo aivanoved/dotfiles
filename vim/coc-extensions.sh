@@ -23,6 +23,7 @@ vim -c 'CocInstall -sync\
     coc-toml \
     coc-typos \
     coc-vimlsp \
+    coc-vimtex \
     coc-webview \
     coc-word \
     coc-yaml \
