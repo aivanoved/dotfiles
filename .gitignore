@@ -1,4 +1,6 @@
 !justfile
 
+/alacritty/.config/alacritty/themes
+
 nvim/nvim/lua/.luarc.json
 nvim/nvim/plugin

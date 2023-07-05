@@ -1,0 +1,19 @@
+#!/bin/sh
+
+setopt autocd extendedglob nomatch menucomplete
+setopt interactive_comments
+stty stop undef
+zle_highlight=('paste:none')
+
+unsetopt BEEP
+
+
+
+
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+
+zmodload zsh/complist
+
+_comp_options+=(globdots)
