@@ -30,8 +30,6 @@ return require('packer').startup(function(use)
         requires = {
             -- Required.
             "nvim-lua/plenary.nvim",
-
-            -- see below for full list of optional dependencies 👇
         },
     })
     use 'lambdalisue/glyph-palette.vim'
