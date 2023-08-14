@@ -25,7 +25,22 @@ return require('packer').startup(function(use)
     use 'jiangmiao/auto-pairs'
     use 'joshdick/onedark.vim'
     use 'junegunn/vader.vim'
-    use 'kis9a/vimsidian'
+    use({
+        "epwalsh/obsidian.nvim",
+        requires = {
+            -- Required.
+            "nvim-lua/plenary.nvim",
+
+            -- see below for full list of optional dependencies 👇
+        },
+        config = function()
+            require("obsidian").setup({
+                dir = "~/obsidian/dev",
+
+                -- see below for full list of options 👇
+            })
+        end,
+    })
     use 'lambdalisue/glyph-palette.vim'
     use 'lambdalisue/nerdfont.vim'
     use 'lervag/vimtex'

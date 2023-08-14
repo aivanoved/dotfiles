@@ -21,3 +21,16 @@ end)
 vim.keymap.set("n", "<leader>vr", function()
     vim.cmd.source(os.getenv("HOME") .. "/.config/nvim/init.lua")
 end)
+
+
+
+
+
+
+vim.keymap.set("n", "gf", function()
+    if require("obsidian").util.cursor_on_markdown_link() then
+        return "<cmd>ObsidianFollowLink<CR>"
+    else
+        return "gf"
+    end
+end, { noremap = false, expr = true })
