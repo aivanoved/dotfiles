@@ -92,7 +92,6 @@ return require('packer').startup(function(use)
     use 'tribela/vim-transparent'
     use 'tools-life/taskwiki'
     use 'troydm/zoomwintab.vim'
-    use { 'vimwiki/vimwiki', branch = 'dev' }
 
 
 
