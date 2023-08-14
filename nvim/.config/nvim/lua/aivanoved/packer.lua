@@ -33,13 +33,6 @@ return require('packer').startup(function(use)
 
             -- see below for full list of optional dependencies 👇
         },
-        config = function()
-            require("obsidian").setup({
-                dir = "~/obsidian/dev",
-
-                -- see below for full list of options 👇
-            })
-        end,
     })
     use 'lambdalisue/glyph-palette.vim'
     use 'lambdalisue/nerdfont.vim'
