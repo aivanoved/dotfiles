@@ -14,6 +14,7 @@ if on_git_branch; then
 fi
 
 layout_anaconda() {
+    source $HOME/.bashrclocal
     if type micromamba; then
         eval "$(micromamba shell hook --shell=bash)"
         if [ -n "$1" ]; then
