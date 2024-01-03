@@ -24,7 +24,6 @@ _safe_source "$ZSH_CONFIG_DIR/zplug.zsh"
 
 _safe_source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
 
-
 _safe_source ~/.zshenv
 _safe_source $HOME/.config/zsh/zshsecretenv
 
