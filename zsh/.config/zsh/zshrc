@@ -17,3 +17,6 @@ _comp_options+=(globdots)
 export PATH="$HOME/neovim_build/bin:$PATH"
 
 export EDITOR=nvim
+
+op whoami || eval $(op signin)
+source $HOME/.config/zsh/zshsecretenv
