@@ -7,16 +7,42 @@ zle_highlight=('paste:none')
 
 unsetopt BEEP
 
+eval "$(starship init zsh)"
+
+export ZSH_CONFIG_DIR="$HOME/.config/zsh"
+
+
+_safe_source(){
+    if [ -f $1 ]; then
+        source $1
+    fi
+}
+
+_safe_source "$ZSH_CONFIG_DIR/env.zsh"
+_safe_source "$ZSH_CONFIG_DIR/alias.zsh"
+_safe_source "$ZSH_CONFIG_DIR/zplug.zsh"
+
+_safe_source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
+
+_safe_source ~/.zshenv
+_safe_source $HOME/.config/zsh/zshsecretenv
+
+_safe_source "$ZSH_CONFIG_DIR/ssh.zsh"
+_safe_source "$HOME/zshlocal"
+
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+_safe_source "$ZSH_CONFIG_DIR/git.zsh"
+
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 
-
 _comp_options+=(globdots)
 
-export PATH="$HOME/neovim_build/bin:$PATH"
+autoload -U +X bashcompinit
+compinit
+bashcompinit
 
-export EDITOR=nvim
-
-op whoami || eval $(op signin)
-source $HOME/.config/zsh/zshsecretenv
+neofetch
