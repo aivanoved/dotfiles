@@ -9,11 +9,11 @@ unsetopt BEEP
 
 autoload -Uz compinit
 zstyle ':completion:*' menu select
-
-
-
 zmodload zsh/complist
+
 
 _comp_options+=(globdots)
 
 export PATH="$HOME/neovim_build/bin:$PATH"
+
+export EDITOR=nvim
