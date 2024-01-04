@@ -19,7 +19,11 @@ return require('lazy').setup({
     'francoiscabrol/ranger.vim',
     'ghifarit53/tokyonight-vim',
     'gosukiwi/vim-atom-dark',
-    'jiangmiao/auto-pairs',
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        opts = {} -- this is equalent to setup({}) function
+    },
     'joshdick/onedark.vim',
     'junegunn/vader.vim',
     'lambdalisue/glyph-palette.vim',

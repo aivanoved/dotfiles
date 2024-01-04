@@ -28,7 +28,7 @@ _safe_source ~/.zshenv
 _safe_source $HOME/.config/zsh/zshsecretenv
 
 _safe_source "$ZSH_CONFIG_DIR/ssh.zsh"
-_safe_source "$HOME/zshlocal"
+_safe_source "$HOME/.zshlocal"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
