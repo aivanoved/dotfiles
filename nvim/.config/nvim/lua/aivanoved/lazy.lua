@@ -12,7 +12,7 @@ return require('lazy').setup({
         end
     },
     'blindFS/vim-taskwarrior',
-    { "catppuccin/nvim", name = "catppuccin" },
+    { "catppuccin/nvim",  name = "catppuccin" },
     'chrisbra/unicode.vim',
     'chriskempson/base16-vim',
     'christoomey/vim-tmux-navigator',
@@ -36,14 +36,14 @@ return require('lazy').setup({
         dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true }
     },
     {
-        'nvim-telescope/telescope.nvim', version = '0.1.1',
+        'nvim-telescope/telescope.nvim',
+        tag = '0.1.5',
         dependencies = 'nvim-lua/plenary.nvim'
     },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate'
     },
-    'wbthomason/packer.nvim',
     'powerman/vim-plugin-AnsiEsc',
     'preservim/nerdtree',
     'preservim/nerdcommenter',
@@ -71,31 +71,20 @@ return require('lazy').setup({
     'tribela/vim-transparent',
     'tools-life/taskwiki',
     'troydm/zoomwintab.vim',
-    { 'vimwiki/vimwiki', branch = 'dev' },
+    { 'vimwiki/vimwiki',                  branch = 'dev' },
     'MattesGroeger/vim-bookmarks',
     'NoahTheDuke/vim-just',
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        dependencies = {
-            -- LSP Support
-            'neovim/nvim-lspconfig', -- Required
-            {
-                -- Optional
-                'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            'williamboman/mason-lspconfig.nvim', -- Optional
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    -- LSP Support
+    { 'neovim/nvim-lspconfig' },
+    { 'williamboman/mason.nvim' },
+    { 'williamboman/mason-lspconfig.nvim' },
 
-            -- Autocompletion
-            'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-nvim-lsp', -- Required
-            'L3MON4D3/LuaSnip',     -- Required
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'saadparwaiz1/cmp_luasnip',
-        }
-    }
+    -- Autocompletion
+    { 'hrsh7th/nvim-cmp' },
+    { 'hrsh7th/cmp-nvim-lsp' },
+    { 'L3MON4D3/LuaSnip' },
+    { 'hrsh7th/cmp-buffer' },
+    { 'hrsh7th/cmp-path' },
+    { 'saadparwaiz1/cmp_luasnip' }
 })

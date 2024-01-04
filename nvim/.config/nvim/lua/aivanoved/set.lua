@@ -15,7 +15,7 @@ vim.opt.smartindent = true
 vim.opt.autoindent = true
 vim.opt.wrap = false
 
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+-- vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
