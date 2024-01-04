@@ -88,11 +88,16 @@ cmp.setup({
     },
     formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<c-d>'] = cmp.mapping.scroll_docs(5),
+        ['<c-f>'] = cmp.mapping.scroll_docs(-5),
+        ['<c-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        ['<c-n>'] = cmp.mapping.select_next_item(cmp_select),
+        ['<c-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<c-space>'] = cmp.mapping.complete(),
     }),
+    experimental = {
+        ghost_text = true,
+    },
 })
 
 lsp_zero.format_on_save({
