@@ -21,3 +21,5 @@ alias esr="exa -lRFh"
 alias et="exa -lFht modified"
 
 alias tmux='direnv exec / tmux'
+
+alias t='task'
