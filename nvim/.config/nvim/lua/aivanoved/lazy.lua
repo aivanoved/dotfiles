@@ -11,7 +11,6 @@ return require('lazy').setup({
             }
         end
     },
-    -- 'blindFS/vim-taskwarrior',
     { "catppuccin/nvim",  name = "catppuccin" },
     'christoomey/vim-tmux-navigator',
     {
@@ -53,7 +52,6 @@ return require('lazy').setup({
         opts = {},
         lazy = false,
     },
-    'puremourning/vimspector',
     { 'raghur/vim-ghost', build = ':GhostInstall' },
     {
         "rbong/vim-flog",
@@ -66,7 +64,6 @@ return require('lazy').setup({
     'ryanoasis/vim-devicons',
     'skywind3000/asynctasks.vim',
     'skywind3000/asyncrun.vim',
-    'svermeulen/vim-cutlass',
     'tpope/vim-abolish',
     'tpope/vim-capslock',
     'tpope/vim-commentary',
@@ -77,7 +74,6 @@ return require('lazy').setup({
     'tpope/vim-surround',
     'tpope/vim-unimpaired',
     'tribela/vim-transparent',
-    -- 'tools-life/taskwiki',
     { 'vimwiki/vimwiki',                  branch = 'dev' },
     'NoahTheDuke/vim-just',
     { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
