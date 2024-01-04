@@ -4,6 +4,7 @@
 
 alias g='git'
 alias ga='git add'
+alias gaa='git add --all'
 alias gav='git add --verbose'
 alias gco='git checkout'
 alias gc='git commit --verbose'
@@ -28,3 +29,8 @@ alias grs='git restore'
 alias grst='git restore --staged'
 alias grm='git rm'
 alias gst='git status'
+
+
+# depends on correct git config
+
+alias grt='git root'

@@ -1,7 +1,7 @@
 [core]
-	excludesfile = ~/.gitignore_global
+    excludesfile = ~/.gitignore_global
     pager = delta
-	editor = nvim
+    editor = nvim
 
 [interactive]
     diffFilter = delta --color-only
@@ -22,5 +22,9 @@
 
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
+
+[alias]
+    root = "rev-parse --show-toplevel"
+
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/

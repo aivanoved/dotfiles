@@ -11,30 +11,23 @@ return require('lazy').setup({
             }
         end
     },
-    'blindFS/vim-taskwarrior',
+    -- 'blindFS/vim-taskwarrior',
     { "catppuccin/nvim",  name = "catppuccin" },
     'chrisbra/unicode.vim',
-    'chriskempson/base16-vim',
     'christoomey/vim-tmux-navigator',
     'francoiscabrol/ranger.vim',
-    'ghifarit53/tokyonight-vim',
-    'gosukiwi/vim-atom-dark',
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
         opts = {} -- this is equalent to setup({}) function
     },
-    'joshdick/onedark.vim',
     'junegunn/vader.vim',
     'lambdalisue/glyph-palette.vim',
     'lambdalisue/nerdfont.vim',
-    'lervag/vimtex',
     'ludovicchabant/vim-gutentags',
     'mbbill/undotree',
     'mhartington/formatter.nvim',
     'mhinz/vim-startify',
-    'mswift42/vim-themes',
-    'nathanaelkane/vim-indent-guides',
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true }
@@ -49,15 +42,27 @@ return require('lazy').setup({
         build = ':TSUpdate'
     },
     'powerman/vim-plugin-AnsiEsc',
-    'preservim/nerdtree',
-    'preservim/nerdcommenter',
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
+            -- "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
+        }
+    },
+    {
+        'numToStr/Comment.nvim',
+        opts = {},
+        lazy = false,
+    },
     'puremourning/vimspector',
-    'rafi/awesome-vim-colorschemes',
     { 'raghur/vim-ghost', build = ':GhostInstall' },
     'rbgrouleff/bclose.vim',
     'rbong/vim-flog',
     'ryanoasis/vim-devicons',
-    'simeji/winresizer',
+    -- 'simeji/winresizer',
     'skywind3000/asynctasks.vim',
     'skywind3000/asyncrun.vim',
     'svermeulen/vim-cutlass',
@@ -73,10 +78,8 @@ return require('lazy').setup({
     'tpope/vim-surround',
     'tpope/vim-unimpaired',
     'tribela/vim-transparent',
-    'tools-life/taskwiki',
-    'troydm/zoomwintab.vim',
+    -- 'tools-life/taskwiki',
     { 'vimwiki/vimwiki',                  branch = 'dev' },
-    'MattesGroeger/vim-bookmarks',
     'NoahTheDuke/vim-just',
     { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
     -- LSP Support
