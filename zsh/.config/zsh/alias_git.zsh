@@ -30,7 +30,6 @@ alias grst='git restore --staged'
 alias grm='git rm'
 alias gst='git status'
 
-
 # depends on correct git config
 
 alias grt='git root'
