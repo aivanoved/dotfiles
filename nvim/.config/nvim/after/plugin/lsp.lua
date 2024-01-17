@@ -100,6 +100,15 @@ cmp.setup({
     },
 })
 
+
+
+lsp_zero.set_sign_icons({
+    error = ' ',
+    warning = ' ',
+    info = '󰋽 ',
+    hint = '󰌶 ',
+})
+
 lsp_zero.format_on_save({
     format_opts = {
         async = false,
