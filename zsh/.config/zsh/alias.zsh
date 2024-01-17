@@ -7,6 +7,10 @@ _safe_source "$ZSH_CONFIG_DIR/alias_exa.zsh"
 _safe_source "$ZSH_CONFIG_DIR/alias_cd.zsh"
 
 _safe_source "$ZSH_CONFIG_DIR/alias_git.zsh"
+_safe_source "$ZSH_CONFIG_DIR/alias_tmux.zsh"
 
-alias tmux='direnv exec / tmux'
+alias valias="source $ZSH_CONFIG_DIR/alias.zsh"
+
+
+alias ven="source $ZSH_CONFIG_DIR/env.zsh"
 alias t='task'

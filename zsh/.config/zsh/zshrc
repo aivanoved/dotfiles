@@ -28,16 +28,6 @@ _safe_source $HOME/.config/zsh/zshsecretenv
 _safe_source "$ZSH_CONFIG_DIR/ssh.zsh"
 _safe_source "$HOME/.zshlocal"
 
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-
-_comp_options+=(globdots)
-
-autoload -U +X bashcompinit
-compinit
-bashcompinit
+_safe_source "$ZSH_CONFIG_DIR/completion.zsh"
 
 neofetch

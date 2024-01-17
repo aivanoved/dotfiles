@@ -6,4 +6,7 @@ export ZSHRC="$HOME/.zshrc"
 export VIMRC="$HOME/.vimrc"
 export NVIMRC="$HOME/.config/nvim/init.lua"
 
+export ZDOTDIR=${ZDOTDIR:-$HOME}
+
+
 source "$HOME/.cargo/env"
