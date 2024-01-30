@@ -25,15 +25,13 @@ vim.opt.hidden = true
 vim.opt.incsearch = true
 vim.opt.hls = false
 
-
-
 vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "90"
+vim.opt.colorcolumn = "70"
 
 vim.opt.bo = "all"
-vim.opt.so = 8
+vim.opt.so = 9
 
 vim.g.mapleader = " "

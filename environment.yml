@@ -1,0 +1,7 @@
+name: dotfiles
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.8
+  - pre-commit
+  - setuptools_scm
