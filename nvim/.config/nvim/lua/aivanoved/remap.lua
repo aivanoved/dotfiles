@@ -5,17 +5,19 @@ vim.keymap.set('n', 'mm', 'dd')
 
 vim.keymap.set('n', 'M', 'D')
 
-vim.keymap.set({ 'n', 'x' }, 'd', '"_d')
-vim.keymap.set({ 'n', 'x' }, 'dd', '"_dd')
-vim.keymap.set({ 'n', 'x' }, 'D', '"_D')
+-- stylua: ignore start
+vim.keymap.set({ 'n', 'x' }, 'd', '\"_d')
+vim.keymap.set({ 'n', 'x' }, 'dd', '\"_dd')
+vim.keymap.set({ 'n', 'x' }, 'D', '\"_D')
 
-vim.keymap.set({ 'n', 'x' }, 'c', '"_c')
-vim.keymap.set({ 'n', 'x' }, 'cc', '"_cc')
-vim.keymap.set({ 'n', 'x' }, 'C', '"_C')
+vim.keymap.set({ 'n', 'x' }, 'c', '\"_c')
+vim.keymap.set({ 'n', 'x' }, 'cc', '\"_cc')
+vim.keymap.set({ 'n', 'x' }, 'C', '\"_C')
 
-vim.keymap.set({ 'n', 'x' }, 's', '"_s')
-vim.keymap.set({ 'n', 'x' }, 'ss', '"_ss')
-vim.keymap.set({ 'n', 'x' }, 'S', '"_S')
+vim.keymap.set({ 'n', 'x' }, 's', '\"_s')
+vim.keymap.set({ 'n', 'x' }, 'ss', '\"_ss')
+vim.keymap.set({ 'n', 'x' }, 'S', '\"_S')
+-- stylua: ignore end
 
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
@@ -26,15 +28,17 @@ vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
-vim.keymap.set('x', '<leader>p', '"_dP')
+-- stylua: ignore start
+vim.keymap.set('x', '<leader>p', '\"_dP')
 
-vim.keymap.set('n', '<leader>y', '"+y')
-vim.keymap.set('v', '<leader>y', '"+y')
-vim.keymap.set('n', '<leader>Y', '"+Y')
+vim.keymap.set('n', '<leader>y', '\"+y')
+vim.keymap.set('v', '<leader>y', '\"+y')
+vim.keymap.set('n', '<leader>Y', '\"+Y')
 
-vim.keymap.set('n', '<leader>p', '"+p')
-vim.keymap.set('n', '<leader>P', '"+P')
-vim.keymap.set('x', '<leader>P', '"_d"+p')
+vim.keymap.set('n', '<leader>p', '\"+p')
+vim.keymap.set('n', '<leader>P', '\"+P')
+vim.keymap.set('x', '<leader>P', '\"_d\"+p')
+-- stylua: ignore end
 
 vim.keymap.set('n', 'Q', '<nop>')
 
