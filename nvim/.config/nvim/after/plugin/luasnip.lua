@@ -10,11 +10,6 @@ luasnip.config.set_config({
 
 local s = luasnip.s
 
-
-
-
-
-
 local i = luasnip.insert_node
 local t = luasnip.text_node
 
@@ -25,14 +20,14 @@ local c = luasnip.choice_node
 local rep = extras.rep
 
 luasnip.add_snippets('lua', {
-    s('req', fmt([[local {} = require('{}')]], {
-        f(
-            function(arg_name)
+    s(
+        'req',
+        fmt([[local {} = require('{}')]], {
+            f(function(arg_name)
                 local name = vim.split(arg_name[1][1], '.', true)
                 return name[#name] or ''
-            end,
-            { 1 }
-        ),
-        i(1)
-    }))
+            end, { 1 }),
+            i(1),
+        })
+    ),
 })

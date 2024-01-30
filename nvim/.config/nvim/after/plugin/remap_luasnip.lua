@@ -27,6 +27,6 @@ end, { silent = true })
 vim.keymap.set(
     'n',
     '<leader><leader>s',
-    '<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<cr>' ..
-    '<cmd>source ~/.config/nvim/after/plugin/remap_luasnip.lua<cr>'
+    '<cmd>source ~/.config/nvim/after/plugin/luasnip.lua<cr>'
+        .. '<cmd>source ~/.config/nvim/after/plugin/remap_luasnip.lua<cr>'
 )

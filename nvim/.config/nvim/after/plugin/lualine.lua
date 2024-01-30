@@ -1,6 +1,6 @@
-require('lualine').setup {
+require('lualine').setup({
     options = {
-        theme = "catppuccin",
+        theme = 'catppuccin',
         component_separators = {},
         section_separators = {},
     },
@@ -10,10 +10,10 @@ require('lualine').setup {
                 'mode',
                 fmt = function(str)
                     return str:sub(1, 1)
-                end
-            }
+                end,
+            },
         },
         lualine_y = { 'progress', 'selectioncount', 'searchcount' },
     },
-    extension = { 'fugitive', 'nerdtree', 'quickfix' }
-}
+    extension = { 'fugitive', 'nerdtree', 'quickfix' },
+})

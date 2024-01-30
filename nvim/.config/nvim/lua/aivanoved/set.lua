@@ -1,12 +1,12 @@
 vim.opt.nu = true
 vim.opt.rnu = true
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 
-vim.opt.guicursor = ""
+vim.opt.guicursor = ''
 
 vim.opt.exrc = true
 
-vim.opt.backspace = "indent,eol,start"
+vim.opt.backspace = 'indent,eol,start'
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
@@ -29,9 +29,9 @@ vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "70"
+vim.opt.colorcolumn = '70'
 
-vim.opt.bo = "all"
+vim.opt.bo = 'all'
 vim.opt.so = 9
 
-vim.g.mapleader = " "
+vim.g.mapleader = ' '

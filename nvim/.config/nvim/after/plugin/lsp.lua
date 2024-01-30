@@ -3,16 +3,36 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set('n', 'gd', function()
+        vim.lsp.buf.definition()
+    end, opts)
+    vim.keymap.set('n', 'K', function()
+        vim.lsp.buf.hover()
+    end, opts)
+    vim.keymap.set('n', '<leader>vws', function()
+        vim.lsp.buf.workspace_symbol()
+    end, opts)
+    vim.keymap.set('n', '<leader>vd', function()
+        vim.diagnostic.open_float()
+    end, opts)
+    vim.keymap.set('n', '[d', function()
+        vim.diagnostic.goto_next()
+    end, opts)
+    vim.keymap.set('n', ']d', function()
+        vim.diagnostic.goto_prev()
+    end, opts)
+    vim.keymap.set('n', '<leader>vca', function()
+        vim.lsp.buf.code_action()
+    end, opts)
+    vim.keymap.set('n', '<leader>vrr', function()
+        vim.lsp.buf.references()
+    end, opts)
+    vim.keymap.set('n', '<leader>vrn', function()
+        vim.lsp.buf.rename()
+    end, opts)
+    vim.keymap.set('i', '<C-h>', function()
+        vim.lsp.buf.signature_help()
+    end, opts)
 end)
 
 local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd' }
@@ -26,13 +46,12 @@ require('mason-lspconfig').setup({
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
         end,
-    }
+    },
 })
 
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-local lspconfig = require("lspconfig")
+local lspconfig = require('lspconfig')
 
 local server_setup = {
     lua_ls = {
@@ -48,7 +67,7 @@ local server_setup = {
                 },
                 workspace = {
                     -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true),
+                    library = vim.api.nvim_get_runtime_file('', true),
                 },
                 -- Do not send telemetry data containing a randomized but unique identifier
                 telemetry = {
@@ -77,14 +96,14 @@ cmp.setup({
     snipet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
-        end
+        end,
     },
     sources = {
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'luasnip', keyword_length = 2 },
-        { name = 'buffer',  keyword_length = 3 },
+        { name = 'buffer', keyword_length = 3 },
     },
     formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({
@@ -100,8 +119,6 @@ cmp.setup({
     },
 })
 
-
-
 lsp_zero.set_sign_icons({
     error = ' ',
     warning = ' ',
@@ -116,10 +133,10 @@ lsp_zero.format_on_save({
     },
     servers = {
         ['lua_ls'] = { 'lua' },
-        ['rust_analyzer'] = { 'rust' }
-    }
+        ['rust_analyzer'] = { 'rust' },
+    },
 })
 
 vim.diagnostic.config({
-    virtual_text = true
+    virtual_text = true,
 })
