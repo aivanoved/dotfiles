@@ -1,7 +1,5 @@
-vim.keymap.set('i', '<c-g>j', 'copilot#Accept("\\<CR>")', {
-    expr = true,
-    silent = true,
-
-    replace_keycodes = false,
+require('copilot').setup({
+    suggestion = { enabled = true },
+    panel = { enabled = true },
 })
-vim.g.copilot_no_tab_map = true
+require('copilot_cmp').setup()

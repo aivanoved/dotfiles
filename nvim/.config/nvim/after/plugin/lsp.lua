@@ -33,9 +33,13 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set('i', '<C-h>', function()
         vim.lsp.buf.signature_help()
     end, opts)
+
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(bufnr, true)
+    end
 end)
 
-local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd' }
+local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'bashls', 'clangd', 'eslint' }
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
@@ -46,6 +50,7 @@ require('mason-lspconfig').setup({
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
         end,
+        rust_analyzer = lsp_zero.noop,
     },
 })
 
@@ -84,7 +89,9 @@ for _, lsp in ipairs(servers) do
 end
 
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup(server_setup[lsp])
+    if lsp ~= 'rust_analyzer' then
+        lspconfig[lsp].setup(server_setup[lsp])
+    end
 end
 
 local luasnip = require('luasnip')
@@ -103,7 +110,8 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'nvim_lua' },
         { name = 'luasnip', keyword_length = 2 },
-        { name = 'buffer', keyword_length = 3 },
+        { name = "copilot" },
+        { name = 'buffer',  keyword_length = 3 },
     },
     formatting = lsp_zero.cmp_format(),
     mapping = cmp.mapping.preset.insert({
@@ -134,6 +142,7 @@ lsp_zero.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
+        ['eslint'] = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
     },
 })
 

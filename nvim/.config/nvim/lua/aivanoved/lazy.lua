@@ -10,7 +10,7 @@ return require('lazy').setup({
             })
         end,
     },
-    { 'catppuccin/nvim', name = 'catppuccin' },
+    { 'catppuccin/nvim',  name = 'catppuccin' },
     'christoomey/vim-tmux-navigator',
     {
         'windwp/nvim-autopairs',
@@ -73,9 +73,9 @@ return require('lazy').setup({
     'tpope/vim-surround',
     'tpope/vim-unimpaired',
     'tribela/vim-transparent',
-    { 'vimwiki/vimwiki', branch = 'dev' },
+    { 'vimwiki/vimwiki',                  branch = 'dev' },
     'NoahTheDuke/vim-just',
-    { 'VonHeikemen/lsp-zero.nvim', branch = 'v3.x' },
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
     { 'williamboman/mason.nvim' },
@@ -84,10 +84,24 @@ return require('lazy').setup({
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-nvim-lsp' },
-    { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+    { 'L3MON4D3/LuaSnip',                 version = 'v2.*' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
     { 'saadparwaiz1/cmp_luasnip' },
 
-    { 'github/copilot.vim' },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^4', -- Recommended
+        lazy = false,   -- This plugin is already lazy
+    },
+
+    {
+        "zbirenbaum/copilot.lua",
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    },
 })

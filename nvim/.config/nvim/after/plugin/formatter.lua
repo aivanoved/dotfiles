@@ -4,6 +4,9 @@ formatter.setup({
     logging = false,
     log_level = vim.log.levels.WARN,
     filetype = {
+        ['rust'] = {
+            require('formatter.filetypes.rust').rustfmt,
+        },
         ['*'] = {
             require('formatter.filetypes.any').remove_trailing_whitespace,
         },
