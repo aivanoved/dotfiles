@@ -10,7 +10,7 @@ return require('lazy').setup({
             })
         end,
     },
-    { 'catppuccin/nvim',  name = 'catppuccin' },
+    { 'catppuccin/nvim',                  name = 'catppuccin' },
     'christoomey/vim-tmux-navigator',
     {
         'windwp/nvim-autopairs',
@@ -51,7 +51,6 @@ return require('lazy').setup({
         opts = {},
         lazy = false,
     },
-    { 'raghur/vim-ghost', build = ':GhostInstall' },
     {
         'rbong/vim-flog',
         lazy = true,
@@ -61,8 +60,6 @@ return require('lazy').setup({
         },
     },
     'ryanoasis/vim-devicons',
-    'skywind3000/asynctasks.vim',
-    'skywind3000/asyncrun.vim',
     'tpope/vim-abolish',
     'tpope/vim-capslock',
     'tpope/vim-commentary',
@@ -73,7 +70,6 @@ return require('lazy').setup({
     'tpope/vim-surround',
     'tpope/vim-unimpaired',
     'tribela/vim-transparent',
-    { 'vimwiki/vimwiki',                  branch = 'dev' },
     'NoahTheDuke/vim-just',
     { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
     -- LSP Support
@@ -84,10 +80,10 @@ return require('lazy').setup({
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
     { 'hrsh7th/cmp-nvim-lsp' },
-    { 'L3MON4D3/LuaSnip',                 version = 'v2.*' },
+    -- { 'L3MON4D3/LuaSnip',                 version = 'v2.*' },
     { 'hrsh7th/cmp-buffer' },
     { 'hrsh7th/cmp-path' },
-    { 'saadparwaiz1/cmp_luasnip' },
+    -- { 'saadparwaiz1/cmp_luasnip' },
 
     {
         'mrcjkb/rustaceanvim',
