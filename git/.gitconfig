@@ -3,12 +3,31 @@
     pager = delta
     editor = nvim
 
-[interactive]
-    diffFilter = delta --color-only
+[user]
+    name = Alexander Ivanov
+    email = alexander.valentinov.ivanov@gmail.com
+
+[alias]
+    root = "rev-parse --show-toplevel"
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+[commit]
+    gpgsign = true
+
+[tag]
+    gpgSign = true
+
+[include]
+    path = ~/.gitconfig_local
 
 [delta]
     navigate = true
     line-numbers = true
+
+[interactive]
+    diffFilter = delta --color-only
 
 [merge]
     conflictstyle = diff3
@@ -22,9 +41,3 @@
 
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
-
-[alias]
-    root = "rev-parse --show-toplevel"
-
-[url "git@github.com:"]
-    insteadOf = https://github.com/
