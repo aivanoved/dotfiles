@@ -143,7 +143,12 @@ local function config()
         servers = {
             ['lua_ls'] = { 'lua' },
             ['rust_analyzer'] = { 'rust' },
-            -- ['eslint'] = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+            ['eslint'] = {
+                'javascript',
+                'javascriptreact',
+                'typescript',
+                'typescriptreact',
+            },
         },
     })
 
@@ -165,10 +170,10 @@ return {
         -- Autocompletion
         { 'hrsh7th/nvim-cmp' },
         { 'hrsh7th/cmp-nvim-lsp' },
-        -- { 'L3MON4D3/LuaSnip',                 version = 'v2.*' },
+        { 'L3MON4D3/LuaSnip', version = 'v2.*' },
         { 'hrsh7th/cmp-buffer' },
         { 'hrsh7th/cmp-path' },
-        -- { 'saadparwaiz1/cmp_luasnip' },
+        { 'saadparwaiz1/cmp_luasnip' },
     },
     config = config,
 }
