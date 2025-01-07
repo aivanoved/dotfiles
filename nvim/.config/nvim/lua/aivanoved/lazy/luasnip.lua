@@ -1,4 +1,4 @@
-local function luasnip_config()
+local function config()
     local luasnip = require('luasnip')
     local extras = require('luasnip.extras')
     local fmt = require('luasnip.extras.fmt').fmt
@@ -67,5 +67,5 @@ end
 return {
     'L3MON4D3/LuaSnip',
     version = 'v2.*',
-    config = luasnip_config,
+    config = config,
 }

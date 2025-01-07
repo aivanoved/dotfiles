@@ -1,4 +1,4 @@
-function config()
+local function config()
     local formatter = require('formatter')
 
     formatter.setup({
