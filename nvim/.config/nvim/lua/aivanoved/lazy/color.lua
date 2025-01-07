@@ -6,4 +6,7 @@ function config()
     vim.cmd.colorscheme('catppuccin-mocha')
 end
 
-return { 'catppuccin/nvim', name = 'catppuccin', config = config }
+return {
+    'ryanoasis/vim-devicons',
+    { 'catppuccin/nvim', name = 'catppuccin', config = config },
+}
