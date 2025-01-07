@@ -41,3 +41,24 @@
 
 [difftool "difftastic"]
     cmd = difft "$LOCAL" "$REMOTE"
+
+[alias]
+    root = "rev-parse --show-toplevel"
+    whoami = "config --get user.name"
+    whoami-email = "config --get user.email"
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[include]
+    path=~/.gitconfigs/personal.gitconfig
+
+[includeIf "gitdir:~/quantco/"]
+    path=~/.gitconfigs/work.gitconfig

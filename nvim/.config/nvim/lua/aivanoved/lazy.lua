@@ -35,7 +35,6 @@ return require('lazy').setup({
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
     },
-    'powerman/vim-plugin-AnsiEsc',
     {
         'nvim-neo-tree/neo-tree.nvim',
         branch = 'v3.x',
@@ -71,11 +70,16 @@ return require('lazy').setup({
     'tpope/vim-unimpaired',
     'tribela/vim-transparent',
     'NoahTheDuke/vim-just',
-    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
+    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v4.x' },
     -- LSP Support
     { 'neovim/nvim-lspconfig' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
+    -- formatters
+    {
+        'stevearc/conform.nvim',
+        opts = {},
+    },
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },
