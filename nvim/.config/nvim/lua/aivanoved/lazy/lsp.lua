@@ -162,18 +162,19 @@ return {
     branch = 'v4.x',
     dependencies = {
         -- LSP Support
-        { 'neovim/nvim-lspconfig' },
-        { 'williamboman/mason.nvim' },
-        { 'williamboman/mason-lspconfig.nvim' },
+        'neovim/nvim-lspconfig',
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
         -- formatters
 
         -- Autocompletion
-        { 'hrsh7th/nvim-cmp' },
-        { 'hrsh7th/cmp-nvim-lsp' },
+        'hrsh7th/nvim-cmp',
+        'hrsh7th/cmp-nvim-lsp',
         { 'L3MON4D3/LuaSnip', version = 'v2.*' },
-        { 'hrsh7th/cmp-buffer' },
-        { 'hrsh7th/cmp-path' },
-        { 'saadparwaiz1/cmp_luasnip' },
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-path',
+        'saadparwaiz1/cmp_luasnip',
+        'windwp/nvim-autopairs',
     },
     config = config,
 }

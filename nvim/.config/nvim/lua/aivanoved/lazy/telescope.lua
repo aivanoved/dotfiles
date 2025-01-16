@@ -1,10 +1,16 @@
 local function config()
     local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-    vim.keymap.set('n', '<leader>fgf', builtin.git_files, {})
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+    local function set_keymap(key, fun)
+        vim.keymap.set('n', '<leader>f' .. key, fun, {})
+    end
+    set_keymap('f', builtin.find_files)
+    set_keymap('gf', builtin.git_files)
+    set_keymap('gc', builtin.git_commits)
+    set_keymap('gcb', builtin.git_bcommits)
+    set_keymap('lg', builtin.live_grep)
+    set_keymap('b', builtin.buffers)
+    set_keymap('ht', builtin.help_tags)
 end
 
 return {

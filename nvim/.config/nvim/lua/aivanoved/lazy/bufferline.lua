@@ -1,5 +1,6 @@
 local function config()
     local bufferline = require('bufferline')
+    local groups = require('bufferline.groups')
     bufferline.setup({
         options = {
             numbers = 'ordinal',
@@ -17,6 +18,60 @@ local function config()
 
                 return ' ' .. icon .. count
             end,
+            groups = {
+                options = {
+                    toggle_hidden_on_enter = true, -- when you re-enter a hidden group this options re-opens that group so the buffer is visible
+                },
+                items = {
+                    {
+                        name = 'Source',
+                        highlight = { sp = 'red' },
+                        priority = 1,
+                        icon = ' ',
+                        matcher = function(buf)
+                            if buf.path == nil then
+                                return false
+                            end
+                            local is_dev_file = false
+                            -- python
+                            is_dev_file = is_dev_file or buf.path:match('%.py')
+                            -- lua
+                            is_dev_file = is_dev_file or buf.path:match('%.lua')
+                            -- typescript or javascript
+                            is_dev_file = is_dev_file
+                                or (buf.path:match('%.js') or buf.path:match('%.ts'))
+                            return is_dev_file
+                        end,
+                    },
+                    {
+                        name = 'Tests',
+                        highlight = { sp = 'blue' },
+                        priority = 2,
+                        icon = ' ',
+                        matcher = function(buf)
+                            local is_test_file = buf.path ~= nil
+                            is_test_file = is_test_file
+                                and (buf.path:match('%_test') or buf.path:match('%_spec'))
+                            return is_test_file
+                        end,
+                    },
+                    {
+                        name = 'Docs',
+                        highlight = { sp = 'green' },
+                        auto_close = false,
+                        matcher = function(buf)
+                            local is_doc_file = buf.path ~= nil
+                            is_doc_file = is_doc_file
+                                and (buf.path:match('%.md') or buf.path:match('%.txt'))
+                            return is_doc_file
+                        end,
+                        separator = {
+                            style = require('bufferline.groups').separator.tab,
+                        },
+                    },
+                    groups.builtin.ungrouped,
+                },
+            },
         },
         highlights = require('catppuccin.groups.integrations.bufferline').get(),
     })
@@ -51,7 +106,7 @@ local function config()
         bufferline.go_to(0, true)
     end)
     vim.keymap.set('n', '<leader>-', function()
-        vim.cmd.BufferLineCylePrevious()
+        vim.cmd.BufferLineCyclePrev()
     end)
     vim.keymap.set('n', '<leader>+', function()
         vim.cmd.BufferLineCycleNext()
