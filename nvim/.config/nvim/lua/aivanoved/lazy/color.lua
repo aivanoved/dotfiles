@@ -1,12 +1,13 @@
-local function config()
-    vim.cmd.background = 'dark'
-
-    vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
-    vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
-    vim.cmd.colorscheme('catppuccin-mocha')
+local function catppucin_config()
+    local catppuccin = require('catppuccin')
+    catppuccin.setup({
+        flavor = 'mocha',
+        transparency = true,
+    })
+    vim.cmd.colorscheme('catppuccin')
 end
 
 return {
     'ryanoasis/vim-devicons',
-    { 'catppuccin/nvim', name = 'catppuccin', config = config },
+    { 'catppuccin/nvim', name = 'catppuccin', config = catppucin_config },
 }

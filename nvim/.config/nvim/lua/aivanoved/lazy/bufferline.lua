@@ -1,6 +1,8 @@
 local function config()
     local bufferline = require('bufferline')
     local groups = require('bufferline.groups')
+    local mocha = require('catppuccin.palettes').get_palette('mocha')
+
     bufferline.setup({
         options = {
             numbers = 'ordinal',
@@ -25,7 +27,7 @@ local function config()
                 items = {
                     {
                         name = 'Source',
-                        highlight = { sp = 'red' },
+                        highlight = { sp = mocha.red },
                         priority = 1,
                         icon = ' ',
                         matcher = function(buf)
@@ -45,7 +47,7 @@ local function config()
                     },
                     {
                         name = 'Tests',
-                        highlight = { sp = 'blue' },
+                        highlight = { sp = mocha.blue },
                         priority = 2,
                         icon = ' ',
                         matcher = function(buf)
@@ -57,7 +59,7 @@ local function config()
                     },
                     {
                         name = 'Docs',
-                        highlight = { sp = 'green' },
+                        highlight = { sp = mocha.green },
                         auto_close = false,
                         matcher = function(buf)
                             local is_doc_file = buf.path ~= nil
