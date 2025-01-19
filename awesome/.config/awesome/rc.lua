@@ -49,7 +49,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "alacritty"
@@ -317,8 +317,10 @@ globalkeys = gears.table.join(
         { description = "restore minimized", group = "client" }),
 
     -- Prompt
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey }, "r", function() awful.util.spawn("rofi -show run -show-icons") end,
         { description = "run prompt", group = "launcher" }),
+    awful.key({ modkey }, 'e', function() awful.util.spawn("rofi -show drun -show-icons") end,
+        { desciption = "launch rofi", group = "menu" }),
 
     awful.key({ modkey }, "x",
         function()
@@ -342,7 +344,7 @@ clientkeys = gears.table.join(
             c:raise()
         end,
         { description = "toggle fullscreen", group = "client" }),
-    awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
+    awful.key({ modkey }, "q", function(c) c:kill() end,
         { description = "close", group = "client" }),
     awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
         { description = "toggle floating", group = "client" }),
@@ -503,7 +505,7 @@ awful.rules.rules = {
     {
         rule_any = { type = { "normal", "dialog" }
         },
-        properties = { titlebars_enabled = true }
+        properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
