@@ -1,3 +1,7 @@
+export ZSH_CONFIG_DIR="$HOME/.config/zsh"
+
+_safe_source "$HOME/.zshrc.tmux"
+
 if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
 fi
@@ -14,8 +18,6 @@ eval "$(starship init zsh)"
 
 
 
-export ZSH_CONFIG_DIR="$HOME/.config/zsh"
-
 source "$ZSH_CONFIG_DIR/util.zsh"
 
 _safe_source "$ZSH_CONFIG_DIR/env.zsh"
@@ -23,9 +25,6 @@ _safe_source "$ZSH_CONFIG_DIR/alias.zsh"
 _safe_source "$ZSH_CONFIG_DIR/zplug.zsh"
 
 _safe_source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
-_safe_source ~/.zshenv
-_safe_source $HOME/.config/zsh/zshsecretenv
 
 _safe_source "$ZSH_CONFIG_DIR/ssh.zsh"
 _safe_source "$HOME/.zshlocal"
