@@ -1,6 +1,6 @@
 export ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
-_safe_source "$HOME/.zshrc.tmux"
+source "$ZSH_CONFIG_DIR/util.zsh"
 
 if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
@@ -15,10 +15,6 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 eval "$(starship init zsh)"
-
-
-
-source "$ZSH_CONFIG_DIR/util.zsh"
 
 _safe_source "$ZSH_CONFIG_DIR/env.zsh"
 _safe_source "$ZSH_CONFIG_DIR/alias.zsh"
