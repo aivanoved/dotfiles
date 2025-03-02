@@ -114,7 +114,7 @@ local function lsp_config()
             { name = 'nvim_lua' },
             -- { name = 'luasnip', keyword_length = 2 },
             { name = 'copilot' },
-            { name = 'buffer',  keyword_length = 3 },
+            { name = 'buffer', keyword_length = 3 },
         },
         formatting = lsp_zero.cmp_format(),
         mapping = cmp.mapping.preset.insert({
@@ -137,22 +137,22 @@ local function lsp_config()
         hint = '󰌶 ',
     })
 
-    lsp_zero.format_on_save({
-        format_opts = {
-            async = false,
-            timeout_ms = 1000,
-        },
-        servers = {
-            ['lua_ls'] = { 'lua' },
-            ['rust_analyzer'] = { 'rust' },
-            ['eslint'] = {
-                'javascript',
-                'javascriptreact',
-                'typescript',
-                'typescriptreact',
-            },
-        },
-    })
+    -- lsp_zero.format_on_save({
+    --     format_opts = {
+    --         async = false,
+    --         timeout_ms = 1000,
+    --     },
+    --     servers = {
+    --         ['lua_ls'] = { 'lua' },
+    --         ['rust_analyzer'] = { 'rust' },
+    --         ['eslint'] = {
+    --             'javascript',
+    --             'javascriptreact',
+    --             'typescript',
+    --             'typescriptreact',
+    --         },
+    --     },
+    -- })
 
     vim.diagnostic.config({
         virtual_text = true,

@@ -1,18 +1,75 @@
+---@alias Filetype string
+
+---@alias Path string
+
+---@class FormatterParams
+---@field filetype Filetype
+---@field args string[]
+
+---@class Formatter
+---@field name string
+---@field filetypes Filetype[]
+---@field params? FormatterParams[]
+---@field default_executable? string
+---@field default_path? Path
+
+---@type Formatter
+local stylua = {
+    name = 'stylua',
+    filetypes = { 'lua' },
+    default_executable = 'stylua',
+}
+
+---@type Formatter
+local ruff = {
+    name = 'ruff_format',
+    filetypes = { 'python' },
+    default_executable = 'ruff',
+}
+
+---@type Formatter
+local isort = {
+    name = 'isort',
+    filetypes = { 'python' },
+    default_executable = 'isort',
+}
+
+---@type Formatter
+local black = {
+    name = 'black',
+    filetypes = { 'python' },
+    default_executable = 'black',
+}
+
+---@type Formatter
+local rustfmt = {
+    name = 'rustfmt',
+    filetypes = { 'rust' },
+    default_executable = 'rustfmt',
+}
+
+---@type Formatter
+local prettierd = {
+    name = 'prettierd',
+    filetypes = { 'javascript' },
+    default_executable = 'prettierd',
+}
+
+---@type Formatter
+local prettier = {
+    name = 'prettier',
+    filetypes = { 'javascript' },
+    default_executable = 'prettier',
+}
+
 local function config()
     local conform = require('conform')
 
     conform.setup({
         formatters_by_ft = {
-            lua = { 'stylua' },
-            -- Conform will run multiple formatters sequentially
-            python = { 'ruff_format', 'isort', 'black' },
-            -- You can customize some of the format options for the filetype (:help conform.format)
-            rust = { 'rustfmt', lsp_format = 'fallback' },
-            -- Conform will run the first available formatter
-            javascript = { 'prettierd', 'prettier', stop_after_first = true },
+            lua = { stylua.name, lsp_format = 'fallback' },
         },
         format_on_save = {
-            -- These options will be passed to conform.format()
             timeout_ms = 500,
             lsp_format = 'fallback',
         },
