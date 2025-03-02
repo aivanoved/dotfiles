@@ -9,6 +9,9 @@ vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 
+vim.keymap.set('n', '<c-k>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<c-j>', '<cmd>cprev<CR>zz')
+
 -- scroll maps
 vim.keymap.set('n', '<c-d>', '<c-d>zz')
 vim.keymap.set('n', '<c-u>', '<c-u>zz')
@@ -49,9 +52,6 @@ vim.keymap.set('x', '<leader>P', '"_d"+p')
 
 -- ex mode maps
 vim.keymap.set('n', 'Q', '<nop>')
-
--- vim.keymap.set('n', '<c-k>', '<cmd>cnext<CR>zz')
--- vim.keymap.set('n', '<c-j>', '<cmd>cprev<CR>zz')
 
 vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
