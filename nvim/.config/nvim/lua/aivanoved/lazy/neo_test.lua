@@ -1,6 +1,9 @@
 local function config()
-    require('neotest').setup({
+    local neotest = require('neotest')
+
+    neotest.setup({
         adapters = {
+            require('neotest-python'),
             require('neotest-rust')({
                 args = { '--no-capture', '--no-tests=pass' },
             }),
@@ -8,21 +11,33 @@ local function config()
     })
 
     local function set_keymap(mode, key, cmd)
-        vim.api.nvim_set_keymap(
-            mode,
-            '<leader>t' .. key,
-            cmd,
-            { noremap = true, silent = true }
-        )
+        vim.keymap.set(mode, '<leader>t' .. key, cmd, { noremap = true, silent = true })
     end
 
-    set_keymap('n', 'n', ':lua require("neotest").run.run()<cr>')
-    set_keymap('n', 'f', ':lua require("neotest").run.run(vim.fn.expand("%"))<cr>')
+    set_keymap('n', 'n', function()
+        neotest.run.run()
+    end)
+    set_keymap('n', 'f', function()
+        neotest.run.run(vim.fn.expand('%'))
+    end)
 
-    set_keymap('n', 't', ':lua require("neotest").summary.toggle()<cr>')
-    set_keymap('n', 's', ':lua require("neotest").output.open()<cr>')
-    set_keymap('n', ']n', ':lua require("neotest").jump.next({ status = "failed" })<cr>')
-    set_keymap('n', '[n', ':lua require("neotest").jump.prev({ status = "failed" })<cr>')
+    set_keymap('n', 't', function()
+        neotest.summary.toggle()
+    end)
+    set_keymap('n', 'to', function()
+        neotest.output.open({
+            auto_close = true,
+            enter = true,
+            last_run = true,
+            quiet = true,
+        })
+    end)
+    set_keymap('n', ']n', function()
+        neotest.jump.next({ status = 'failed' })
+    end)
+    set_keymap('n', '[n', function()
+        neotest.jump.prev({ status = 'failed' })
+    end)
 end
 
 return {
@@ -32,6 +47,10 @@ return {
         'nvim-lua/plenary.nvim',
         'antoinemadec/FixCursorHold.nvim',
         'nvim-treesitter/nvim-treesitter',
+
+        -- adapters
+        'nvim-neotest/neotest-python',
+        'rouge8/neotest-rust',
 
         -- runners
         'rouge8/neotest-rust',

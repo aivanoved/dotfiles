@@ -1,4 +1,4 @@
-local function config()
+local function lsp_config()
     local lsp_zero = require('lsp-zero')
 
     lsp_zero.on_attach(function(client, bufnr)
@@ -40,7 +40,7 @@ local function config()
         -- end
     end)
 
-    local servers = { 'lua_ls', 'rust_analyzer', 'pyright', 'clangd' }
+    local servers = { 'lua_ls', 'pyright', 'clangd' }
 
     require('mason').setup({})
     require('mason-lspconfig').setup({
@@ -90,9 +90,7 @@ local function config()
     end
 
     for _, lsp in ipairs(servers) do
-        if lsp ~= 'rust_analyzer' then
-            lspconfig[lsp].setup(server_setup[lsp])
-        end
+        lspconfig[lsp].setup(server_setup[lsp])
     end
 
     -- local luasnip = require('luasnip')
@@ -109,10 +107,14 @@ local function config()
         sources = {
             { name = 'path' },
             { name = 'nvim_lsp' },
+            {
+                name = 'lazydev',
+                group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+            },
             { name = 'nvim_lua' },
             -- { name = 'luasnip', keyword_length = 2 },
             { name = 'copilot' },
-            { name = 'buffer', keyword_length = 3 },
+            { name = 'buffer',  keyword_length = 3 },
         },
         formatting = lsp_zero.cmp_format(),
         mapping = cmp.mapping.preset.insert({
@@ -158,23 +160,30 @@ local function config()
 end
 
 return {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v4.x',
-    dependencies = {
-        -- LSP Support
-        'neovim/nvim-lspconfig',
-        'williamboman/mason.nvim',
-        'williamboman/mason-lspconfig.nvim',
-        -- formatters
+    {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v4.x',
+        dependencies = {
+            -- LSP Support
+            'neovim/nvim-lspconfig',
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            -- formatters
 
-        -- Autocompletion
-        'hrsh7th/nvim-cmp',
-        'hrsh7th/cmp-nvim-lsp',
-        { 'L3MON4D3/LuaSnip', version = 'v2.*' },
-        'hrsh7th/cmp-buffer',
-        'hrsh7th/cmp-path',
-        'saadparwaiz1/cmp_luasnip',
-        'windwp/nvim-autopairs',
+            -- Autocompletion
+            'hrsh7th/nvim-cmp',
+            'hrsh7th/cmp-nvim-lsp',
+            { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'saadparwaiz1/cmp_luasnip',
+            'windwp/nvim-autopairs',
+            'folke/lazydev.nvim',
+        },
+        config = lsp_config,
     },
-    config = config,
+    {
+        'folke/lazydev.nvim',
+        ft = 'lua', -- only load on lua files
+    },
 }
