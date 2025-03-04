@@ -21,6 +21,20 @@ local stylua = {
 }
 
 ---@type Formatter
+local rustfmt = {
+    name = 'rustfmt',
+    filetypes = { 'rust' },
+    default_executable = 'rustfmt',
+}
+
+---@type Formatter
+local prettier = {
+    name = 'prettier',
+    filetypes = { 'javascript' },
+    default_executable = 'prettier',
+}
+
+---@type Formatter
 local ruff = {
     name = 'ruff_format',
     filetypes = { 'python' },
@@ -41,25 +55,13 @@ local black = {
     default_executable = 'black',
 }
 
----@type Formatter
-local rustfmt = {
-    name = 'rustfmt',
-    filetypes = { 'rust' },
-    default_executable = 'rustfmt',
-}
-
----@type Formatter
-local prettierd = {
-    name = 'prettierd',
-    filetypes = { 'javascript' },
-    default_executable = 'prettierd',
-}
-
----@type Formatter
-local prettier = {
-    name = 'prettier',
-    filetypes = { 'javascript' },
-    default_executable = 'prettier',
+local all_formaters = {
+    stylua,
+    rustfmt,
+    prettier,
+    ruff,
+    isort,
+    black,
 }
 
 local function config()
