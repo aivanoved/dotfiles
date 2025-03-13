@@ -1,5 +1,8 @@
 ---@param servers string[]
 local function lspconfigure(servers)
+    -- the documentation of `lsp-zero` suggests
+    -- before any of the language servers are set up
+    -- you need to add `cmp_nvim_lsp` to `lspconfig` capabilities
     local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     local lspconfig = require('lspconfig')
