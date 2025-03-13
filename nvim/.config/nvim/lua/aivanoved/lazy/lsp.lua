@@ -1,4 +1,26 @@
-local function lsp_config()
+---@param servers string[]
+local function mason_config(servers)
+    local lsp_zero = require('lsp-zero')
+
+    local lspconfig = require('lspconfig')
+    local mason = require('mason')
+    local mason_lspconfig = require('mason-lspconfig')
+
+    mason.setup({})
+    mason_lspconfig.setup({
+        ensure_installed = servers,
+        handlers = {
+            lsp_zero.default_setup,
+            lua_ls = function()
+                local lua_opts = lsp_zero.nvim_lua_ls()
+                lspconfig.lua_ls.setup(lua_opts)
+            end,
+            rust_analyzer = lsp_zero.noop,
+        },
+    })
+end
+
+local function lsp_keymaps()
     local lsp_zero = require('lsp-zero')
 
     lsp_zero.on_attach(function(client, bufnr)
@@ -39,23 +61,11 @@ local function lsp_config()
         --     vim.lsp.inlay_hint.enable(bufnr, true)
         -- end
     end)
+end
 
-    local servers = { 'lua_ls', 'pyright', 'clangd' }
-
-    require('mason').setup({})
-    require('mason-lspconfig').setup({
-        ensure_installed = servers,
-        handlers = {
-            lsp_zero.default_setup,
-            lua_ls = function()
-                local lua_opts = lsp_zero.nvim_lua_ls()
-                require('lspconfig').lua_ls.setup(lua_opts)
-            end,
-            rust_analyzer = lsp_zero.noop,
-        },
-    })
-
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+---@params servers string[]
+local function lspconfigure(servers)
+    local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
     local lspconfig = require('lspconfig')
 
@@ -86,15 +96,16 @@ local function lsp_config()
 
     for _, lsp in ipairs(servers) do
         server_setup[lsp] = server_setup[lsp] or {}
-        server_setup[lsp].capabilities = capabilities
+        server_setup[lsp].capabilities = cmp_capabilities
     end
 
     for _, lsp in ipairs(servers) do
         lspconfig[lsp].setup(server_setup[lsp])
     end
+end
 
-    -- local luasnip = require('luasnip')
-
+local function cmp_setup()
+    local lsp_zero = require('lsp-zero')
     local cmp = require('cmp')
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -129,13 +140,36 @@ local function lsp_config()
             ghost_text = true,
         },
     })
+end
 
+local function lsp_diagnostics()
+    local lsp_zero = require('lsp-zero')
     lsp_zero.set_sign_icons({
         error = ' ',
         warning = ' ',
         info = '󰋽 ',
         hint = '󰌶 ',
     })
+
+    vim.diagnostic.config({
+        virtual_text = true,
+    })
+end
+
+local function lsp_config()
+    local servers = { 'lua_ls', 'pyright', 'clangd' }
+
+    lspconfigure(servers)
+
+    mason_config(servers)
+
+    cmp_setup()
+
+    lsp_diagnostics()
+
+    lsp_keymaps()
+
+    -- local luasnip = require('luasnip')
 
     -- lsp_zero.format_on_save({
     --     format_opts = {
@@ -153,10 +187,6 @@ local function lsp_config()
     --         },
     --     },
     -- })
-
-    vim.diagnostic.config({
-        virtual_text = true,
-    })
 end
 
 return {
@@ -173,12 +203,15 @@ return {
             -- Autocompletion
             'hrsh7th/nvim-cmp',
             'hrsh7th/cmp-nvim-lsp',
-            { 'L3MON4D3/LuaSnip', version = 'v2.*' },
             'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path',
             'saadparwaiz1/cmp_luasnip',
+
             'windwp/nvim-autopairs',
             'folke/lazydev.nvim',
+
+            -- snippet
+            { 'L3MON4D3/LuaSnip', version = 'v2.*' },
         },
         config = lsp_config,
     },
