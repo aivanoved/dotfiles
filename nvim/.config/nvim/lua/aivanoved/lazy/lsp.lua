@@ -1,13 +1,46 @@
----@param servers string[]
-local function lspconfigure(servers)
+---@return string[]
+local function ensure_servers()
+    return { 'lua_ls', 'pyright', 'clangd' }
+end
+
+local function lspconfigure()
+    local default_servers = ensure_servers()
+    local lsp_zero = require('lsp-zero')
+
+    local lspconfig = require('lspconfig')
+    local mason_lspconfig = require('mason-lspconfig')
+
     -- the documentation of `lsp-zero` suggests
     -- before any of the language servers are set up
     -- you need to add `cmp_nvim_lsp` to `lspconfig` capabilities
     local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-    local lspconfig = require('lspconfig')
+    local lspconfig_default = lspconfig.util.default_config
+    lspconfig_default.capabilities = vim.tbl_deep_extend(
+        'force',
+        lspconfig_default.capabilities or {},
+        cmp_capabilities
+    )
 
-    local server_setup = {
+    ---@param server string
+    ---@param default_server_setup table<string, table>
+    ---@return function
+    local function get_default_handler(server, default_server_setup)
+        local server_setup = default_server_setup[server] or {}
+        server_setup.capabilities = vim.tbl_deep_extend(
+            'force',
+            server_setup.capabilities or {},
+            cmp_capabilities
+        )
+        local function default_handler()
+            lspconfig[server].setup(server_setup)
+        end
+
+        return default_handler
+    end
+
+    ---@type table<string, table>
+    local default_server_setup = {
         lua_ls = {
             settings = {
                 Lua = {
@@ -32,36 +65,24 @@ local function lspconfigure(servers)
         },
     }
 
-    for _, lsp in ipairs(servers) do
-        server_setup[lsp] = server_setup[lsp] or {}
-        server_setup[lsp].capabilities = cmp_capabilities
+    local handlers = {
+        lsp_zero.default_setup,
+    }
+
+    for _, server in ipairs(default_servers) do
+        handlers[server] = get_default_handler(server, default_server_setup)
     end
 
-    for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup(server_setup[lsp])
-    end
+    mason_lspconfig.setup({
+        ensure_installed = default_servers,
+        handlers = handlers,
+    })
 end
 
----@param servers string[]
-local function mason_config(servers)
-    local lsp_zero = require('lsp-zero')
-
-    local lspconfig = require('lspconfig')
+local function mason_config()
     local mason = require('mason')
-    local mason_lspconfig = require('mason-lspconfig')
 
     mason.setup({})
-    mason_lspconfig.setup({
-        ensure_installed = servers,
-        handlers = {
-            lsp_zero.default_setup,
-            lua_ls = function()
-                local lua_opts = lsp_zero.nvim_lua_ls()
-                lspconfig.lua_ls.setup(lua_opts)
-            end,
-            rust_analyzer = lsp_zero.noop,
-        },
-    })
 end
 
 local function cmp_setup()
@@ -160,11 +181,9 @@ local function lsp_keymaps()
 end
 
 local function lsp_config()
-    local servers = { 'lua_ls', 'pyright', 'clangd' }
+    mason_config()
 
-    lspconfigure(servers)
-
-    mason_config(servers)
+    lspconfigure()
 
     cmp_setup()
 
