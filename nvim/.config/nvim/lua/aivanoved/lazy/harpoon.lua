@@ -20,7 +20,7 @@ local function config()
         pickers
             .new({}, {
                 prompt_title = 'Harpoon',
-                finder = finder,
+                finder = finder(),
                 previewer = conf.file_previewer({}),
                 sorter = conf.generic_sorter({}),
                 attach_mappings = function(prompt_bufnr, map)
