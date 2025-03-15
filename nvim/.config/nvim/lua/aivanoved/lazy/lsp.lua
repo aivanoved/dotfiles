@@ -192,23 +192,6 @@ local function lsp_config()
     lsp_keymaps()
 
     -- local luasnip = require('luasnip')
-
-    -- lsp_zero.format_on_save({
-    --     format_opts = {
-    --         async = false,
-    --         timeout_ms = 1000,
-    --     },
-    --     servers = {
-    --         ['lua_ls'] = { 'lua' },
-    --         ['rust_analyzer'] = { 'rust' },
-    --         ['eslint'] = {
-    --             'javascript',
-    --             'javascriptreact',
-    --             'typescript',
-    --             'typescriptreact',
-    --         },
-    --     },
-    -- })
 end
 
 return {
