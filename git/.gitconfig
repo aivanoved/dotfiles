@@ -7,8 +7,8 @@
     name = Alexander Ivanov
     email = alexander.valentinov.ivanov@gmail.com
 
-[alias]
-    root = "rev-parse --show-toplevel"
+[init]
+    defaultBranch = main
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
@@ -19,8 +19,6 @@
 [tag]
     gpgSign = true
 
-[include]
-    path = ~/.gitconfig_local
 
 [delta]
     navigate = true
@@ -46,6 +44,9 @@
     root = "rev-parse --show-toplevel"
     whoami = "config --get user.name"
     whoami-email = "config --get user.email"
+
+[include]
+    path = ~/.gitconfig_local
 
 [include]
     path = ~/.gitconfigs/personal.gitconfig
