@@ -1,6 +1,6 @@
 ---@return string[]
 local function ensure_servers()
-    return { 'lua_ls', 'pyright', 'clangd' }
+    return { 'lua_ls', 'basedpyright', 'clangd' }
 end
 
 local function lspconfigure()
