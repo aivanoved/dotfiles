@@ -5,6 +5,7 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "jeffreytse/zsh-vi-mode"
 zplug "zsh-users/zsh-history-substring-search"
+zplug romkatv/powerlevel10k, as:theme, depth:1
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
@@ -17,5 +18,4 @@ if ! zplug check --verbose; then
 fi
 
 zplug load --verbose
-
 
