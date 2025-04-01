@@ -1,7 +1,9 @@
 ---@return string[]
 local function ensure_servers()
-    return { 'lua_ls', 'basedpyright', 'clangd' }
+    return { 'lua_ls', 'basedpyright', 'clangd', 'rust_analyzer', 'typos_lsp' }
 end
+
+local typs
 
 local function lspconfigure()
     local default_servers = ensure_servers()
@@ -29,9 +31,10 @@ local function lspconfigure()
         local server_setup = default_server_setup[server] or {}
         server_setup.capabilities = vim.tbl_deep_extend(
             'force',
-            server_setup.capabilities or {},
-            cmp_capabilities
+            cmp_capabilities,
+            server_setup.capabilities or {}
         )
+
         local function default_handler()
             lspconfig[server].setup(server_setup)
         end
@@ -39,30 +42,61 @@ local function lspconfigure()
         return default_handler
     end
 
-    ---@type table<string, table>
-    local default_server_setup = {
-        lua_ls = {
-            settings = {
-                Lua = {
-                    runtime = {
-                        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                        version = 'LuaJIT',
+    -- Individual server setup
+
+    -- lua
+    local lua_ls = {
+        on_init = function(client)
+            if client.workspace_folders then
+                local path = client.workspace_folders[1].name
+                if
+                    path ~= vim.fn.stdpath('config')
+                    and (
+                        vim.loop.fs_stat(path .. '/.luarc.json')
+                        or vim.loop.fs_stat(path .. '/.luarc.jsonc')
+                    )
+                then
+                    return
+                end
+            end
+        end,
+        settings = {
+            Lua = {
+                runtime = {
+                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                    version = 'LuaJIT',
+                },
+                diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = { 'vim' },
+                },
+                workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    checkThirdParty = false,
+                    library = {
+                        vim.env.VIMRUNTIME,
                     },
-                    diagnostics = {
-                        -- Get the language server to recognize the `vim` global
-                        globals = { 'vim' },
-                    },
-                    workspace = {
-                        -- Make the server aware of Neovim runtime files
-                        library = vim.api.nvim_get_runtime_file('', true),
-                    },
-                    -- Do not send telemetry data containing a randomized but unique identifier
-                    telemetry = {
-                        enable = false,
-                    },
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                    enable = false,
                 },
             },
         },
+    }
+
+    local typos_lsp = {
+        cmd_env = { RUST_LOG = 'error' },
+        init_options = {
+            diagnosticSeverity = 'Error',
+        },
+    }
+
+    ---@type table<string, table>
+    local default_server_setup = {
+        lua_ls = lua_ls,
+        typos_lsp = typos_lsp,
+        clangd = {},
     }
 
     local handlers = {
