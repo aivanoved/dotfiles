@@ -1,4 +1,6 @@
-export ZSH_CONFIG_DIR="$HOME/.config/zsh"
+eport ZSH_CONFIG_DIR="$HOME/.config/zsh"
+
+export ZSH_LOAD_VERBOSITY=0
 
 source "$ZSH_CONFIG_DIR/util.zsh"
 
@@ -14,25 +16,16 @@ zle_highlight=('paste:none')
 
 unsetopt BEEP
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 _safe_source "$ZSH_CONFIG_DIR/env.zsh"
-_safe_source "$ZSH_CONFIG_DIR/alias.zsh"
 _safe_source "$ZSH_CONFIG_DIR/zplug.zsh"
-
-_safe_source ~/.zsh/catppuccin_mocha-zsh-syntax-highlighting.zsh
-
-_safe_source "$ZSH_CONFIG_DIR/ssh.zsh"
 _safe_source "$HOME/.zshlocal"
-
 _safe_source "$ZSH_CONFIG_DIR/completion.zsh"
 
+
+for file in $(find "$ZSH_CONFIG_DIR/integrations/" -type f -name '*.zsh' | sort); do
+    _safe_source "$file"
+done
+
 neofetch
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
