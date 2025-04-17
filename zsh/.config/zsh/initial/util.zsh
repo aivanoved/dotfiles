@@ -43,7 +43,7 @@ _util_log() {
     local level=$1
     local message=$2
 
-    if [ $level -gt $log_level ]; then
+    if [ $level -ge $log_level ]; then
         _log_format $level "$message"
     fi
 
