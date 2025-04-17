@@ -1,7 +1,7 @@
 agent_file="$HOME/.ssh-agent"
 
 load_agent() {
-    if [[ -r $agent_file]]; then
+    if [[ -r $agent_file ]]; then
         eval "$(<$agent_file)" &> /dev/null
     fi
 }
