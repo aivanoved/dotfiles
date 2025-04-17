@@ -1,4 +1,4 @@
-source ~/.zplug/init.zsh
+source $HOME/.zplug/init.zsh
 
 zplug "MichaelAquilina/zsh-you-should-use"
 zplug "zsh-users/zsh-autosuggestions"
