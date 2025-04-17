@@ -49,41 +49,15 @@ _util_log() {
 
 }
 
-_log_debug() {
-    local message=$1
-    _util_log $_DEBUG "$message"
-}
+_log_debug() { _util_log $_DEBUG "$1"; }
+_log_info() { _util_log $_INFO "$1"; }
+_log_warning() { _util_log $_WARNING "$1"; }
+_log_error() { _util_log $_ERROR "$1"; }
 
-_log_info() {
-    local message=$1
-    _util_log $_INFO "$message"
-}
-
-_log_warning() {
-    local message=$1
-    _util_log $_WARNING "$message"
-}
-
-_log_error() {
-    local message=$1
-    _util_log $_ERROR "$message"
-}
-
-_check_debug() {
-    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -eq $_DEBUG ]]
-}
-
-_check_info() {
-    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_INFO ]]
-}
-
-_check_warning() {
-    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_WARNING ]]
-}
-
-_check_error() {
-    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_ERROR ]]
-}
+_check_debug() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -eq $_DEBUG ]]; }
+_check_info() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_INFO ]]; }
+_check_warning() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_WARNING ]]; }
+_check_error() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_ERROR ]]; }
 
 _set_log_level() {
     local log_level=$1
