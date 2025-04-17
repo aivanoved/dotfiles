@@ -1,3 +1,7 @@
+_source_util() {
+    source "$HOME/.config/zsh/initial/util.zsh"
+}
+
 export ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
 if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
@@ -10,11 +14,10 @@ zle_highlight=('paste:none')
 
 unsetopt BEEP
 
-local initial_folder="${ZSH_CONFIG_DIR}/initial"
-
-source "${initial_folder}/util.zsh"
-
+_source_util
 _set_log_level 1
+
+local initial_folder="${ZSH_CONFIG_DIR}/initial"
 
 local sources=(
     "env.zsh"
@@ -28,7 +31,7 @@ done
 
 _safe_source "$HOME/.zshlocal"
 
-for file in $(find "$ZSH_CONFIG_DIR/integrations/" -type f -name '*.zsh' | sort); do
+for file in $(find "$ZSH_CONFIG_DIR/integrations" -type f -name '*.zsh' | sort); do
     _safe_source "$file"
 done
 

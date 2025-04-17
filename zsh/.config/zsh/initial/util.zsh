@@ -4,12 +4,12 @@ fi
 
 export _UTIL_FILE_SOURCE=1
 
-local _DEBUG=0
-local _INFO=1
-local _WARNING=2
-local _ERROR=3
+_DEBUG=0
+_INFO=1
+_WARNING=2
+_ERROR=3
 
-local _DEFAULT_LOG_VERBOCITY=$_ERROR
+_DEFAULT_LOG_VERBOCITY=$_ERROR
 export _UTIL_LOG_VERBOCITY="${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY}"
 
 _log_format() {
@@ -49,14 +49,33 @@ _util_log() {
 
 }
 
+_log_debug() {
+    local message=$1
+    _util_log $_DEBUG "$message"
+}
+
+_log_info() {
+    local message=$1
+    _util_log $_INFO "$message"
+}
+
+_log_warning() {
+    local message=$1
+    _util_log $_WARNING "$message"
+}
+
+_log_error() {
+    local message=$1
+    _util_log $_ERROR "$message"
+}
 
 _set_log_level() {
     local log_level=$1
     if [[ $log_level =~ ^[0-3]$ ]]; then
-        _UTIL_LOG_VERBOCITY=$log_level
-        _util_log 0 "Log level set to $log_level"
+        export _UTIL_LOG_VERBOCITY=$log_level
+        _log_debug "Log level set to $log_level"
     else
-        _util_log 2 "Invalid log level: $log_level. Must be between 0 and 3."
+        _log_warning "Invalid log level: $log_level. Must be between 0 and 3."
     fi
 }
 
@@ -64,23 +83,23 @@ _temporary_log_level() {
     local temp_level=$1
     local original_level=$_UTIL_LOG_VERBOCITY
     _set_log_level $temp_level
-    export _util_original_log_level=$original_level
+    export _util_original_log_verbocity=$original_level
 }
 
 _restore_log_level() {
     if [[ -n $_util_original_log_level ]]; then
-        _UTIL_LOG_VERBOCITY=$_util_original_log_level
-        unset _util_original_log_level
+        export _UTIL_LOG_VERBOCITY=$_util_original_log_verbocity
+        unset _util_original_log_verbocity
     else
-        _util_log 2 "No temporary log level set."
+        _log_warning "No temporary log level set."
     fi
 }
 
 _safe_source(){
     if [ -f $1 ]; then
-        _util_log 1 "Sourcing $1"
+        _log_info "Sourcing $1"
         source $1
     else
-        _util_log 2 "File $1 not found, not sourcing"
+        _log_warning "File $1 not found, not sourcing"
     fi
 }
