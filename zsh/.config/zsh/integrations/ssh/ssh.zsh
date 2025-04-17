@@ -1,23 +1,45 @@
-eval `ssh-agent -s`
+agent_file="$HOME/.ssh-agent"
 
-ssh-add -l &> /dev/null
+load_agent() {
+    if [[ -r $agent_file]]; then
+        eval "$(<$agent_file)" &> /dev/null
+    fi
+}
 
-if [[ "$?" == 2 ]]; then
+store_agent() {
+    if [[ -r $agent_file ]]; then
+        rm -f $agent_file &> /dev/null
+    fi
+    (umask 066; ssh-agent > $agent_file) &> /dev/null
+}
 
-    test -r "~/.ssh-agent" && \
-        eval "$(~/.ssh-agent)" > /dev/null
-
+agent_not_running() {
     ssh-add -l &> /dev/null
+    [[ $? -eq 2 ]]
+}
 
-    if [[ "$?" == 2 ]]; then
-        (umask 066; ssh-agent > $HOME/.ssh-agent)
-        eval "$(~/.ssh-agent)" > /dev/null
+agent_no_identities() {
+    ssh-add -l &> /dev/null
+    [[ $? -eq 0 ]]
+}
+
+start_ssh_agent() {
+    eval "$(ssh-agent -s)" &> /dev/null
+
+    if agent_not_running; then
+        store_agent
+        load_agent
+    fi
+}
+
+add_ssh_keys() {
+    if agent_no_identities; then
+        find "$HOME/.ssh/keys" -type f ! -name "*.pub" -exec ssh-add {} + &> /dev/null
     fi
 
-fi
+    store_agent
+    load_agent
+}
 
-ssh-add -l &> /dev/null
-
-if [[ "$?" == 1 ]]; then
-    fd --exclude "*pub" . ~/.ssh/keys | xargs ssh-add
-fi
+start_ssh_agent
+add_ssh_keys
