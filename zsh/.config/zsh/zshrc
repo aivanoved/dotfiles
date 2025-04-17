@@ -1,26 +1,32 @@
 export ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
-export ZSH_LOAD_VERBOSITY=0
-
-source "$ZSH_CONFIG_DIR/util.zsh"
-
 if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
 fi
 
 setopt autocd extendedglob nomatch menucomplete interactive_comments
-
 stty stop undef
-
 zle_highlight=('paste:none')
 
 unsetopt BEEP
 
-_safe_source "$ZSH_CONFIG_DIR/env.zsh"
-_safe_source "$ZSH_CONFIG_DIR/zplug.zsh"
-_safe_source "$HOME/.zshlocal"
-_safe_source "$ZSH_CONFIG_DIR/completion.zsh"
+local initial_folder="${ZSH_CONFIG_DIR}/initial"
 
+source "${initial_folder}/util.zsh"
+
+_set_log_level 1
+
+local sources=(
+    "env.zsh"
+    "zplug.zsh"
+    "completion.zsh"
+)
+
+for file in "${sources[@]}"; do
+    _safe_source "$initial_folder/$file"
+done
+
+_safe_source "$HOME/.zshlocal"
 
 for file in $(find "$ZSH_CONFIG_DIR/integrations/" -type f -name '*.zsh' | sort); do
     _safe_source "$file"
