@@ -17,5 +17,12 @@ if ! zplug check --verbose; then
     fi
 fi
 
-zplug load --verbose
 
+_source_util
+
+local verbose=""
+if _check_info; then
+    verbose="--verbose"
+fi
+
+zplug load $verbose

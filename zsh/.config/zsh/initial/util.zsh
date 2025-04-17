@@ -69,6 +69,22 @@ _log_error() {
     _util_log $_ERROR "$message"
 }
 
+_check_debug() {
+    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -eq $_DEBUG ]]
+}
+
+_check_info() {
+    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_INFO ]]
+}
+
+_check_warning() {
+    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_WARNING ]]
+}
+
+_check_error() {
+    [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_ERROR ]]
+}
+
 _set_log_level() {
     local log_level=$1
     if [[ $log_level =~ ^[0-3]$ ]]; then
