@@ -1,4 +1,4 @@
-eport ZSH_CONFIG_DIR="$HOME/.config/zsh"
+export ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
 export ZSH_LOAD_VERBOSITY=0
 
