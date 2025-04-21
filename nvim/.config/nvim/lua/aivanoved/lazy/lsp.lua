@@ -3,8 +3,6 @@ local function ensure_servers()
     return { 'lua_ls', 'basedpyright', 'clangd', 'rust_analyzer', 'typos_lsp' }
 end
 
-local typs
-
 local function lspconfigure()
     local default_servers = ensure_servers()
     local lsp_zero = require('lsp-zero')
@@ -25,15 +23,20 @@ local function lspconfigure()
     )
 
     ---@param server string
-    ---@param default_server_setup table<string, table>
+    ---@param server_setups table<string, table>
     ---@return function
-    local function get_default_handler(server, default_server_setup)
-        local server_setup = default_server_setup[server] or {}
+    local function get_default_handler(server, server_setups)
+        local server_setup = server_setups[server] or {}
         server_setup.capabilities = vim.tbl_deep_extend(
             'force',
             cmp_capabilities,
             server_setup.capabilities or {}
         )
+        server_setup.on_attach = function(client, bufnr)
+            vim.lsp.inlay_hint.enable(true, { bufnr })
+            vim.api.nvim_set_hl(0, 'LspInlayHint', { link = 'Comment' })
+            lsp_zero.on_attach(client, bufnr)
+        end
 
         local function default_handler()
             lspconfig[server].setup(server_setup)
@@ -92,11 +95,22 @@ local function lspconfigure()
         },
     }
 
+    local rust_analyzer = {
+        settings = {
+            ['rust-analyzer'] = {
+                check = {
+                    command = 'clippy',
+                },
+            },
+        },
+    }
+
     ---@type table<string, table>
-    local default_server_setup = {
+    local server_setups = {
         lua_ls = lua_ls,
         typos_lsp = typos_lsp,
         clangd = {},
+        rust_analyzer = rust_analyzer,
     }
 
     local handlers = {
@@ -104,7 +118,7 @@ local function lspconfigure()
     }
 
     for _, server in ipairs(default_servers) do
-        handlers[server] = get_default_handler(server, default_server_setup)
+        handlers[server] = get_default_handler(server, server_setups)
     end
 
     mason_lspconfig.setup({
@@ -125,7 +139,7 @@ local function cmp_setup()
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
-        -- snipet = {
+        -- snippet = {
         --     expand = function(args)
         --         luasnip.lsp_expand(args.body)
         --     end,
