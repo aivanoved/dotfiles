@@ -59,7 +59,7 @@ _check_info() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_INFO ]]
 _check_warning() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_WARNING ]]; }
 _check_error() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_ERROR ]]; }
 
-_set_log_level() {
+_set_log_verbocity() {
     local log_level=$1
     if [[ $log_level =~ ^[0-3]$ ]]; then
         export _UTIL_LOG_VERBOCITY=$log_level
@@ -69,10 +69,26 @@ _set_log_level() {
     fi
 }
 
+_set_log_verbocity_debug() {
+    _set_log_verbocity $_DEBUG
+}
+
+_set_log_verbocity_info() {
+    _set_log_verbocity $_INFO
+}
+
+_set_log_verbocity_warning() {
+    _set_log_verbocity $_WARNING
+}
+
+_set_log_verbocity_error() {
+    _set_log_verbocity $_ERROR
+}
+
 _temporary_log_level() {
     local temp_level=$1
     local original_level=$_UTIL_LOG_VERBOCITY
-    _set_log_level $temp_level
+    _set_log_verbocity $temp_level
     export _util_original_log_verbocity=$original_level
 }
 

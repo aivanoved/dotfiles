@@ -15,7 +15,7 @@ zle_highlight=('paste:none')
 unsetopt BEEP
 
 _source_util
-_set_log_level 3
+_set_log_verbocity_warning
 
 local initial_folder="${ZSH_CONFIG_DIR}/initial"
 
