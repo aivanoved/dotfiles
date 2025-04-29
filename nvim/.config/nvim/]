@@ -55,8 +55,8 @@ local function lspconfigure()
                 if
                     path ~= vim.fn.stdpath('config')
                     and (
-                        vim.uv.fs_stat(path .. '/.luarc.json')
-                        or vim.uv.fs_stat(path .. '/.luarc.jsonc')
+                        vim.loop.fs_stat(path .. '/.luarc.json')
+                        or vim.loop.fs_stat(path .. '/.luarc.jsonc')
                     )
                 then
                     return
@@ -65,23 +65,24 @@ local function lspconfigure()
         end,
         settings = {
             Lua = {
+                runtime = {
+                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                    version = 'LuaJIT',
+                },
                 diagnostics = {
+                    -- Get the language server to recognize the `vim` global
                     globals = { 'vim' },
                 },
-                runtime = {
-                    version = 'LuaJIT',
-                    special = {
-                        reload = true,
-                    },
-                },
-                telemetry = {
-                    enable = false,
-                },
                 workspace = {
+                    -- Make the server aware of Neovim runtime files
                     checkThirdParty = false,
                     library = {
                         vim.env.VIMRUNTIME,
                     },
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                    enable = false,
                 },
             },
         },
@@ -97,12 +98,9 @@ local function lspconfigure()
     local rust_analyzer = {
         settings = {
             ['rust-analyzer'] = {
-                check = {
-                    command = 'clippy',
-                },
-                checkOnSave = {
-                    enable = true,
-                },
+                -- check = {
+                --     command = 'clippy',
+                -- },
             },
         },
     }
