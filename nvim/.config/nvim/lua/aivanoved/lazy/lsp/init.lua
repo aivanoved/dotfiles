@@ -24,7 +24,7 @@ local function lspconfigure()
 
     ---@param server string
     ---@param server_setups table<string, table>
-    ---@return function
+    ---@return function()
     local function get_default_handler(server, server_setups)
         local server_setup = server_setups[server] or {}
         server_setup.capabilities = vim.tbl_deep_extend(
@@ -35,7 +35,7 @@ local function lspconfigure()
         server_setup.on_attach = function(client, bufnr)
             vim.lsp.inlay_hint.enable(true, { bufnr })
             vim.api.nvim_set_hl(0, 'LspInlayHint', { link = 'Comment' })
-            lsp_zero.on_attach(client, bufnr)
+            lsp_zero.on_attach(client)
         end
 
         local function default_handler()
@@ -46,46 +46,6 @@ local function lspconfigure()
     end
 
     -- Individual server setup
-
-    -- lua
-    local lua_ls = {
-        on_init = function(client)
-            if client.workspace_folders then
-                local path = client.workspace_folders[1].name
-                if
-                    path ~= vim.fn.stdpath('config')
-                    and (
-                        vim.uv.fs_stat(path .. '/.luarc.json')
-                        or vim.uv.fs_stat(path .. '/.luarc.jsonc')
-                    )
-                then
-                    return
-                end
-            end
-        end,
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { 'vim' },
-                },
-                runtime = {
-                    version = 'LuaJIT',
-                    special = {
-                        reload = true,
-                    },
-                },
-                telemetry = {
-                    enable = false,
-                },
-                workspace = {
-                    checkThirdParty = false,
-                    library = {
-                        vim.env.VIMRUNTIME,
-                    },
-                },
-            },
-        },
-    }
 
     local typos_lsp = {
         cmd_env = { RUST_LOG = 'error' },
@@ -109,7 +69,6 @@ local function lspconfigure()
 
     ---@type table<string, table>
     local server_setups = {
-        lua_ls = lua_ls,
         typos_lsp = typos_lsp,
         clangd = {},
         rust_analyzer = rust_analyzer,
@@ -126,6 +85,7 @@ local function lspconfigure()
     mason_lspconfig.setup({
         ensure_installed = default_servers,
         handlers = handlers,
+        automatic_installation = true,
     })
 end
 
@@ -223,10 +183,6 @@ local function lsp_keymaps()
         vim.keymap.set('i', '<C-h>', function()
             vim.lsp.buf.signature_help()
         end, opts)
-
-        -- if client.server_capabilities.inlayHintProvider then
-        --     vim.lsp.inlay_hint.enable(bufnr, true)
-        -- end
     end)
 end
 
@@ -273,5 +229,20 @@ return {
     {
         'folke/lazydev.nvim',
         ft = 'lua', -- only load on lua files
+        opts = {
+            library = {
+                -- See the configuration section for more details
+                -- Load luvit types when the `vim.uv` word is found
+                { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+            },
+        },
+    },
+
+    {
+        'saecki/crates.nvim',
+        tag = 'stable',
+        config = function()
+            require('crates').setup({})
+        end,
     },
 }
