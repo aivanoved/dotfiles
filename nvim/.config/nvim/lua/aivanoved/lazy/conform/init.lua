@@ -55,7 +55,7 @@ local black = {
     default_executable = 'black',
 }
 
-local all_formaters = {
+local all_formatters = {
     stylua,
     rustfmt,
     prettier,
