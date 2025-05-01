@@ -1,47 +1,16 @@
-local typedef = require('aivanoved.lazy.lsp.typedef')
-
-LUA_LS = typedef.validate_lsp_config({
-    lsp_name = 'lua_ls',
-    ensure_installed = true,
-})
-
-BASEDPYRIGHT = typedef.validate_lsp_config({
-    lsp_name = 'basedpyright',
-    ensure_installed = true,
-})
-
-TYPOS_LSP = require('aivanoved.lazy.lsp.typos_lsp')
-
-CLANGD = typedef.validate_lsp_config({
-    lsp_name = 'clangd',
-    ensure_installed = true,
-})
-
-RUST_ANALYZER = typedef.validate_lsp_config({
-    lsp_name = 'rust_analyzer',
-    ensure_installed = true,
-    client_config = {
-        settings = {
-            ['rust-analyzer'] = {
-                check = {
-                    command = 'clippy',
-                },
-                checkOnSave = {
-                    enable = true,
-                },
-            },
-        },
-    },
-})
-
----@type table<string, aivanoved.lsp.LspConfig>
-SERVER_CONFIGS = {
-    lua_ls = LUA_LS,
-    basedpyright = BASEDPYRIGHT,
-    typos_lsp = TYPOS_LSP,
-    clangd = CLANGD,
-    rust_analyzer = RUST_ANALYZER,
+_SERVER_CONFIG_LIST = {
+    require('aivanoved.lazy.lsp.lua_ls'),
+    require('aivanoved.lazy.lsp.basedpyright'),
+    require('aivanoved.lazy.lsp.typos_lsp'),
+    require('aivanoved.lazy.lsp.clangd'),
+    require('aivanoved.lazy.lsp.rust_analyzer'),
 }
+
+--- @type table<string, aivanoved.lsp.LspConfig>
+SERVER_CONFIGS = {}
+for _, config in ipairs(_SERVER_CONFIG_LIST) do
+    SERVER_CONFIGS[config.lsp_name] = config
+end
 
 --- @return string[]
 local function ensure_servers()
@@ -54,14 +23,14 @@ local function ensure_servers()
     return ensured_servers
 end
 
----@param client vim.lsp.Client
----@param bufnr integer
+--- @param client vim.lsp.Client
+--- @param bufnr integer
 local function on_attact_inlay(client, bufnr)
     vim.lsp.inlay_hint.enable(true, { bufnr })
     vim.api.nvim_set_hl(0, 'LspInlayHint', { link = 'Comment' })
 end
 
----@return aivanoved.lsp.ClientConfig
+--- @return aivanoved.lsp.ClientConfig
 local function default_config()
     return {
         on_attach = on_attact_inlay,
@@ -69,9 +38,9 @@ local function default_config()
     }
 end
 
----@param server string
----@param server_configs table<string, aivanoved.lsp.LspConfig>
----@return function()
+--- @param server string
+--- @param server_configs table<string, aivanoved.lsp.LspConfig>
+--- @return function()
 local function get_server_handler(server, server_configs)
     local lspconfig = require('lspconfig')
     local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
