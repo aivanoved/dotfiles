@@ -1,54 +1,54 @@
----@alias Filetype string
+--- @alias Filetype string
 
----@alias Path string
+--- @alias Path string
 
----@class FormatterParams
----@field filetype Filetype
----@field args string[]
+--- @class FormatterParams
+--- @field filetype Filetype
+--- @field args string[]
 
----@class Formatter
----@field name string
----@field filetypes Filetype[]
----@field params? FormatterParams[]
----@field default_executable? string
----@field default_path? Path
+--- @class Formatter
+--- @field name string
+--- @field filetypes Filetype[]
+--- @field params? FormatterParams[]
+--- @field default_executable? string
+--- @field default_path? Path
 
----@type Formatter
+--- @type Formatter
 local stylua = {
     name = 'stylua',
     filetypes = { 'lua' },
     default_executable = 'stylua',
 }
 
----@type Formatter
+--- @type Formatter
 local rustfmt = {
     name = 'rustfmt',
     filetypes = { 'rust' },
     default_executable = 'rustfmt',
 }
 
----@type Formatter
+--- @type Formatter
 local prettier = {
     name = 'prettier',
     filetypes = { 'javascript' },
     default_executable = 'prettier',
 }
 
----@type Formatter
+--- @type Formatter
 local ruff = {
     name = 'ruff_format',
     filetypes = { 'python' },
     default_executable = 'ruff',
 }
 
----@type Formatter
+--- @type Formatter
 local isort = {
     name = 'isort',
     filetypes = { 'python' },
     default_executable = 'isort',
 }
 
----@type Formatter
+--- @type Formatter
 local black = {
     name = 'black',
     filetypes = { 'python' },
