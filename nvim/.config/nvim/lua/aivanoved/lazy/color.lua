@@ -10,4 +10,5 @@ end
 return {
     'ryanoasis/vim-devicons',
     { 'catppuccin/nvim', name = 'catppuccin', config = catppucin_config },
+    'tribela/vim-transparent',
 }
