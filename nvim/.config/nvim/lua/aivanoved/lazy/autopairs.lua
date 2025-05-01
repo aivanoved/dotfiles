@@ -1,7 +1,8 @@
 local function config()
     local npairs = require('nvim-autopairs')
     npairs.setup({
-        fast_wrap = {},
+        check_ts = true,
+        enable_check_bracket_line = false,
     })
 
     local cmp = require('cmp')
@@ -11,7 +12,7 @@ end
 
 return {
     'windwp/nvim-autopairs',
-    dependecies = {
+    dependencies = {
         'hrsh7th/nvim-cmp',
     },
     event = 'InsertEnter',
