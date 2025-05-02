@@ -64,11 +64,6 @@ function Formatter:into_conform_config()
     -- check if pixi directory exists anywhare upwards
     local pixi_dir = vim.fn.finddir('.pixi', vim.fn.getcwd() .. ';')
 
-    vim.notify(
-        'Pixi directory: ' .. pixi_dir,
-        vim.log.levels.INFO,
-        { title = 'Pixi Directory' }
-    )
     if pixi_dir == '' then
         return nil
     end
