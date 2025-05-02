@@ -3,7 +3,9 @@ return {
     event = 'VeryLazy',
     config = function()
         require('chatgpt').setup({
-            model = 'gpt-4.1',
+            openai_params = {
+                model = 'gpt-4.1',
+            },
         })
     end,
     dependencies = {
