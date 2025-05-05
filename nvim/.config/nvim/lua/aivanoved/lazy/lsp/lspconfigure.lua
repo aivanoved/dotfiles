@@ -43,12 +43,11 @@ end
 --- @return function()
 local function get_server_handler(server, server_configs)
     local lspconfig = require('lspconfig')
-    local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local cmp = require('aivanoved.lazy.lsp.cmp')
 
     local client_config = server_configs[server].client_config or default_config()
 
-    client_config.capabilities =
-        vim.tbl_deep_extend('force', cmp_capabilities, client_config.capabilities or {})
+    client_config.capabilities = cmp.cmp_add_capabilities(client_config.capabilities)
 
     local old_on_attach = client_config.on_attach
 
@@ -74,17 +73,14 @@ end
 local function lspconfigure()
     local lspconfig = require('lspconfig')
     local mason_lspconfig = require('mason-lspconfig')
-    local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+    local blink = require('blink.cmp')
 
     -- the documentation of `lsp-zero` suggests
     -- before any of the language servers are set up
     -- you need to add `cmp_nvim_lsp` to `lspconfig` capabilities
     local lspconfig_default = lspconfig.util.default_config
-    lspconfig_default.capabilities = vim.tbl_deep_extend(
-        'force',
-        lspconfig_default.capabilities or {},
-        cmp_capabilities
-    )
+    lspconfig_default.capabilities =
+        blink.get_lsp_capabilities(lspconfig_default.capabilities)
 
     local handlers = {
         default_handler,
