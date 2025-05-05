@@ -15,13 +15,12 @@ return {
             'neovim/nvim-lspconfig',
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
+            'folke/lazydev.nvim',
             -- formatters
+            'windwp/nvim-autopairs',
 
             -- Autocompletion
-            { 'saghen/blink.cmp', version = '1.*' },
-
-            'windwp/nvim-autopairs',
-            'folke/lazydev.nvim',
+            'saghen/blink.cmp',
 
             -- snippet
             { 'L3MON4D3/LuaSnip', version = 'v2.*' },
@@ -37,6 +36,15 @@ return {
                 -- Load luvit types when the `vim.uv` word is found
                 { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
             },
+        },
+    },
+
+    -- Autocompletion
+    {
+        'saghen/blink.cmp',
+        version = '1.*',
+        dependencies = {
+            'fang2hou/blink-copilot',
         },
     },
 

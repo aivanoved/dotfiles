@@ -1,7 +1,22 @@
 local function cmp_setup()
     local blink = require('blink.cmp')
 
-    blink.setup({})
+    --- @type blink.cmp.Config
+    local opts = {}
+
+    opts.sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+    }
+    opts.sources.providers = opts.sources.providers or {}
+
+    opts.sources.providers.copilot = {
+        name = 'copilot',
+        module = 'blink-copilot',
+        async = true,
+    }
+
+    blink.setup(opts)
+
     -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
     --
     -- cmp.setup({
