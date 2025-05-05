@@ -4,24 +4,18 @@ local function cmp_setup()
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
     cmp.setup({
-        -- snippet = {
-        --     expand = function(args)
-        --         luasnip.lsp_expand(args.body)
-        --     end,
-        -- },
         sources = {
             { name = 'path' },
-            { name = 'nvim_lsp' },
             {
                 name = 'lazydev',
                 group_index = 0, -- set group index to 0 to skip loading LuaLS completions
             },
             { name = 'nvim_lua' },
-            -- { name = 'luasnip', keyword_length = 2 },
+            { name = 'nvim_lsp' },
             { name = 'copilot' },
             { name = 'buffer', keyword_length = 3 },
         },
-        formatting = lsp_zero.cmp_format(),
+        formatting = lsp_zero.cmp_format({}),
         mapping = cmp.mapping.preset.insert({
             ['<c-d>'] = cmp.mapping.scroll_docs(5),
             ['<c-f>'] = cmp.mapping.scroll_docs(-5),
@@ -31,7 +25,7 @@ local function cmp_setup()
             ['<c-space>'] = cmp.mapping.complete(),
         }),
         experimental = {
-            ghost_text = true,
+            ghost_text = false,
         },
     })
 end
