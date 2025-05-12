@@ -166,6 +166,7 @@ mods = "Shift"
 
 [general]
 live_config_reload = true
+import = ["~/.config/alacritty/catppuccin-mocha.toml"]
 
 [cursor]
 thickness = 0.15

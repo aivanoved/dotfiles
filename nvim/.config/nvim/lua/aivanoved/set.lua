@@ -4,7 +4,7 @@ vim.opt.signcolumn = 'yes'
 
 vim.opt.guicursor = ''
 
-vim.opt.exrc = true
+vim.opt.exrc = false
 
 vim.opt.backspace = 'indent,eol,start'
 vim.opt.tabstop = 4
@@ -23,8 +23,6 @@ vim.opt.hidden = true
 
 vim.opt.incsearch = true
 vim.opt.hls = false
-
-vim.opt.termguicolors = true
 
 vim.opt.updatetime = 50
 
