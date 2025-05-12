@@ -30,7 +30,7 @@ local function on_attact_inlay(client, bufnr)
     vim.api.nvim_set_hl(0, 'LspInlayHint', { link = 'Comment' })
 end
 
---- @return aivanoved.lsp.ClientConfig
+--- @return aivanoved.lsp.Config
 local function default_config()
     return {
         on_attach = on_attact_inlay,
@@ -40,11 +40,11 @@ end
 
 --- @param server string
 --- @param server_configs table<string, aivanoved.lsp.LspConfig>
---- @return aivanoved.lsp.ClientConfig
+--- @return aivanoved.lsp.Config
 local function get_server_config(server, server_configs)
     local cmp = require('aivanoved.lazy.lsp.cmp')
 
-    local client_config = server_configs[server].client_config or default_config()
+    local client_config = server_configs[server].config or default_config()
 
     client_config.capabilities = cmp.cmp_add_capabilities(client_config.capabilities)
 

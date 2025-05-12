@@ -1,4 +1,4 @@
---- @class aivanoved.lsp.ClientConfig : vim.lsp.ClientConfig
+--- @class aivanoved.lsp.Config : vim.lsp.Config
 --- command string[] that launches the language
 --- server (treated as in |jobstart()|, must be absolute or on `$PATH`, shell constructs like
 --- "~" are not expanded), or function that creates an RPC client. Function receives
@@ -13,7 +13,7 @@
 --- @field lsp_name? string|nil
 --- (default: false)
 --- @field ensure_installed? boolean
---- @field client_config? aivanoved.lsp.ClientConfig
+--- @field config? aivanoved.lsp.Config
 
 local M = {}
 
