@@ -1,43 +1,33 @@
+--- @return blink.cmp.Config
+local function default_opts()
+    local new_opts = vim.empty_dict()
+
+    new_opts.sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {},
+    }
+
+    new_opts.completion = {
+        keyword = { range = 'full' },
+        list = {
+            selection = {
+                preselect = false,
+                auto_insert = false,
+            },
+        },
+    }
+
+    new_opts.signature = { enabled = true }
+
+    return new_opts
+end
+
 local function cmp_setup()
     local blink = require('blink.cmp')
 
-    --- @type blink.cmp.Config
-    local opts = {}
-
-    opts.sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
-    }
-    opts.sources.providers = opts.sources.providers or {}
+    local opts = default_opts()
 
     blink.setup(opts)
-
-    -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
-    --
-    -- cmp.setup({
-    --     sources = {
-    --         { name = 'path' },
-    --         {
-    --             name = 'lazydev',
-    --             group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-    --         },
-    --         { name = 'nvim_lua' },
-    --         { name = 'nvim_lsp' },
-    --         { name = 'copilot' },
-    --         { name = 'buffer', keyword_length = 3 },
-    --     },
-    --     formatting = lsp_zero.cmp_format({}),
-    --     mapping = cmp.mapping.preset.insert({
-    --         ['<c-d>'] = cmp.mapping.scroll_docs(5),
-    --         ['<c-f>'] = cmp.mapping.scroll_docs(-5),
-    --         ['<c-p>'] = cmp.mapping.select_prev_item(cmp_select),
-    --         ['<c-n>'] = cmp.mapping.select_next_item(cmp_select),
-    --         ['<c-y>'] = cmp.mapping.confirm({ select = true }),
-    --         ['<c-space>'] = cmp.mapping.complete(),
-    --     }),
-    --     experimental = {
-    --         ghost_text = false,
-    --     },
-    -- })
 end
 
 --- @param capabilities lsp.ClientCapabilities

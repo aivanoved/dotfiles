@@ -1,17 +1,25 @@
+local function copilot_setup()
+    local copilot = require('copilot')
+    local panel = require('copilot.panel')
+
+    copilot.setup({
+        suggestion = { enabled = false, auto_trigger = true },
+        panel = { enabled = true, auto_refresh = true },
+    })
+
+    -- Keymaps
+    vim.keymap.set('n', '<leader>cpo', function()
+        panel.open({})
+    end, { desc = 'Open the github copilot panel' })
+
+    vim.keymap.set('n', '<leader>cpt', function()
+        panel.toggle()
+    end, { desc = 'Toggle the github copilot panel' })
+end
+
 return {
     {
         'zbirenbaum/copilot.lua',
-        config = function()
-            require('copilot').setup({
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-            })
-        end,
-    },
-    {
-        'zbirenbaum/copilot-cmp',
-        config = function()
-            require('copilot_cmp').setup()
-        end,
+        config = copilot_setup,
     },
 }
