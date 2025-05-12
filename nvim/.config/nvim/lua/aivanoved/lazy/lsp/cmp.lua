@@ -5,15 +5,9 @@ local function cmp_setup()
     local opts = {}
 
     opts.sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'copilot' },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
     }
     opts.sources.providers = opts.sources.providers or {}
-
-    opts.sources.providers.copilot = {
-        name = 'copilot',
-        module = 'blink-copilot',
-        async = true,
-    }
 
     blink.setup(opts)
 

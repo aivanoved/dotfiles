@@ -13,8 +13,8 @@ return {
         dependencies = {
             -- LSP Support
             'neovim/nvim-lspconfig',
-            { 'williamboman/mason.nvim', version = 'v1.*' },
-            { 'williamboman/mason-lspconfig.nvim', version = 'v1.*' },
+            { 'williamboman/mason.nvim', version = 'v2.*' },
+            { 'williamboman/mason-lspconfig.nvim', version = 'v2.*' },
             'folke/lazydev.nvim',
             -- formatters
             'windwp/nvim-autopairs',

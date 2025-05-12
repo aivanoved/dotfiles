@@ -40,9 +40,8 @@ end
 
 --- @param server string
 --- @param server_configs table<string, aivanoved.lsp.LspConfig>
---- @return function()
-local function get_server_handler(server, server_configs)
-    local lspconfig = require('lspconfig')
+--- @return aivanoved.lsp.ClientConfig
+local function get_server_config(server, server_configs)
     local cmp = require('aivanoved.lazy.lsp.cmp')
 
     local client_config = server_configs[server].client_config or default_config()
@@ -58,21 +57,11 @@ local function get_server_handler(server, server_configs)
         end
     end
 
-    return function()
-        lspconfig[server].setup(client_config)
-    end
-end
-
---- @param server_name string
-local function default_handler(server_name)
-    local lspconfig = require('lspconfig')
-
-    lspconfig[server_name].setup(default_config())
+    return client_config
 end
 
 local function lspconfigure()
     local lspconfig = require('lspconfig')
-    local mason_lspconfig = require('mason-lspconfig')
     local blink = require('blink.cmp')
 
     -- the documentation of `lsp-zero` suggests
@@ -82,18 +71,14 @@ local function lspconfigure()
     lspconfig_default.capabilities =
         blink.get_lsp_capabilities(lspconfig_default.capabilities)
 
-    local handlers = {
-        default_handler,
-    }
-
     for server, _ in pairs(SERVER_CONFIGS) do
-        handlers[server] = get_server_handler(server, SERVER_CONFIGS)
+        vim.lsp.config(server, get_server_config(server, SERVER_CONFIGS))
     end
 
+    local mason_lspconfig = require('mason-lspconfig')
     mason_lspconfig.setup({
         ensure_installed = ensure_servers(),
-        handlers = handlers,
-        automatic_installation = true,
+        automatic_enable = true,
     })
 end
 
