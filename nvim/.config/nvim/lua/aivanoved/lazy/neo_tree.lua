@@ -337,7 +337,7 @@ local function neo_tree_config()
         'n',
         '<leader>ntt',
         ':Neotree<cr>',
-        { noremap = true, silent = true }
+        { noremap = true, silent = true, desc = 'Neo tree toggle' }
     )
 end
 

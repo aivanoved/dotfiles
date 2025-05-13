@@ -1,32 +1,103 @@
 local function config()
     local builtin = require('telescope.builtin')
 
-    local function set_keymap(key, fun)
-        vim.keymap.set('n', '<leader>f' .. key, fun, {})
-    end
-
     -- files
-    set_keymap('f', builtin.find_files)
-    set_keymap('lg', builtin.live_grep)
-    set_keymap('b', builtin.buffers)
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'f',
+        builtin.find_files,
+        { desc = 'Telescope find files' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'lg',
+        builtin.live_grep,
+        { desc = 'Telescope live grep' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'b',
+        builtin.buffers,
+        { desc = 'Telescope find buffers' }
+    )
 
     --git
-    set_keymap('gf', builtin.git_files)
-    set_keymap('gc', builtin.git_commits)
-    set_keymap('gcb', builtin.git_bcommits)
-    set_keymap('gs', builtin.git_status)
-    set_keymap('gn', builtin.git_branches)
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'gf',
+        builtin.git_files,
+        { desc = 'Telescope git files' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'gc',
+        builtin.git_commits,
+        { desc = 'Telescope git commits' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'gcb',
+        builtin.git_bcommits,
+        { desc = 'Telescope buffer commits' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'gs',
+        builtin.git_status,
+        { desc = 'Telescope git status' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'gn',
+        builtin.git_branches,
+        { desc = 'Telescope git branches' }
+    )
 
     -- lsp
-    set_keymap('lr', builtin.lsp_references)
-    set_keymap('lgt', builtin.lsp_type_definitions)
-    set_keymap('ld', builtin.diagnostics)
-    set_keymap('lci', builtin.lsp_incoming_calls)
-    set_keymap('lco', builtin.lsp_outgoing_calls)
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'lr',
+        builtin.lsp_references,
+        { desc = 'Telescope lsp references' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'lgt',
+        builtin.lsp_type_definitions,
+        { desc = 'Telescope lsp definitions' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'ld',
+        builtin.diagnostics,
+        { desc = 'Telescope lsp diagnostics' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'lci',
+        builtin.lsp_incoming_calls,
+        { desc = 'Telescope lsp incoming' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'lco',
+        builtin.lsp_outgoing_calls,
+        { desc = 'Telescope lsp outgoing' }
+    )
 
     -- vim
-    set_keymap('ht', builtin.help_tags)
-    set_keymap('m', builtin.keymaps)
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'ht',
+        builtin.help_tags,
+        { desc = 'Telescope help tags' }
+    )
+    vim.keymap.set(
+        'n',
+        '<leader>f' .. 'm',
+        builtin.keymaps,
+        { desc = 'Telescope vim keymaps' }
+    )
 end
 
 return {

@@ -8,11 +8,11 @@ local function copilot_setup()
     })
 
     -- Keymaps
-    vim.keymap.set('n', '<leader>cpo', function()
+    vim.keymap.set('n', '<leader>cgco', function()
         panel.open({})
     end, { desc = 'Open the github copilot panel' })
 
-    vim.keymap.set('n', '<leader>cpt', function()
+    vim.keymap.set('n', '<leader>cgct', function()
         panel.toggle()
     end, { desc = 'Toggle the github copilot panel' })
 end
