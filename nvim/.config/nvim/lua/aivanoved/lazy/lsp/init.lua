@@ -1,5 +1,5 @@
 local function lsp_config()
-    require('aivanoved.lazy.lsp.mason').mason_config()
+    require('mason').setup()
     require('aivanoved.lazy.lsp.lspconfigure').lspconfigure()
     require('aivanoved.lazy.lsp.cmp').cmp_setup()
     require('aivanoved.lazy.lsp.diagnostics').lsp_diagnostics()
@@ -13,14 +13,18 @@ return {
         dependencies = {
             -- LSP Support
             'neovim/nvim-lspconfig',
-            { 'williamboman/mason.nvim', version = 'v2.*' },
-            { 'williamboman/mason-lspconfig.nvim', version = 'v2.*' },
+            { 'mason-org/mason.nvim', version = 'v2.*' },
+            { 'mason-org/mason-lspconfig.nvim', version = 'v2.*' },
             'folke/lazydev.nvim',
+
             -- formatters
             'windwp/nvim-autopairs',
 
             -- Autocompletion
-            'saghen/blink.cmp',
+            {
+                'saghen/blink.cmp',
+                version = '1.*',
+            },
 
             -- snippet
             { 'L3MON4D3/LuaSnip', version = 'v2.*' },
@@ -36,15 +40,6 @@ return {
                 -- Load luvit types when the `vim.uv` word is found
                 { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
             },
-        },
-    },
-
-    -- Autocompletion
-    {
-        'saghen/blink.cmp',
-        version = '1.*',
-        dependencies = {
-            'fang2hou/blink-copilot',
         },
     },
 
