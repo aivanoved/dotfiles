@@ -1,0 +1,10 @@
+version = 1
+
+[env.syncall]
+
+[env.syncall.dependencies]
+python = ">=3.13"
+typing-extensions = ">=4.13.2,<5"
+
+[env.syncall.pypi-dependencies]
+syncall = { version = "*", extras = ["notion", "tw"] }
