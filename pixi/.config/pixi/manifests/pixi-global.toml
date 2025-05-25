@@ -1,10 +1,10 @@
 version = 1
 
-[env.syncall]
+[envs.twsyncall]
+channels = ["conda-forge"]
+exposed = { pip_tw = "pip" }
 
-[env.syncall.dependencies]
+[envs.twsyncall.dependencies]
 python = ">=3.13"
 typing-extensions = ">=4.13.2,<5"
-
-[env.syncall.pypi-dependencies]
-syncall = { version = "*", extras = ["notion", "tw"] }
+pip = "*"
