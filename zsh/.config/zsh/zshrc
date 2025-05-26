@@ -35,11 +35,11 @@ for file in $(find "$ZSH_CONFIG_DIR/integrations" -type f -name '*.zsh' | sort);
     _safe_source "$file"
 done
 
-if [ command -v fastfetch &> /dev/null ]; then
+if [ ! command -v fastfetch &> /dev/null ]; then
     fastfetch
 fi
 
-if [ command -v direnv &> /dev/null ]; then
+if [ ! command -v direnv &> /dev/null ]; then
     eval "$(direnv hook zsh)" 
 fi
 
