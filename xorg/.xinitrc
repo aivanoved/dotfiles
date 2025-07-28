@@ -1,4 +1,5 @@
 #!/bin/sh
+xrandr --auto
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap

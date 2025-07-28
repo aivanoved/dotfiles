@@ -2,6 +2,12 @@
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
 
+local logfile = io.open(os.getenv("HOME") .. "/awesome.log", "a")
+awesome.connect_signal("debug::index", function(message)
+	logfile:write(os.date("%Y-%m-%d %H:%M:%S: " .. message .. "\n"))
+	logfile:flush()
+end)
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -52,8 +58,8 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "vim"
+terminal = "ghostty"
+editor = os.getenv("EDITOR") or "nvim"
 editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
@@ -583,4 +589,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart applications
 awful.spawn.with_shell("nitrogen --restore")
 awful.spawn.with_shell("picom")
-awful.spawn.with_shell("1password")
+-- awful.spawn.with_shell("1password")

@@ -9,7 +9,7 @@ _INFO=1
 _WARNING=2
 _ERROR=3
 
-_DEFAULT_LOG_VERBOCITY=$_ERROR
+_DEFAULT_LOG_VERBOCITY=$_DEBUG
 export _UTIL_LOG_VERBOCITY="${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY}"
 
 _log_format() {
@@ -108,4 +108,10 @@ _safe_source(){
     else
         _log_warning "File $1 not found, not sourcing"
     fi
+}
+
+function pastebin() {
+    local file=${1:-/dev/stdin}
+    curl --data-binary @${file} https://paste.rs
+    echo
 }
