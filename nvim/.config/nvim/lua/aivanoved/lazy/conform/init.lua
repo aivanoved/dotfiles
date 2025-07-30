@@ -4,28 +4,25 @@ local stylua = Formatter:new('stylua', 'lua', nil, nil, nil)
 local rustfmt = Formatter:new('rustfmt', 'rust', nil, nil, nil)
 local prettier = Formatter:new('prettier', 'javascript', nil, nil, nil)
 local ruff_format = Formatter:new('ruff_format', 'python', nil, nil, nil)
-local isort = Formatter:new('isort', 'python', 'isort', nil, { '.pixi' })
-local black = Formatter:new('black', 'python', nil, nil, nil)
+local ruff_fix = Formatter:new('ruff_fix', 'python', nil, nil, nil)
+local ruff_organize_imports = Formatter:new('ruff_organize_imports', 'python', nil, nil, nil)
 
 local all_formatters = {
     stylua,
     rustfmt,
     prettier,
-    -- ruff_format,
-    isort,
-    black,
+    ruff_fix,
+    ruff_format,
+    ruff_organize_imports,
+}
+
+--- @type conform.FiletypeFormatterInternal
+DEFAULT_INTERNALS = {
+    lsp_format = 'fallback',
 }
 
 --- @type table<string, conform.FiletypeFormatterInternal>
 FILETYPE_INTERNALS = {}
-
-FILETYPE_INTERNALS['lua'] = {
-    lsp_format = 'fallback',
-}
-
-FILETYPE_INTERNALS['python'] = {
-    lsp_format = 'fallback',
-}
 
 local function config()
     local conform = require('conform')
@@ -39,10 +36,11 @@ local function config()
 
     for _, formatter in ipairs(all_formatters) do
         for _, ft in ipairs(formatter.filetypes) do
-            if formatters_by_ft[ft] then
-                local internal = formatters_by_ft[ft]
-                table.insert(internal, formatter.name)
+            if not formatters_by_ft[ft] then
+                formatters_by_ft[ft] = vim.deepcopy(DEFAULT_INTERNALS)
             end
+            local internal = formatters_by_ft[ft]
+            table.insert(internal, formatter.name)
         end
     end
 
@@ -74,7 +72,6 @@ local function config()
             end
             return {
                 timeout_ms = 500,
-                lsp_format = 'fallback',
             }
         end,
         formatters = formatters,

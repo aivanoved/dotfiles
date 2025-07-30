@@ -1,9 +1,19 @@
 _SERVER_CONFIG_LIST = {
+    -- lua
     require('aivanoved.lazy.lsp.lua_ls'),
-    require('aivanoved.lazy.lsp.basedpyright'),
-    require('aivanoved.lazy.lsp.typos_lsp'),
+
+    -- c/c++
     require('aivanoved.lazy.lsp.clangd'),
+
+    -- python
+    require('aivanoved.lazy.lsp.basedpyright'),
+    require('aivanoved.lazy.lsp.ruff'),
+
+    -- rust
     require('aivanoved.lazy.lsp.rust_analyzer'),
+
+    -- general
+    require('aivanoved.lazy.lsp.typos_lsp'),
     require('aivanoved.lazy.lsp.harper_ls'),
 }
 
