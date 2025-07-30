@@ -4,6 +4,7 @@ _SERVER_CONFIG_LIST = {
     require('aivanoved.lazy.lsp.typos_lsp'),
     require('aivanoved.lazy.lsp.clangd'),
     require('aivanoved.lazy.lsp.rust_analyzer'),
+    require('aivanoved.lazy.lsp.harper_ls'),
 }
 
 --- @type table<string, aivanoved.lsp.LspConfig>
