@@ -45,16 +45,22 @@ end
 local function get_server_config(server, server_configs)
     local cmp = require('aivanoved.lazy.lsp.cmp')
 
-    local client_config = server_configs[server].config or default_config()
+    local server_config = server_configs[server]
+    local client_config = server_config.config or default_config()
 
     client_config.capabilities = cmp.cmp_add_capabilities(client_config.capabilities)
 
-    local old_on_attach = client_config.on_attach
+    local user_on_attach = client_config.on_attach
+    local super_on_attach = server_config.super_on_attach
+    local super_on_attach_function = vim.lsp.config[server].on_attach
 
     client_config.on_attach = function(client, bufnr)
+        if super_on_attach and super_on_attach_function ~= nil then
+            super_on_attach_function(client, bufnr)
+        end
         on_attact_inlay(client, bufnr)
-        if old_on_attach then
-            old_on_attach(client, bufnr)
+        if user_on_attach ~= nil then
+            user_on_attach(client, bufnr)
         end
     end
 

@@ -13,6 +13,8 @@
 --- @field lsp_name? string|nil
 --- (default: false)
 --- @field ensure_installed? boolean
+--- (default: true)
+--- @field super_on_attach? boolean
 --- @field config? aivanoved.lsp.Config
 
 local M = {}
@@ -21,6 +23,7 @@ local M = {}
 local function default_lsp_config()
     return {
         ensure_installed = false,
+        super_on_attach = true,
         client_config = {},
     }
 end
@@ -42,7 +45,7 @@ local function validate_lsp_config(config)
     if validation_config.lsp_name and type(validation_config.lsp_name) ~= 'string' then
         error(
             'Invalid lsp_name type: expected string, got '
-                .. type(validation_config.lsp_name)
+            .. type(validation_config.lsp_name)
         )
     end
 
@@ -52,7 +55,17 @@ local function validate_lsp_config(config)
     then
         error(
             'Invalid ensure_installed type: expected boolean, got '
-                .. type(validation_config.ensure_installed)
+            .. type(validation_config.ensure_installed)
+        )
+    end
+
+    if
+        validation_config.super_on_attach
+        and type(validation_config.super_on_attach) ~= 'boolean'
+    then
+        error(
+            'Invalid ensure_installed type: expected boolean, got '
+            .. type(validation_config.ensure_installed)
         )
     end
 
@@ -62,12 +75,13 @@ local function validate_lsp_config(config)
     then
         error(
             'Invalid client_config type: expected table, got '
-                .. type(validation_config.client_config)
+            .. type(validation_config.client_config)
         )
     end
 
     -- Default values
     validation_config.ensure_installed = validation_config.ensure_installed or false
+    validation_config.super_on_attach = validation_config.ensure_installed or true
     validation_config.client_config = validation_config.client_config or {}
 
     -- Ensure lsp_name is set if ensure_installed is true
