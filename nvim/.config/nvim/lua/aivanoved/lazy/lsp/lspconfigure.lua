@@ -36,15 +36,22 @@ end
 
 --- @param client vim.lsp.Client
 --- @param bufnr integer
+--- @diagnostic disable-next-line: unused-local
 local function on_attact_inlay(client, bufnr)
     vim.lsp.inlay_hint.enable(true, { bufnr })
     vim.api.nvim_set_hl(0, 'LspInlayHint', { link = 'Comment' })
 end
 
+--- @param client vim.lsp.Client
+--- @param bufnr integer
+--- @diagnostic disable-next-line: unused-local
+local function noop_on_attach(client, bufnr)
+end
+
 --- @return aivanoved.lsp.Config
 local function default_config()
     return {
-        on_attach = on_attact_inlay,
+        on_attach = noop_on_attach,
         capabilities = vim.lsp.protocol.make_client_capabilities(),
     }
 end
@@ -68,7 +75,11 @@ local function get_server_config(server, server_configs)
         if super_on_attach and super_on_attach_function ~= nil then
             super_on_attach_function(client, bufnr)
         end
+
+        require('aivanoved.lazy.lsp.keymaps').lsp_keymaps(client, bufnr)
+
         on_attact_inlay(client, bufnr)
+
         if user_on_attach ~= nil then
             user_on_attach(client, bufnr)
         end

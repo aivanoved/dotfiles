@@ -3,17 +3,14 @@ local function lsp_config()
     require('aivanoved.lazy.lsp.lspconfigure').lspconfigure()
     require('aivanoved.lazy.lsp.cmp').cmp_setup()
     require('aivanoved.lazy.lsp.diagnostics').lsp_diagnostics()
-    require('aivanoved.lazy.lsp.keymaps').lsp_keymaps()
 end
 
 return {
     {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v4.x',
+        'neovim/nvim-lspconfig',
         dependencies = {
             -- LSP Support
-            'neovim/nvim-lspconfig',
-            { 'mason-org/mason.nvim', version = 'v2.*' },
+            { 'mason-org/mason.nvim',           version = 'v2.*' },
             { 'mason-org/mason-lspconfig.nvim', version = 'v2.*' },
             'folke/lazydev.nvim',
 
@@ -23,11 +20,13 @@ return {
             -- Autocompletion
             {
                 'saghen/blink.cmp',
-                version = '1.*',
+                version = '1.*'
             },
 
+            { 'nvim-tree/nvim-web-devicons', opts = {} },
+
             -- snippet
-            { 'L3MON4D3/LuaSnip', version = 'v2.*' },
+            { 'L3MON4D3/LuaSnip',            version = 'v2.*' },
         },
         config = lsp_config,
     },
