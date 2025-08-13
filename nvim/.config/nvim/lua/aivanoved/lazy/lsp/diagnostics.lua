@@ -18,15 +18,17 @@ local function lsp_diagnostics()
     local diagnostic_opt = {
         underline = true,
         update_in_insert = true,
-        virtual_text = {
-            source = true,
+        virtual_lines = {
             current_line = true,
-            virt_text_pos = 'eol_right_align',
         },
         signs = {
             text = DIAGNOSTIC_SIGNS,
             numhl = NUMBER_LINE_HIGHLIGHT,
-        }
+        },
+        severity_sort = true,
+        float = {
+            source = true,
+        },
     }
 
     vim.diagnostic.config(diagnostic_opt)
