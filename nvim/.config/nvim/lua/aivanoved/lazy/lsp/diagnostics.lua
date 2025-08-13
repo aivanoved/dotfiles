@@ -18,8 +18,31 @@ local function lsp_diagnostics()
     local diagnostic_opt = {
         underline = true,
         update_in_insert = true,
+        source = true,
         virtual_lines = {
             current_line = true,
+            format = function(diagnostic)
+                local source = diagnostic.source
+                local code = diagnostic.code
+                local message = diagnostic.message
+
+                --- @type string
+                local output = ""
+
+                if source ~= nil and code ~= nil then
+                    output = output .. string.format("%s (%s): ", source, code)
+                elseif source ~= nil then
+                    output = output .. source .. ": "
+                elseif code ~= nil then
+                    output = output .. code .. ": "
+                end
+
+                if message ~= nil then
+                    output = output .. message
+                end
+
+                return output
+            end
         },
         signs = {
             text = DIAGNOSTIC_SIGNS,
