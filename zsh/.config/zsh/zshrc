@@ -8,7 +8,12 @@ if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
 fi
 
-setopt autocd extendedglob nomatch menucomplete interactive_comments
+setopt autocd
+setopt extendedglob
+setopt nomatch
+setopt menucomplete
+setopt interactive_comments
+
 stty stop undef
 zle_highlight=('paste:none')
 
