@@ -99,6 +99,25 @@ local function lspconfigure()
     lspconfig_default.capabilities =
         blink.get_lsp_capabilities(lspconfig_default.capabilities)
 
+    local methods = vim.lsp.protocol.Methods
+    local inlay_hint_handler = vim.lsp.handlers[methods.textDocument_inlayHint]
+    vim.lsp.handlers[methods.textDocument_inlayHint] = function(err, result, ctx)
+        local client = vim.lsp.get_client_by_id(ctx.client_id)
+        local result_new = result
+
+        if client and client.name == 'basedpyright' then
+            result_new = vim.iter(result_new):map(function(res)
+                local label = res.label ---@type string
+                if label:len() >= 30 then
+                    label = label:sub(1, 27) .. '...'
+                end
+                res.label = label
+            end):totable()
+        end
+
+        return inlay_hint_handler(err, result, ctx)
+    end
+
     for server, _ in pairs(SERVER_CONFIGS) do
         vim.lsp.config(server, get_server_config(server, SERVER_CONFIGS))
     end
