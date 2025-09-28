@@ -1,0 +1,5 @@
+--- @class aivanoved.typedef.SetKeymap
+--- @field mode string | string[]
+--- @field lhs string
+--- @field rhs string | fun()
+--- @field opts? vim.keymap.set.Opts

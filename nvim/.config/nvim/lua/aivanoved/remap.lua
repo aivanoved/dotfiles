@@ -1,67 +1,234 @@
--- hjkl maps
+--- @class SetMaps: aivanoved.typedef.SetKeymap[]
+local set_maps = {}
 
-vim.keymap.set('i', 'jj', '<Esc>')
-vim.keymap.set('n', 'J', 'mzJ`z`')
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+--- @param map aivanoved.typedef.SetKeymap
+function set_maps:append(map)
+    table.insert(set_maps, map)
+end
 
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+set_maps:append({
+    mode = 'i',
+    lhs = 'jj',
+    rhs = '<Esc>',
+    opts = {
+        desc = 'Insert mode Esc',
+    },
+})
+set_maps:append({
+    mode = 'n',
+    lhs = 'J',
+    rhs = 'mzJ`z`',
+    opts = { desc = 'Append line below' },
+})
+set_maps:append({
+    mode = 'v',
+    lhs = 'J',
+    rhs = ":m '>+1<CR>gv=gv",
+    opts = { desc = 'Move line below' },
+})
 
-vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
-vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
+set_maps:append({
+    mode = 'v',
+    lhs = 'K',
+    rhs = ":m '<-2<CR>gv=gv",
+    opts = { desc = 'Move line above' },
+})
 
-vim.keymap.set('n', '<c-k>', '<cmd>cnext<CR>zz')
-vim.keymap.set('n', '<c-j>', '<cmd>cprev<CR>zz')
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>k',
+    rhs = '<cmd>lnext<CR>zz',
+    opts = { desc = 'Next location list' },
+})
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>j',
+    rhs = '<cmd>lprev<CR>zz',
+    opts = { desc = 'Previous location list' },
+})
+
+set_maps:append({
+    mode = 'n',
+    lhs = '<c-k>',
+    rhs = '<cmd>cnext<CR>zz',
+    opts = { desc = 'Next quickfix list' },
+})
+set_maps:append({
+    mode = 'n',
+    lhs = '<c-j>',
+    rhs = '<cmd>cprev<CR>zz',
+    opts = { desc = 'Previous quickfix list' },
+})
 
 -- scroll maps
-vim.keymap.set('n', '<c-d>', '<c-d>zz')
-vim.keymap.set('n', '<c-u>', '<c-u>zz')
+set_maps:append({
+    mode = 'n',
+    lhs = '<c-d>',
+    rhs = '<c-d>zz',
+    opts = { desc = 'Full page down' },
+})
+set_maps:append({
+    mode = 'n',
+    lhs = '<c-u>',
+    rhs = '<c-u>zz',
+    opts = { desc = 'Full page up' },
+})
 
 -- search maps
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
+set_maps:append({ mode = 'n', lhs = 'n', rhs = 'nzzzv', opts = { desc = 'Find next' } })
+set_maps:append({
+    mode = 'n',
+    lhs = 'N',
+    rhs = 'Nzzzv',
+    opts = { desc = 'Find previous' },
+})
 
 -- yank maps
-vim.keymap.set('n', 'Y', 'yg$')
+set_maps:append({ mode = 'n', lhs = 'Y', rhs = 'yg$', opts = { desc = 'Yank to EoL' } })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
-vim.keymap.set('n', '<leader>Y', '"+Y')
+set_maps:append({
+    mode = { 'n', 'v' },
+    lhs = '<leader>y',
+    rhs = '"+y',
+    opts = { desc = 'Yank to clipboard' },
+})
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>Y',
+    rhs = '"+Y',
+    opts = { desc = 'Yank to EoL to clipboard' },
+})
 
 -- delete maps
-vim.keymap.set({ 'n', 'x' }, 'd', '"_d')
-vim.keymap.set({ 'n', 'x' }, 'dd', '"_dd')
-vim.keymap.set({ 'n', 'x' }, 'D', '"_D')
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'd',
+    rhs = '"_d',
+    opts = { desc = 'Delete to void' },
+})
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'dd',
+    rhs = '"_dd',
+    opts = { desc = 'Delete to void lione' },
+})
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'D',
+    rhs = '"_D',
+    opts = { desc = 'Delete to void lione' },
+})
 
 -- change maps
-vim.keymap.set({ 'n', 'x' }, 'c', '"_c')
-vim.keymap.set({ 'n', 'x' }, 'cc', '"_cc')
-vim.keymap.set({ 'n', 'x' }, 'C', '"_C')
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'c',
+    rhs = '"_c',
+    opts = { desc = 'Change to void' },
+})
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'cc',
+    rhs = '"_cc',
+    opts = { desc = 'Change to void line' },
+})
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'C',
+    rhs = '"_C',
+    opts = { desc = 'Change to void line' },
+})
 
 -- substitute maps
-vim.keymap.set({ 'n', 'x' }, 's', '"_s')
-vim.keymap.set({ 'n', 'x' }, 'ss', '"_ss')
-vim.keymap.set({ 'n', 'x' }, 'S', '"_S')
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 's',
+    rhs = '"_s',
+    opts = { desc = 'Substitute to void' },
+})
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'ss',
+    rhs = '"_ss',
+    opts = { desc = 'Substitute to void line' },
+})
+set_maps:append({
+    mode = { 'n', 'x' },
+    lhs = 'S',
+    rhs = '"_S',
+    opts = { desc = 'Substitute to void line' },
+})
 
 -- substitution maps
-vim.keymap.set('n', '<leader>s', ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<Left><Left><Left>')
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>s',
+    rhs = ':%s/\\<<c-r><c-w>\\>/<c-r><c-w>/gI<Left><Left><Left>',
+    opts = { desc = 'Substitute word under cursor' },
+})
 
 -- paste maps
-vim.keymap.set('n', '<leader>p', '"+p')
-vim.keymap.set('n', '<leader>P', '"+P')
-vim.keymap.set('x', '<leader>p', '"_dP')
-vim.keymap.set('x', '<leader>P', '"_d"+p')
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>p',
+    rhs = '"+p',
+    opts = { desc = 'Paste from clipboard after' },
+})
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>P',
+    rhs = '"+P',
+    opts = { desc = 'Paste from clipboard before' },
+})
+set_maps:append({
+    mode = 'x',
+    lhs = '<leader>p',
+    rhs = '"_d"+P',
+    opts = { desc = 'Void delete and paste from clipboard before' },
+})
+set_maps:append({
+    mode = 'x',
+    lhs = '<leader>P',
+    rhs = '"_d"+p',
+    opts = { desc = 'Void delete and paste from clipboard after' },
+})
 
 -- ex mode maps
-vim.keymap.set('n', 'Q', '<nop>')
+set_maps:append({ mode = 'n', lhs = 'Q', rhs = '<nop>', opts = { desc = 'Unmap "Q"' } })
 
-vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>x',
+    rhs = '<cmd>!chmod +x %<CR>',
+    opts = { desc = 'Make executable', silent = true },
+})
 
-vim.keymap.set('n', '<leader>bf', function()
-    vim.lsp.buf.format()
-end)
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>bf',
+    rhs = function()
+        vim.lsp.buf.format()
+    end,
+    opts = { desc = 'Buffer lsp format' },
+})
 
-vim.keymap.set('n', '<leader>ve', function()
-    vim.cmd.edit(os.getenv('HOME') .. '/.config/nvim/init.lua')
-end)
-vim.keymap.set('n', '<leader>vr', function()
-    vim.cmd.source(os.getenv('HOME') .. '/.config/nvim/init.lua')
-end)
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>ve',
+    rhs = function()
+        vim.cmd.edit(os.getenv('HOME') .. '/.config/nvim/init.lua')
+    end,
+    opts = { desc = 'Edit base config' },
+})
+set_maps:append({
+    mode = 'n',
+    lhs = '<leader>vr',
+    rhs = function()
+        vim.cmd.source(os.getenv('HOME') .. '/.config/nvim/init.lua')
+    end,
+    opts = { desc = 'Reload base config' },
+})
+
+for _, map in ipairs(set_maps) do
+    vim.keymap.set(map.mode, map.lhs, map.rhs, map.opts)
+end
