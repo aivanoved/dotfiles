@@ -54,6 +54,7 @@ local function neo_tree_config()
                 folder_closed = '',
                 folder_open = '',
                 folder_empty = '󰜌',
+                folder_empty_open = '󰜌',
                 provider = function(icon, node, state) -- default icon provider utilizes nvim-web-devicons if available
                     if node.type == 'file' or node.type == 'terminal' then
                         local success, web_devicons = pcall(require, 'nvim-web-devicons')
@@ -333,7 +334,7 @@ local function neo_tree_config()
     })
 
     vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-    vim.api.nvim_set_keymap(
+    vim.keymap.set(
         'n',
         '<leader>ntt',
         ':Neotree<cr>',
@@ -348,7 +349,7 @@ local function window_picker_config()
             autoselect_one = true,
             -- filter using buffer options
             bo = {
-                -- if the file type is one of following, the window will be ignored
+                -- if the filetype is one of following, the window will be ignored
                 filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
                 -- if the buffer type is one of following, the window will be ignored
                 buftype = { 'terminal', 'quickfix' },
@@ -362,9 +363,11 @@ return {
     branch = 'v3.x',
     dependencies = {
         'nvim-lua/plenary.nvim',
-        'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+        -- not strictly required, but recommended
+        'nvim-tree/nvim-web-devicons',
         'MunifTanjim/nui.nvim',
-        --"3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
+        -- Optional image support in preview window: See `# Preview Mode` for more information
+        --"3rd/image.nvim",
         {
             's1n7ax/nvim-window-picker',
             version = '2.*',

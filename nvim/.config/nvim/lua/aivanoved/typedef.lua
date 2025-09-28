@@ -20,6 +20,12 @@ function SetKeyMaps:append(map)
     table.insert(self, map)
 end
 
+function SetKeyMaps:set_keymaps()
+    for _, map in ipairs(self) do
+        vim.keymap.set(map.mode, map.lhs, map.rhs, map.opts)
+    end
+end
+
 M.SetKeyMaps = SetKeyMaps
 
 return M

@@ -1,3 +1,5 @@
+local typedef = require('aivanoved.typedef')
+
 local function config()
     local harpoon = require('harpoon')
     harpoon.setup({})
@@ -38,40 +40,93 @@ local function config()
             :find()
     end
 
-    vim.keymap.set('n', '<leader>h' .. 'a', function()
-        harpoon:list():add()
-    end, { desc = 'Harpoon add' })
-    vim.keymap.set('n', '<leader>h' .. 'd', function()
-        harpoon:list():remove()
-    end, { desc = 'Harpoon remove' })
-    vim.keymap.set('n', '<leader>h' .. 'e', function()
-        toggle_telescope(harpoon:list())
-    end, { desc = 'Harpoon toggle' })
-    vim.keymap.set('n', '<leader>h' .. 'j', function()
-        harpoon:list():next()
-    end, { desc = 'Harpoon next' })
-    vim.keymap.set('n', '<leader>h' .. 'k', function()
-        harpoon:list():prev()
-    end, { desc = 'Harpoon previous' })
+    local set_maps = typedef.SetKeyMaps:new()
+
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>h' .. 'a',
+        rhs = function()
+            harpoon:list():add()
+        end,
+        opts = { desc = 'Harpoon add' },
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>h' .. 'd',
+        rhs = function()
+            harpoon:list():remove()
+        end,
+        opts = { desc = 'Harpoon remove' },
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>h' .. 'e',
+        rhs = function()
+            toggle_telescope(harpoon:list())
+        end,
+        opts = { desc = 'Harpoon toggle' },
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>h' .. 'j',
+        rhs = function()
+            harpoon:list():next()
+        end,
+        opts = { desc = 'Harpoon next' },
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>h' .. 'k',
+        rhs = function()
+            harpoon:list():prev()
+        end,
+        opts = { desc = 'Harpoon previous' },
+    })
     for i = 1, 9 do
-        vim.keymap.set('n', '<leader>h' .. tostring(i), function()
-            harpoon:list():select(i)
-        end, { desc = 'Harpoon select ' .. tostring(i) })
+        set_maps:append({
+            mode = 'n',
+            lhs = '<leader>h' .. tostring(i),
+            rhs = function()
+                harpoon:list():select(i)
+            end,
+            opts = { desc = 'Harpoon select ' .. tostring(i) },
+        })
     end
+
+    set_maps:set_keymaps()
 
     harpoon:extend({
         UI_CREATE = function(cx)
-            vim.keymap.set('n', '<C-v>', function()
-                harpoon.ui:select_menu_item({ vsplit = true })
-            end, { buffer = cx.bufnr, desc = 'Harpoon vsplit item' })
+            local set_ui_maps = typedef.SetKeyMaps.new()
 
-            vim.keymap.set('n', '<C-x>', function()
-                harpoon.ui:select_menu_item({ split = true })
-            end, { buffer = cx.bufnr, desc = 'Harpoon split item' })
+            set_ui_maps:append({
+                mode = 'n',
+                lhs = '<C-v>',
+                rhs = function()
+                    harpoon.ui:select_menu_item({ vsplit = true })
+                end,
+                opts = { buffer = cx.bufnr, desc = 'Harpoon vsplit item' },
+            })
 
-            vim.keymap.set('n', '<C-t>', function()
-                harpoon.ui:select_menu_item({ tabedit = true })
-            end, { buffer = cx.bufnr, desc = 'Harpoon tab edit' })
+            set_ui_maps:append({
+                mode = 'n',
+                lhs = '<C-x>',
+                rhs = function()
+                    harpoon.ui:select_menu_item({ split = true })
+                end,
+                opts = { buffer = cx.bufnr, desc = 'Harpoon split item' },
+            })
+
+            set_ui_maps:append({
+                mode = 'n',
+                lhs = '<C-t>',
+                rhs = function()
+                    harpoon.ui:select_menu_item({ tabedit = true })
+                end,
+                opts = { buffer = cx.bufnr, desc = 'Harpoon tab edit' },
+            })
+
+            set_ui_maps:set_keymaps()
         end,
     })
 end

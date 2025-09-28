@@ -1,36 +1,42 @@
+local typedef = require('aivanoved.typedef')
+
 local function config()
-    vim.keymap.set(
-        'n',
-        '<leader>g' .. ']h',
-        '<Plug>(GitGutterNextHunk)',
-        { desc = 'Gitgutter next hunk' }
-    )
-    vim.keymap.set(
-        'n',
-        '<leader>g' .. '[h',
-        '<Plug>(GitGutterPrevHunk)',
-        { desc = 'Gitgutter previous hunk' }
-    )
+    local set_maps = typedef.SetKeyMaps:new()
 
-    vim.keymap.set(
-        'n',
-        '<leader>g' .. 'hp',
-        '<Plug>(GitGutterPreviewHunk)',
-        { desc = 'Gitgutter preview hunk' }
-    )
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>g' .. ']h',
+        rhs = '<Plug>(GitGutterNextHunk)',
+        opts = { desc = 'Gitgutter next hunk' },
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>g' .. '[h',
+        rhs = '<Plug>(GitGutterPrevHunk)',
+        opts = { desc = 'Gitgutter previous hunk' },
+    })
 
-    vim.keymap.set(
-        { 'n', 'x' },
-        '<leader>g' .. 'hs',
-        '<Plug>(GitGutterStageHunk)',
-        { desc = 'Gitgutter stage hunk' }
-    )
-    vim.keymap.set(
-        'n',
-        '<leader>g' .. 'hu',
-        '<Plug>(GitGutterUndoHunk)',
-        { desc = 'Gitgutter undo hunk' }
-    )
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>g' .. 'hp',
+        rhs = '<Plug>(GitGutterPreviewHunk)',
+        opts = { desc = 'Gitgutter preview hunk' },
+    })
+
+    set_maps:append({
+        mode = { 'n', 'x' },
+        lhs = '<leader>g' .. 'hs',
+        rhs = '<Plug>(GitGutterStageHunk)',
+        opts = { desc = 'Gitgutter stage hunk' },
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>g' .. 'hu',
+        rhs = '<Plug>(GitGutterUndoHunk)',
+        opts = { desc = 'Gitgutter undo hunk' },
+    })
+
+    set_maps:set_keymaps()
 end
 
 return {

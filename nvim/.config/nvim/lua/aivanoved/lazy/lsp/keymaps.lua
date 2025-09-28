@@ -103,9 +103,7 @@ local function lsp_keymaps(client, bufnr)
         opts = opts(bufnr, 'Lsp signature help'),
     })
 
-    for _, map in ipairs(set_maps) do
-        vim.keymap.set(map.mode, map.lhs, map.rhs, map.opts)
-    end
+    set_maps:set_keymaps()
 end
 
 local M = {}
