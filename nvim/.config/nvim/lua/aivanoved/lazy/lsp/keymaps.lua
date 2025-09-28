@@ -1,3 +1,5 @@
+local typedef = require('aivanoved.typedef')
+
 --- @param bufnum boolean | integer
 --- @param desc string | nil
 --- @return vim.keymap.set.Opts
@@ -15,40 +17,95 @@ end
 --- @param bufnr integer
 --- @diagnostic disable-next-line: unused-local
 local function lsp_keymaps(client, bufnr)
-    vim.keymap.set('n', 'gd', function()
-        vim.lsp.buf.definition()
-    end, opts(bufnr, 'Lsp definition'))
-    vim.keymap.set('n', 'K', function()
-        vim.lsp.buf.hover()
-    end, opts(bufnr, 'Lsp hover'))
-    vim.keymap.set('n', '<leader>vws', function()
-        vim.lsp.buf.workspace_symbol()
-    end, opts(bufnr, 'Lsp workspace symbol'))
-    vim.keymap.set('n', '<leader>vd', function()
-        vim.diagnostic.open_float()
-    end, opts(bufnr, 'Lsp open float'))
-    vim.keymap.set('n', '[d', function()
-        vim.diagnostic.jump({
-            count = 1,
-        })
-    end, opts(bufnr, 'Lsp next diagnostic'))
-    vim.keymap.set('n', ']d', function()
-        vim.diagnostic.jump({
-            count = -1,
-        })
-    end, opts(bufnr, 'Lsp previous diagnostic'))
-    vim.keymap.set('n', '<leader>vca', function()
-        vim.lsp.buf.code_action()
-    end, opts(bufnr, 'Lsp code action'))
-    vim.keymap.set('n', '<leader>vrr', function()
-        vim.lsp.buf.references()
-    end, opts(bufnr, 'Lsp references'))
-    vim.keymap.set('n', '<leader>vrn', function()
-        vim.lsp.buf.rename()
-    end, opts(bufnr, 'Lsp rename'))
-    vim.keymap.set('i', '<C-h>', function()
-        vim.lsp.buf.signature_help()
-    end, opts(bufnr, 'Lsp signature help'))
+    local set_maps = typedef.SetKeyMaps:new()
+    set_maps:append({
+        mode = 'n',
+        lhs = 'gd',
+        rhs = function()
+            vim.lsp.buf.definition()
+        end,
+        opts = opts(bufnr, 'Lsp definition'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = 'K',
+        rhs = function()
+            vim.lsp.buf.hover()
+        end,
+        opts = opts(bufnr, 'Lsp hover'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>vws',
+        rhs = function()
+            vim.lsp.buf.workspace_symbol()
+        end,
+        opts = opts(bufnr, 'Lsp workspace symbol'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>vd',
+        rhs = function()
+            vim.diagnostic.open_float()
+        end,
+        opts = opts(bufnr, 'Lsp open float'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '[d',
+        rhs = function()
+            vim.diagnostic.jump({
+                count = 1,
+            })
+        end,
+        opts = opts(bufnr, 'Lsp next diagnostic'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = ']d',
+        rhs = function()
+            vim.diagnostic.jump({
+                count = -1,
+            })
+        end,
+        opts = opts(bufnr, 'Lsp previous diagnostic'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>vca',
+        rhs = function()
+            vim.lsp.buf.code_action()
+        end,
+        opts = opts(bufnr, 'Lsp code action'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>vrr',
+        rhs = function()
+            vim.lsp.buf.references()
+        end,
+        opts = opts(bufnr, 'Lsp references'),
+    })
+    set_maps:append({
+        mode = 'n',
+        lhs = '<leader>vrn',
+        rhs = function()
+            vim.lsp.buf.rename()
+        end,
+        opts = opts(bufnr, 'Lsp rename'),
+    })
+    set_maps:append({
+        mode = 'i',
+        lhs = '<C-h>',
+        rhs = function()
+            vim.lsp.buf.signature_help()
+        end,
+        opts = opts(bufnr, 'Lsp signature help'),
+    })
+
+    for _, map in ipairs(set_maps) do
+        vim.keymap.set(map.mode, map.lhs, map.rhs, map.opts)
+    end
 end
 
 local M = {}
