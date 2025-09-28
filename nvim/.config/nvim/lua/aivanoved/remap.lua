@@ -1,10 +1,6 @@
---- @class SetMaps: aivanoved.typedef.SetKeymap[]
-local set_maps = {}
+local typedef = require('aivanoved.typedef')
 
---- @param map aivanoved.typedef.SetKeymap
-function set_maps:append(map)
-    table.insert(set_maps, map)
-end
+local set_maps = typedef.SetKeyMaps:new()
 
 set_maps:append({
     mode = 'i',
