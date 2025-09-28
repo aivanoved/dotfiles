@@ -45,7 +45,7 @@ local function validate_lsp_config(config)
     if validation_config.lsp_name and type(validation_config.lsp_name) ~= 'string' then
         error(
             'Invalid lsp_name type: expected string, got '
-            .. type(validation_config.lsp_name)
+                .. type(validation_config.lsp_name)
         )
     end
 
@@ -55,7 +55,7 @@ local function validate_lsp_config(config)
     then
         error(
             'Invalid ensure_installed type: expected boolean, got '
-            .. type(validation_config.ensure_installed)
+                .. type(validation_config.ensure_installed)
         )
     end
 
@@ -65,7 +65,7 @@ local function validate_lsp_config(config)
     then
         error(
             'Invalid ensure_installed type: expected boolean, got '
-            .. type(validation_config.ensure_installed)
+                .. type(validation_config.ensure_installed)
         )
     end
 
@@ -75,7 +75,7 @@ local function validate_lsp_config(config)
     then
         error(
             'Invalid client_config type: expected table, got '
-            .. type(validation_config.client_config)
+                .. type(validation_config.client_config)
         )
     end
 

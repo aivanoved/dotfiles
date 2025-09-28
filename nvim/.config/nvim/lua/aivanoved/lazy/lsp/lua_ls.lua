@@ -1,6 +1,6 @@
-local typedef = require('aivanoved.lazy.lsp.typedef')
+local lsp_config = require('aivanoved.lazy.lsp.lsp_config')
 
-return typedef.validate_lsp_config({
+return lsp_config.validate_lsp_config({
     lsp_name = 'lua_ls',
     ensure_installed = true,
 })
