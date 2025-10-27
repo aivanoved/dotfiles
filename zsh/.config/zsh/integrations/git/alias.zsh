@@ -25,6 +25,9 @@ alias grhh='git reset --hard'
 
 
 
+
+alias gpu='git push -u origin $(git branch --show-current)'
+
 alias grs='git restore'
 alias grst='git restore --staged'
 alias grm='git rm'
