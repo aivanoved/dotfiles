@@ -20,7 +20,13 @@ Formatter = {}
 --- @param params table<aivanoved.conform.Filetype, aivanoved.conform.FormatterParams[]>|nil
 --- @param paths string[]|nil
 --- @return aivanoved.conform.Formatter
-function Formatter:new(name, filetypes, default_executable, params, paths)
+function Formatter:new(
+    name,
+    filetypes,
+    default_executable,
+    params,
+    paths
+)
     if type(filetypes) == 'string' then
         filetypes = { filetypes }
     end
@@ -40,7 +46,7 @@ function Formatter:new(name, filetypes, default_executable, params, paths)
 end
 
 --- @return conform.FormatterConfigOverride|nil
-function Formatter:into_conform_config()
+function Formatter:python_config()
     if not self.default_executable then
         return nil
     end
@@ -68,8 +74,10 @@ function Formatter:into_conform_config()
         return nil
     end
 
-    local command =
-        require('conform.util').find_executable(self.paths, self.default_executable)
+    local command = require('conform.util').find_executable(
+        self.paths,
+        self.default_executable
+    )
 
     --- @type conform.FormatterConfigOverride
     local config = {
@@ -81,6 +89,11 @@ function Formatter:into_conform_config()
     }
 
     return config
+end
+
+--- @return conform.FormatterConfigOverride|nil
+function Formatter:into_conform_config()
+    return self:python_config()
 end
 
 return {
