@@ -1,11 +1,23 @@
-local Formatter = require('aivanoved.lazy.conform.formatter').Formatter
+local Formatter =
+    require('aivanoved.lazy.conform.formatter').Formatter
+local PythonFormatter =
+    require('aivanoved.lazy.conform.python_formatter').PythonFormatter
 
 local stylua = Formatter:new('stylua', 'lua', nil, nil, nil)
 local rustfmt = Formatter:new('rustfmt', 'rust', nil, nil, nil)
-local prettier = Formatter:new('prettier', 'javascript', nil, nil, nil)
-local ruff_format = Formatter:new('ruff_format', 'python', nil, nil, nil)
-local ruff_fix = Formatter:new('ruff_fix', 'python', nil, nil, nil)
-local ruff_organize_imports = Formatter:new('ruff_organize_imports', 'python', nil, nil, nil)
+local prettier =
+    Formatter:new('prettier', 'javascript', nil, nil, nil)
+local ruff_format =
+    PythonFormatter:new('ruff_format', 'python', nil, nil, nil)
+local ruff_fix =
+    PythonFormatter:new('ruff_fix', 'python', nil, nil, nil)
+local ruff_organize_imports = PythonFormatter:new(
+    'ruff_organize_imports',
+    'python',
+    nil,
+    nil,
+    nil
+)
 
 local all_formatters = {
     stylua,
@@ -67,7 +79,10 @@ local function config()
     conform.setup({
         formatters_by_ft = formatters_by_ft,
         format_on_save = function(bufnr)
-            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+            if
+                vim.g.disable_autoformat
+                or vim.b[bufnr].disable_autoformat
+            then
                 return
             end
             return {

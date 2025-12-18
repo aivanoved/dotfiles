@@ -46,42 +46,13 @@ function Formatter:new(
 end
 
 --- @return conform.FormatterConfigOverride|nil
-function Formatter:python_config()
+function Formatter:into_conform_config()
     if not self.default_executable then
         return nil
     end
-    -- check if python formatter
-    local is_python = false
-    for _, ft in ipairs(self.filetypes) do
-        if ft == 'python' then
-            is_python = true
-            break
-        end
-    end
-
-    if not is_python then
-        return nil
-    end
-
-    -- check if in pixi environment
-    if vim.fn.executable('pixi') == 0 then
-        return nil
-    end
-    -- check if pixi directory exists anywhare upwards
-    local pixi_dir = vim.fn.finddir('.pixi', vim.fn.getcwd() .. ';')
-
-    if pixi_dir == '' then
-        return nil
-    end
-
-    local command = require('conform.util').find_executable(
-        self.paths,
-        self.default_executable
-    )
 
     --- @type conform.FormatterConfigOverride
     local config = {
-        -- check if the executable is in the pixi environment
         command = require('conform.util').find_executable(
             self.paths,
             self.default_executable
@@ -89,11 +60,6 @@ function Formatter:python_config()
     }
 
     return config
-end
-
---- @return conform.FormatterConfigOverride|nil
-function Formatter:into_conform_config()
-    return self:python_config()
 end
 
 return {
