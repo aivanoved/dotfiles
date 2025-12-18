@@ -45,8 +45,7 @@ end
 --- @param client vim.lsp.Client
 --- @param bufnr integer
 --- @diagnostic disable-next-line: unused-local
-local function noop_on_attach(client, bufnr)
-end
+local function noop_on_attach(client, bufnr) end
 
 --- @return aivanoved.lsp.Config
 local function default_config()
@@ -65,7 +64,8 @@ local function get_server_config(server, server_configs)
     local server_config = server_configs[server]
     local client_config = server_config.config or default_config()
 
-    client_config.capabilities = cmp.cmp_add_capabilities(client_config.capabilities)
+    client_config.capabilities =
+        cmp.cmp_add_capabilities(client_config.capabilities)
 
     local user_on_attach = client_config.on_attach
     local super_on_attach = server_config.super_on_attach
@@ -76,7 +76,10 @@ local function get_server_config(server, server_configs)
             super_on_attach_function(client, bufnr)
         end
 
-        require('aivanoved.lazy.lsp.keymaps').lsp_keymaps(client, bufnr)
+        require('aivanoved.lazy.lsp.keymaps').lsp_keymaps(
+            client,
+            bufnr
+        )
 
         on_attact_inlay(client, bufnr)
 
@@ -100,26 +103,36 @@ local function lspconfigure()
         blink.get_lsp_capabilities(lspconfig_default.capabilities)
 
     local methods = vim.lsp.protocol.Methods
-    local inlay_hint_handler = vim.lsp.handlers[methods.textDocument_inlayHint]
-    vim.lsp.handlers[methods.textDocument_inlayHint] = function(err, result, ctx)
+    local inlay_hint_handler =
+        vim.lsp.handlers[methods.textDocument_inlayHint]
+    vim.lsp.handlers[methods.textDocument_inlayHint] = function(
+        err,
+        result,
+        ctx
+    )
         local client = vim.lsp.get_client_by_id(ctx.client_id)
         local result_new = result
 
         if client and client.name == 'basedpyright' then
-            result_new = vim.iter(result_new):map(function(res)
-                local label = res.label ---@type string
-                if label:len() >= 30 then
-                    label = label:sub(1, 27) .. '...'
-                end
-                res.label = label
-            end):totable()
+            result_new = vim.iter(result_new)
+                :map(function(res)
+                    local label = res.label ---@type string
+                    if label:len() >= 30 then
+                        label = label:sub(1, 27) .. '...'
+                    end
+                    res.label = label
+                end)
+                :totable()
         end
 
         return inlay_hint_handler(err, result, ctx)
     end
 
     for server, _ in pairs(SERVER_CONFIGS) do
-        vim.lsp.config(server, get_server_config(server, SERVER_CONFIGS))
+        vim.lsp.config(
+            server,
+            get_server_config(server, SERVER_CONFIGS)
+        )
     end
 
     local mason_lspconfig = require('mason-lspconfig')

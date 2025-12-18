@@ -27,14 +27,15 @@ local function lsp_diagnostics()
                 local message = diagnostic.message
 
                 --- @type string
-                local output = ""
+                local output = ''
 
                 if source ~= nil and code ~= nil then
-                    output = output .. string.format("%s (%s): ", source, code)
+                    output = output
+                        .. string.format('%s (%s): ', source, code)
                 elseif source ~= nil then
-                    output = output .. source .. ": "
+                    output = output .. source .. ': '
                 elseif code ~= nil then
-                    output = output .. code .. ": "
+                    output = output .. code .. ': '
                 end
 
                 if message ~= nil then
@@ -42,7 +43,7 @@ local function lsp_diagnostics()
                 end
 
                 return output
-            end
+            end,
         },
         signs = {
             text = DIAGNOSTIC_SIGNS,
