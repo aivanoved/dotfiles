@@ -8,7 +8,8 @@ local function opts(bufnum, desc)
     local set_opts = { buffer = bufnum, remap = false }
 
     if desc ~= nil then
-        set_opts = vim.tbl_deep_extend('force', set_opts, { desc = desc })
+        set_opts =
+            vim.tbl_deep_extend('force', set_opts, { desc = desc })
     end
     return set_opts
 end

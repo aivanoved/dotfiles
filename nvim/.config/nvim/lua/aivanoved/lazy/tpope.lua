@@ -6,7 +6,12 @@ return {
     {
         'tpope/vim-fugitive',
         config = function()
-            vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = 'Git command line' })
+            vim.keymap.set(
+                'n',
+                '<leader>gs',
+                vim.cmd.Git,
+                { desc = 'Git command line' }
+            )
         end,
     },
     'tpope/vim-rhubarb',

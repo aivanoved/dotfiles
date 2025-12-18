@@ -27,11 +27,17 @@ local function config()
                 sorter = conf.generic_sorter({}),
                 attach_mappings = function(prompt_bufnr, map)
                     map('i', '<C-d>', function()
-                        local state = require('telescope.actions.state')
-                        local selected_entry = state.get_selected_entry()
-                        local current_picker = state.get_current_picker(prompt_bufnr)
+                        local state =
+                            require('telescope.actions.state')
+                        local selected_entry =
+                            state.get_selected_entry()
+                        local current_picker =
+                            state.get_current_picker(prompt_bufnr)
 
-                        table.remove(harpoon_files.items, selected_entry.index)
+                        table.remove(
+                            harpoon_files.items,
+                            selected_entry.index
+                        )
                         current_picker:refresh(finder())
                     end)
                     return true
@@ -105,7 +111,10 @@ local function config()
                 rhs = function()
                     harpoon.ui:select_menu_item({ vsplit = true })
                 end,
-                opts = { buffer = cx.bufnr, desc = 'Harpoon vsplit item' },
+                opts = {
+                    buffer = cx.bufnr,
+                    desc = 'Harpoon vsplit item',
+                },
             })
 
             set_ui_maps:append({
@@ -114,7 +123,10 @@ local function config()
                 rhs = function()
                     harpoon.ui:select_menu_item({ split = true })
                 end,
-                opts = { buffer = cx.bufnr, desc = 'Harpoon split item' },
+                opts = {
+                    buffer = cx.bufnr,
+                    desc = 'Harpoon split item',
+                },
             })
 
             set_ui_maps:append({
@@ -123,7 +135,10 @@ local function config()
                 rhs = function()
                     harpoon.ui:select_menu_item({ tabedit = true })
                 end,
-                opts = { buffer = cx.bufnr, desc = 'Harpoon tab edit' },
+                opts = {
+                    buffer = cx.bufnr,
+                    desc = 'Harpoon tab edit',
+                },
             })
 
             set_ui_maps:set_keymaps()

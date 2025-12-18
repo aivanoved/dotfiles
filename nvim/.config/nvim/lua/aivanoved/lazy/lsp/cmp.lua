@@ -35,12 +35,16 @@ local function default_opts()
                 return { 's', 'n' }
             end
 
-            local item_text = item.textEdit ~= nil and item.textEdit.newText
+            local item_text = item.textEdit ~= nil
+                    and item.textEdit.newText
                 or item.insertText
                 or item.label
             local is_multi_line = item_text:find('\n') ~= nil
 
-            if is_multi_line or vim.g.blink_cmp_upwards_ctx_id == ctx.id then
+            if
+                is_multi_line
+                or vim.g.blink_cmp_upwards_ctx_id == ctx.id
+            then
                 vim.g.blink_cmp_upwards_ctx_id = ctx.id
                 return { 'n', 's' }
             end
@@ -51,9 +55,16 @@ local function default_opts()
                 kind_icon = {
                     text = function(ctx)
                         local icon = ctx.kind_icon
-                        if vim.tbl_contains({ 'Path' }, ctx.source_name) then
+                        if
+                            vim.tbl_contains(
+                                { 'Path' },
+                                ctx.source_name
+                            )
+                        then
                             local dev_icon, _ =
-                                require('nvim-web-devicons').get_icon(ctx.label)
+                                require('nvim-web-devicons').get_icon(
+                                    ctx.label
+                                )
                             icon = dev_icon or icon
                         end
                         return icon .. ctx.icon_gap

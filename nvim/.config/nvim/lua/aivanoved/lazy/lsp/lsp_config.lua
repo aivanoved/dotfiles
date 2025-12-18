@@ -39,10 +39,16 @@ local function validate_lsp_config(config)
 
     -- Type validation
     if type(validation_config) ~= 'table' then
-        error('Invalid config type: expected table, got ' .. type(validation_config))
+        error(
+            'Invalid config type: expected table, got '
+                .. type(validation_config)
+        )
     end
 
-    if validation_config.lsp_name and type(validation_config.lsp_name) ~= 'string' then
+    if
+        validation_config.lsp_name
+        and type(validation_config.lsp_name) ~= 'string'
+    then
         error(
             'Invalid lsp_name type: expected string, got '
                 .. type(validation_config.lsp_name)
@@ -80,12 +86,18 @@ local function validate_lsp_config(config)
     end
 
     -- Default values
-    validation_config.ensure_installed = validation_config.ensure_installed or false
-    validation_config.super_on_attach = validation_config.ensure_installed or true
-    validation_config.client_config = validation_config.client_config or {}
+    validation_config.ensure_installed = validation_config.ensure_installed
+        or false
+    validation_config.super_on_attach = validation_config.ensure_installed
+        or true
+    validation_config.client_config = validation_config.client_config
+        or {}
 
     -- Ensure lsp_name is set if ensure_installed is true
-    if validation_config.ensure_installed and not validation_config.lsp_name then
+    if
+        validation_config.ensure_installed
+        and not validation_config.lsp_name
+    then
         error('lsp_name must be set when ensure_installed is true')
     end
 
@@ -94,7 +106,8 @@ local function validate_lsp_config(config)
         local client_config = validation_config.client_config
         if type(client_config) ~= 'table' then
             error(
-                'Invalid client_config type: expected table, got ' .. type(client_config)
+                'Invalid client_config type: expected table, got '
+                    .. type(client_config)
             )
         end
     end

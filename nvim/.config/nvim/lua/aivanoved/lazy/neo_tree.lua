@@ -22,7 +22,11 @@ local function neo_tree_config()
         popup_border_style = 'rounded',
         enable_git_status = true,
         enable_diagnostics = true,
-        open_files_do_not_replace_types = { 'terminal', 'trouble', 'qf' }, -- when opening files, do not use windows containing these filetypes or buftypes
+        open_files_do_not_replace_types = {
+            'terminal',
+            'trouble',
+            'qf',
+        }, -- when opening files, do not use windows containing these filetypes or buftypes
         sort_case_insensitive = false, -- used when sorting files and directories in the tree
         sort_function = nil, -- use a custom function for sorting files and directories in the tree
         -- sort_function = function (a,b)
@@ -56,11 +60,18 @@ local function neo_tree_config()
                 folder_empty = '󰜌',
                 folder_empty_open = '󰜌',
                 provider = function(icon, node, state) -- default icon provider utilizes nvim-web-devicons if available
-                    if node.type == 'file' or node.type == 'terminal' then
-                        local success, web_devicons = pcall(require, 'nvim-web-devicons')
-                        local name = node.type == 'terminal' and 'terminal' or node.name
+                    if
+                        node.type == 'file'
+                        or node.type == 'terminal'
+                    then
+                        local success, web_devicons =
+                            pcall(require, 'nvim-web-devicons')
+                        local name = node.type == 'terminal'
+                                and 'terminal'
+                            or node.name
                         if success then
-                            local devicon, hl = web_devicons.get_icon(name)
+                            local devicon, hl =
+                                web_devicons.get_icon(name)
                             icon.text = devicon or icon.text
                             icon.highlight = hl or icon.highlight
                         end
@@ -141,7 +152,10 @@ local function neo_tree_config()
                 ['<esc>'] = 'cancel', -- close preview or floating neo-tree window
                 ['P'] = {
                     'toggle_preview',
-                    config = { use_float = true, use_image_nvim = true },
+                    config = {
+                        use_float = true,
+                        use_image_nvim = true,
+                    },
                 },
                 -- Read `# Preview Mode` for more information
                 ['l'] = 'focus_preview',
@@ -256,10 +270,16 @@ local function neo_tree_config()
                     ['o'] = {
                         'show_help',
                         nowait = false,
-                        config = { title = 'Order by', prefix_key = 'o' },
+                        config = {
+                            title = 'Order by',
+                            prefix_key = 'o',
+                        },
                     },
                     ['oc'] = { 'order_by_created', nowait = false },
-                    ['od'] = { 'order_by_diagnostics', nowait = false },
+                    ['od'] = {
+                        'order_by_diagnostics',
+                        nowait = false,
+                    },
                     ['og'] = { 'order_by_git_status', nowait = false },
                     ['om'] = { 'order_by_modified', nowait = false },
                     ['on'] = { 'order_by_name', nowait = false },
@@ -295,10 +315,16 @@ local function neo_tree_config()
                     ['o'] = {
                         'show_help',
                         nowait = false,
-                        config = { title = 'Order by', prefix_key = 'o' },
+                        config = {
+                            title = 'Order by',
+                            prefix_key = 'o',
+                        },
                     },
                     ['oc'] = { 'order_by_created', nowait = false },
-                    ['od'] = { 'order_by_diagnostics', nowait = false },
+                    ['od'] = {
+                        'order_by_diagnostics',
+                        nowait = false,
+                    },
                     ['om'] = { 'order_by_modified', nowait = false },
                     ['on'] = { 'order_by_name', nowait = false },
                     ['os'] = { 'order_by_size', nowait = false },
@@ -320,10 +346,16 @@ local function neo_tree_config()
                     ['o'] = {
                         'show_help',
                         nowait = false,
-                        config = { title = 'Order by', prefix_key = 'o' },
+                        config = {
+                            title = 'Order by',
+                            prefix_key = 'o',
+                        },
                     },
                     ['oc'] = { 'order_by_created', nowait = false },
-                    ['od'] = { 'order_by_diagnostics', nowait = false },
+                    ['od'] = {
+                        'order_by_diagnostics',
+                        nowait = false,
+                    },
                     ['om'] = { 'order_by_modified', nowait = false },
                     ['on'] = { 'order_by_name', nowait = false },
                     ['os'] = { 'order_by_size', nowait = false },

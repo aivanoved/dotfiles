@@ -71,7 +71,12 @@ set_maps:append({
 })
 
 -- search maps
-set_maps:append({ mode = 'n', lhs = 'n', rhs = 'nzzzv', opts = { desc = 'Find next' } })
+set_maps:append({
+    mode = 'n',
+    lhs = 'n',
+    rhs = 'nzzzv',
+    opts = { desc = 'Find next' },
+})
 set_maps:append({
     mode = 'n',
     lhs = 'N',
@@ -80,7 +85,12 @@ set_maps:append({
 })
 
 -- yank maps
-set_maps:append({ mode = 'n', lhs = 'Y', rhs = 'yg$', opts = { desc = 'Yank to EoL' } })
+set_maps:append({
+    mode = 'n',
+    lhs = 'Y',
+    rhs = 'yg$',
+    opts = { desc = 'Yank to EoL' },
+})
 
 set_maps:append({
     mode = { 'n', 'v' },
@@ -190,7 +200,12 @@ set_maps:append({
 })
 
 -- ex mode maps
-set_maps:append({ mode = 'n', lhs = 'Q', rhs = '<nop>', opts = { desc = 'Unmap "Q"' } })
+set_maps:append({
+    mode = 'n',
+    lhs = 'Q',
+    rhs = '<nop>',
+    opts = { desc = 'Unmap "Q"' },
+})
 
 set_maps:append({
     mode = 'n',

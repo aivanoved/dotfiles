@@ -10,7 +10,7 @@ return {
         'neovim/nvim-lspconfig',
         dependencies = {
             -- LSP Support
-            { 'mason-org/mason.nvim',           version = 'v2.*' },
+            { 'mason-org/mason.nvim', version = 'v2.*' },
             { 'mason-org/mason-lspconfig.nvim', version = 'v2.*' },
             'folke/lazydev.nvim',
 
@@ -20,13 +20,13 @@ return {
             -- Autocompletion
             {
                 'saghen/blink.cmp',
-                version = '1.*'
+                version = '1.*',
             },
 
             { 'nvim-tree/nvim-web-devicons', opts = {} },
 
             -- snippet
-            { 'L3MON4D3/LuaSnip',            version = 'v2.*' },
+            { 'L3MON4D3/LuaSnip', version = 'v2.*' },
         },
         config = lsp_config,
     },
@@ -37,7 +37,10 @@ return {
             library = {
                 -- See the configuration section for more details
                 -- Load luvit types when the `vim.uv` word is found
-                { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+                {
+                    path = '${3rd}/luv/library',
+                    words = { 'vim%.uv' },
+                },
             },
         },
     },
