@@ -754,5 +754,5 @@ local background_wallpaper_path =
 awful.spawn.with_shell('feh --bg-scale ' .. background_wallpaper_path)
 awful.spawn.with_shell('picom')
 awful.spawn.with_shell(
-    'setxkbmap -layout us,de,bg -variant ,qwerty,phonetic -option grp:alt_shift_toggle'
+    'setxkbmap -layout us,bg -variant ,phonetic -option grp:alt_shift_toggle -option compose:ralt'
 )
