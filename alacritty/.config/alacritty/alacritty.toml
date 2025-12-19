@@ -1,3 +1,5 @@
+[keyboard]
+
 [[keyboard.bindings]]
 action = "Paste"
 key = "Paste"
@@ -8,63 +10,77 @@ key = "Copy"
 
 [[keyboard.bindings]]
 action = "ClearLogNotice"
-key = "L"
 mods = "Control"
+key = "L"
+
+
+# Scroll bindings
 
 [[keyboard.bindings]]
 action = "ScrollPageUp"
+mods = "Shift"
 key = "PageUp"
 mode = "~Alt"
-mods = "Shift"
 
 [[keyboard.bindings]]
 action = "ScrollPageDown"
+mods = "Shift"
 key = "PageDown"
 mode = "~Alt"
-mods = "Shift"
 
 [[keyboard.bindings]]
 action = "ScrollToTop"
+mods = "Shift"
 key = "Home"
 mode = "~Alt"
-mods = "Shift"
 
 [[keyboard.bindings]]
 action = "ScrollToBottom"
+mods = "Shift"
 key = "End"
 mode = "~Alt"
-mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+mods = "Shift|Control"
+key = "Space"
+mode = "Vi|~Search"
+
+# Full screen
 
 [[keyboard.bindings]]
 action = "ToggleFullscreen"
 key = "F11"
 
+
+
+# Vi mode
+
 [[keyboard.bindings]]
 action = "ToggleViMode"
+mods = "Shift|Control"
 key = "Space"
 mode = "~Search"
-mods = "Shift|Control"
-
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "Space"
-mode = "Vi|~Search"
-mods = "Shift|Control"
-
-[[keyboard.bindings]]
-action = "ClearSelection"
-key = "Escape"
-mode = "Vi|~Search"
 
 [[keyboard.bindings]]
 action = "ToggleViMode"
+mods = "Control"
 key = "C"
 mode = "Vi|~Search"
-mods = "Control"
 
 [[keyboard.bindings]]
 action = "Copy"
 key = "Y"
+mode = "Vi|~Search"
+
+
+# Vi mode selections
+
+
+
+[[keyboard.bindings]]
+action = "ClearSelection"
+key = "Escape"
 mode = "Vi|~Search"
 
 [[keyboard.bindings]]
@@ -74,26 +90,31 @@ mode = "Vi|~Search"
 
 [[keyboard.bindings]]
 action = "ToggleLineSelection"
+mods = "Shift"
 key = "V"
 mode = "Vi|~Search"
-mods = "Shift"
 
 [[keyboard.bindings]]
 action = "ToggleBlockSelection"
+mods = "Control"
 key = "V"
 mode = "Vi|~Search"
-mods = "Control"
 
 [[keyboard.bindings]]
 action = "ToggleSemanticSelection"
+mods = "Alt"
 key = "V"
 mode = "Vi|~Search"
-mods = "Alt"
+
+# Open
 
 [[keyboard.bindings]]
 action = "Open"
 key = "Return"
 mode = "Vi|~Search"
+
+
+# Vi mode arrow navigation
 
 [[keyboard.bindings]]
 action = "Up"
@@ -115,6 +136,8 @@ action = "Right"
 key = "Right"
 mode = "Vi|~Search"
 
+# Other
+
 [[keyboard.bindings]]
 action = "SearchConfirm"
 key = "Return"
@@ -127,21 +150,21 @@ mode = "Search"
 
 [[keyboard.bindings]]
 action = "SearchCancel"
+mods = "Control"
 key = "C"
 mode = "Search"
-mods = "Control"
 
 [[keyboard.bindings]]
 action = "SearchClear"
+mods = "Control"
 key = "U"
 mode = "Search"
-mods = "Control"
 
 [[keyboard.bindings]]
 action = "SearchDeleteWord"
+mods = "Control"
 key = "W"
 mode = "Search"
-mods = "Control"
 
 [[keyboard.bindings]]
 action = "SearchHistoryPrevious"
@@ -160,9 +183,9 @@ mode = "Search|~Vi"
 
 [[keyboard.bindings]]
 action = "SearchFocusPrevious"
+mods = "Shift"
 key = "Return"
 mode = "Search|~Vi"
-mods = "Shift"
 
 [general]
 live_config_reload = true
@@ -222,5 +245,3 @@ y = 0
 [window.position]
 x = 0
 y = 0
-
-[keyboard]
