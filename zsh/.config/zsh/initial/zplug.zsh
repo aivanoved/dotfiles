@@ -5,8 +5,8 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "jeffreytse/zsh-vi-mode"
 zplug "zsh-users/zsh-history-substring-search"
-zplug romkatv/powerlevel10k, as:theme, depth:1
-zplug "tolkonepiu/catppuccin-powerlevel10k-themes"
+# zplug romkatv/powerlevel10k, as:theme, depth:1
+# zplug "tolkonepiu/catppuccin-powerlevel10k-themes"
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
