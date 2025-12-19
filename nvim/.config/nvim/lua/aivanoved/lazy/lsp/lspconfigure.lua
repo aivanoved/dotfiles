@@ -12,9 +12,16 @@ _SERVER_CONFIG_LIST = {
     -- rust
     require('aivanoved.lazy.lsp.rust_analyzer'),
 
+    -- toml
+    require('aivanoved.lazy.lsp.taplo'),
+
+    -- yaml
+    require('aivanoved.lazy.lsp.yaml_ls'),
+
     -- general
     require('aivanoved.lazy.lsp.typos_lsp'),
     require('aivanoved.lazy.lsp.harper_ls'),
+
 }
 
 --- @type table<string, aivanoved.lsp.LspConfig>
