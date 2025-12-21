@@ -1,27 +1,26 @@
 _SERVER_CONFIG_LIST = {
     -- lua
-    require('aivanoved.lazy.lsp.lua_ls'),
+    require('aivanoved.lazy.lsp.language_servers.lua_ls'),
 
     -- c/c++
-    require('aivanoved.lazy.lsp.clangd'),
+    require('aivanoved.lazy.lsp.language_servers.clangd'),
 
     -- python
-    require('aivanoved.lazy.lsp.basedpyright'),
+    require('aivanoved.lazy.lsp.language_servers.basedpyright'),
     require('aivanoved.lazy.lsp.ruff'),
 
     -- rust
-    require('aivanoved.lazy.lsp.rust_analyzer'),
+    require('aivanoved.lazy.lsp.language_servers.rust_analyzer'),
 
     -- toml
-    require('aivanoved.lazy.lsp.taplo'),
+    require('aivanoved.lazy.lsp.language_servers.taplo'),
 
     -- yaml
-    require('aivanoved.lazy.lsp.yaml_ls'),
+    require('aivanoved.lazy.lsp.language_servers.yaml_ls'),
 
     -- general
-    require('aivanoved.lazy.lsp.typos_lsp'),
-    require('aivanoved.lazy.lsp.harper_ls'),
-
+    require('aivanoved.lazy.lsp.language_servers.typos_lsp'),
+    require('aivanoved.lazy.lsp.language_servers.harper_ls'),
 }
 
 --- @type table<string, aivanoved.lsp.LspConfig>
