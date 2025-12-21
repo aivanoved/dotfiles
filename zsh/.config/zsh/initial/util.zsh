@@ -1,35 +1,35 @@
-if [[ ${_UTIL_FILE_SOURCE:-0} -eq 1 ]]; then
+if [[ ${__INITIAL_UTIL__UTIL_FILE_SOURCE:-0} -eq 1 ]]; then
     return 0
 fi
 
-export _UTIL_FILE_SOURCE=1
+export __INITIAL_UTIL__UTIL_FILE_SOURCE=1
 
-_DEBUG=0
-_INFO=1
-_WARNING=2
-_ERROR=3
+__INITIAL_UTIL__DEBUG=0
+__INITIAL_UTIL__INFO=1
+__INITIAL_UTIL__WARNING=2
+__INITIAL_UTIL__ERROR=3
 
-_DEFAULT_LOG_VERBOCITY=$_DEBUG
-export _UTIL_LOG_VERBOCITY="${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY}"
+__INITIAL_UTIL__DEFAULT_LOG_VERBOCITY=$__INITIAL_UTIL__DEBUG
+export __INITIAL_UTIL__UTIL_LOG_VERBOCITY="${__INITIAL_UTIL__UTIL_LOG_VERBOCITY:-$__INITIAL_UTIL__DEFAULT_LOG_VERBOCITY}"
 
-_log_format() {
+__initial_util__log_format() {
     local log_level=$1
     local message=$2
 
     local log_prefix=""
     case $log_level in
-        $_DEBUG) log_prefix="DEBUG: " ;;
-        $_INFO) log_prefix="INFO: " ;;
-        $_WARNING) log_prefix="WARNING: " ;;
-        $_ERROR) log_prefix="ERROR: " ;;
+        $__INITIAL_UTIL__DEBUG) log_prefix="DEBUG: " ;;
+        $__INITIAL_UTIL__INFO) log_prefix="INFO: " ;;
+        $__INITIAL_UTIL__WARNING) log_prefix="WARNING: " ;;
+        $__INITIAL_UTIL__ERROR) log_prefix="ERROR: " ;;
         *) log_prefix="UNKNOWN: " ;;
     esac
 
     case $log_level in
-        $_DEBUG) log_prefix="\e[34m$log_prefix\e[0m" ;; # Blue
-        $_INFO) log_prefix="\e[32m$log_prefix\e[0m" ;;  # Green
-        $_WARNING) log_prefix="\e[33m$log_prefix\e[0m" ;; # Yellow
-        $_ERROR) log_prefix="\e[31m$log_prefix\e[0m" ;;  # Red
+        $__INITIAL_UTIL__DEBUG) log_prefix="\e[34m$log_prefix\e[0m" ;; # Blue
+        $__INITIAL_UTIL__INFO) log_prefix="\e[32m$log_prefix\e[0m" ;;  # Green
+        $__INITIAL_UTIL__WARNING) log_prefix="\e[33m$log_prefix\e[0m" ;; # Yellow
+        $__INITIAL_UTIL__ERROR) log_prefix="\e[31m$log_prefix\e[0m" ;;  # Red
         *) log_prefix="\e[37m$log_prefix\e[0m" ;; # White
     esac
 
@@ -38,79 +38,83 @@ _log_format() {
     echo "$formatted_message"
 }
 
-_util_log() {
-    local log_level="${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY}"
+__initial_util__util_log() {
+    local log_level="${__INITIAL_UTIL__UTIL_LOG_VERBOCITY:-$__INITIAL_UTIL__DEFAULT_LOG_VERBOCITY}"
     local level=$1
     local message=$2
 
     if [ $level -ge $log_level ]; then
-        _log_format $level "$message"
+        __initial_util__log_format $level "$message"
     fi
 
 }
 
-_log_debug() { _util_log $_DEBUG "$1"; }
-_log_info() { _util_log $_INFO "$1"; }
-_log_warning() { _util_log $_WARNING "$1"; }
-_log_error() { _util_log $_ERROR "$1"; }
+__initial_util__log_debug() { __initial_util__util_log $__INITIAL_UTIL__DEBUG "$1"; }
+__initial_util__log_info() { __initial_util__util_log $__INITIAL_UTIL__INFO "$1"; }
+__initial_util__log_warning() { __initial_util__util_log $__INITIAL_UTIL__WARNING "$1"; }
+__initial_util__log_error() { __initial_util__util_log $__INITIAL_UTIL__ERROR "$1"; }
 
-_check_debug() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -eq $_DEBUG ]]; }
-_check_info() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_INFO ]]; }
-_check_warning() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_WARNING ]]; }
-_check_error() { [[ ${_UTIL_LOG_VERBOCITY:-$_DEFAULT_LOG_VERBOCITY} -le $_ERROR ]]; }
+__initial_util__check_debug() { [[ ${__INITIAL_UTIL__UTIL_LOG_VERBOCITY:-$__INITIAL_UTIL__DEFAULT_LOG_VERBOCITY} -eq $__INITIAL_UTIL__DEBUG ]]; }
+__initial_util__check_info() { [[ ${__INITIAL_UTIL__UTIL_LOG_VERBOCITY:-$__INITIAL_UTIL__DEFAULT_LOG_VERBOCITY} -le $__INITIAL_UTIL__INFO ]]; }
+__initial_util__check_warning() { [[ ${__INITIAL_UTIL__UTIL_LOG_VERBOCITY:-$__INITIAL_UTIL__DEFAULT_LOG_VERBOCITY} -le $__INITIAL_UTIL__WARNING ]]; }
+__initial_util__check_error() { [[ ${__INITIAL_UTIL__UTIL_LOG_VERBOCITY:-$__INITIAL_UTIL__DEFAULT_LOG_VERBOCITY} -le $__INITIAL_UTIL__ERROR ]]; }
 
-_set_log_verbocity() {
+__initial_util__set_log_verbocity() {
     local log_level=$1
     if [[ $log_level =~ ^[0-3]$ ]]; then
-        export _UTIL_LOG_VERBOCITY=$log_level
-        _log_debug "Log level set to $log_level"
+        export __INITIAL_UTIL__UTIL_LOG_VERBOCITY=$log_level
+        __initial_util__log_debug "Log level set to $log_level"
     else
-        _log_warning "Invalid log level: $log_level. Must be between 0 and 3."
+        __initial_util__log_warning "Invalid log level: $log_level. Must be between 0 and 3."
     fi
 }
 
-_set_log_verbocity_debug() {
-    _set_log_verbocity $_DEBUG
+__initial_util__set_log_verbocity_debug() {
+    __initial_util__set_log_verbocity $__INITIAL_UTIL__DEBUG
 }
 
-_set_log_verbocity_info() {
-    _set_log_verbocity $_INFO
+__initial_util__set_log_verbocity_info() {
+    __initial_util__set_log_verbocity $__INITIAL_UTIL__INFO
 }
 
-_set_log_verbocity_warning() {
-    _set_log_verbocity $_WARNING
+__initial_util__set_log_verbocity_warning() {
+    __initial_util__set_log_verbocity $__INITIAL_UTIL__WARNING
 }
 
-_set_log_verbocity_error() {
-    _set_log_verbocity $_ERROR
+__initial_util__set_verbocity_error() {
+    __initial_util__set_log_verbocity $__INITIAL_UTIL__ERROR
 }
 
-_temporary_log_level() {
+__initial_util__temporary_log_level() {
     local temp_level=$1
-    local original_level=$_UTIL_LOG_VERBOCITY
-    _set_log_verbocity $temp_level
+    local original_level=$__INITIAL_UTIL__UTIL_LOG_VERBOCITY
+    __initial_util__set_log_verbocity $temp_level
     export _util_original_log_verbocity=$original_level
 }
 
-_restore_log_level() {
+__initial_util__restore_log_level() {
     if [[ -n $_util_original_log_level ]]; then
-        export _UTIL_LOG_VERBOCITY=$_util_original_log_verbocity
+        export __INITIAL_UTIL__UTIL_LOG_VERBOCITY=$_util_original_log_verbocity
         unset _util_original_log_verbocity
     else
-        _log_warning "No temporary log level set."
+        __initial_util__log_warning "No temporary log level set."
     fi
 }
 
-_safe_source(){
-    if [ -f $1 ]; then
-        _log_info "Sourcing $1"
-        source $1
+__initial_util__safe_source(){
+    local output="$1"
+    local to_source="$2"
+    if [ -f $to_source ]; then
+        __initial_util__log_info "Sourcing $to_source"
+        source $to_source
+        : ${(P)output::=1}
     else
-        _log_warning "File $1 not found, not sourcing"
+        __initial_util__log_warning "File $to_source not found, not sourcing"
+        : ${(P)output::=1}
     fi
 }
 
-function pastebin() {
+function __initial_util__pastebin() {
     local file=${1:-/dev/stdin}
     curl --data-binary @${file} https://paste.rs
     echo

@@ -19,10 +19,11 @@ if ! zplug check --verbose; then
 fi
 
 
-_source_util
+local -i __INTEGRATIONS_ZPLUG__UTIL_SOURED=0
+__zshrc__source_util __INTEGRATIONS_ZPLUG__UTIL_SOURED
 
 local verbose=""
-if _check_info; then
+if [[ __INTEGRATIONS_ZPLUG__UTIL_SOURED -eq 1 ]] && __initial_util__check_info; then
     verbose="--verbose"
 fi
 
