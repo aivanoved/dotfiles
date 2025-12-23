@@ -28,4 +28,7 @@ end
 
 M.SetKeyMaps = SetKeyMaps
 
+--- @class aivanoved.typedef.Plugin
+--- @field setup fun(opts: table | nil): nil
+
 return M
