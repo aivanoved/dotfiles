@@ -9,5 +9,14 @@ authors = ["Alexander Ivanov <alexander.valentinov.ivanov@gmail.com>"]
 
 [dependencies]
 python = ">=3.10"
-pre-commit = "*"
 setuptools_scm = "*"
+
+[feature.lint.tasks]
+pre-commit-install = "pixi run -e lint pre-commit install"
+pre-commit-run = "pixi run -e lint pre-commit run -a"
+
+[feature.lint.dependencies]
+pre-commit = "*"
+
+[environments]
+lint = { features = ['lint'] }
