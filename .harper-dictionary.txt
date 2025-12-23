@@ -1,4 +1,5 @@
 Autostart
+fzf
 nvim
 stylua
 taskwarrior
