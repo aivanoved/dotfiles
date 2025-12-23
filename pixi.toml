@@ -19,4 +19,4 @@ pre-commit-run = "pixi run -e lint pre-commit run -a"
 pre-commit = "*"
 
 [environments]
-lint = { features = ['lint'], no-default-feature = true }
+lint = { features = ['lint'] }
