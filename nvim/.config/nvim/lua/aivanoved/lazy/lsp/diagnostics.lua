@@ -56,6 +56,8 @@ local function lsp_diagnostics()
     }
 
     vim.diagnostic.config(diagnostic_opt)
+
+    require('aivanoved.lazy.lsp.linting').linters_configure()
 end
 
 local M = {}

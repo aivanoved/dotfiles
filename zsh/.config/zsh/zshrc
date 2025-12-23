@@ -1,8 +1,13 @@
-_source_util() {
-    source "$HOME/.config/zsh/initial/util.zsh"
+export ZSH_CONFIG_DIR="$HOME/.config/zsh"
+
+local INITIAL_DIR="${ZSH_CONFIG_DIR}/initial"
+
+__zshrc__source_util() {
+    output="$1"
+    source "${INITIAL_DIR}/util.zsh"
+    : ${(P)output::=1}
 }
 
-export ZSH_CONFIG_DIR="$HOME/.config/zsh"
 
 if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
    exec tmux new-session -A -s ${USER} >/dev/null 2>&1
@@ -19,10 +24,15 @@ zle_highlight=('paste:none')
 
 unsetopt BEEP
 
-_source_util
-_set_log_verbocity_warning
+local -i __ZSHRC__UTIL_SOURCED=0
+__zshrc__source_util __ZSHRC__UTIL_SOURCED
+if [ $__ZSHRC__UTIL_SOURCED -eq 1 ]; then
+    __initial_util__set_log_verbocity_warning
+fi
 
-local initial_folder="${ZSH_CONFIG_DIR}/initial"
+local INITIAL_DIR="${ZSH_CONFIG_DIR}/initial"
+local INTEGRATION_DIR="${ZSH_CONFIG_DIR}/integration"
+local SCRIPTS_DIR="${ZSH_CONFIG_DIR}/scripts"
 
 local sources=(
     "env.zsh"
@@ -30,22 +40,40 @@ local sources=(
     "completion.zsh"
 )
 
+
 for file in "${sources[@]}"; do
-    _safe_source "$initial_folder/$file"
+    if [ $__ZSHRC__UTIL_SOURCED -eq 1 ]; then
+        __initial_util__safe_source _ "$INITIAL_DIR/$file"
+    fi
 done
 
-_safe_source "$HOME/.zshlocal"
+
+
+if [ $__ZSHRC__UTIL_SOURCED -eq 1 ]; then
+    __initial_util__safe_source _ "$HOME/.zshlocal"
+fi
+
 
 for file in $(find "$ZSH_CONFIG_DIR/integrations" -type f -name '*.zsh' | sort); do
-    _safe_source "$file"
+    if [ $__ZSHRC__UTIL_SOURCED -eq 1 ]; then
+        __initial_util__safe_source _ "$file"
+    fi
 done
 
-if command -v fastfetch &> /dev/null; then
-    fastfetch
+
+local __zshrc__script_sourced=0
+__initial_util__safe_source __zshrc__script_sourced "$SCRIPTS_DIR/greeting.zsh"
+if [ $__zshrc__script_sourced -eq 1 ]; then
+    __scripts_greeting__greeting
 fi
+
 
 if command -v direnv &> /dev/null; then
     eval "$(direnv hook zsh)" 
 fi
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+elif [ -f ~/.p10k.zsh ]; then
+    source ~/.p10k.zsh
+fi

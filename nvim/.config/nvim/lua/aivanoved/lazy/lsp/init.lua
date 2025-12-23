@@ -17,6 +17,9 @@ return {
             -- formatters
             'windwp/nvim-autopairs',
 
+            -- linting
+            'mfussenegger/nvim-lint',
+
             -- Autocompletion
             {
                 'saghen/blink.cmp',

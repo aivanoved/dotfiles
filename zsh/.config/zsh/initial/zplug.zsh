@@ -5,8 +5,8 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "jeffreytse/zsh-vi-mode"
 zplug "zsh-users/zsh-history-substring-search"
-zplug romkatv/powerlevel10k, as:theme, depth:1
-zplug "tolkonepiu/catppuccin-powerlevel10k-themes"
+# zplug romkatv/powerlevel10k, as:theme, depth:1
+# zplug "tolkonepiu/catppuccin-powerlevel10k-themes"
 
 zplug "zplug/zplug", hook-build:"zplug --self-manage"
 
@@ -19,10 +19,11 @@ if ! zplug check --verbose; then
 fi
 
 
-_source_util
+local -i __INTEGRATIONS_ZPLUG__UTIL_SOURCED=0
+__zshrc__source_util __INTEGRATIONS_ZPLUG__UTIL_SOURCED
 
 local verbose=""
-if _check_info; then
+if [[ $__INTEGRATIONS_ZPLUG__UTIL_SOURCED -eq 1 ]] && __initial_util__check_info; then
     verbose="--verbose"
 fi
 

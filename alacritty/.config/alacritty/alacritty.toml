@@ -1,172 +1,6 @@
-[[keyboard.bindings]]
-action = "Paste"
-key = "Paste"
-
-[[keyboard.bindings]]
-action = "Copy"
-key = "Copy"
-
-[[keyboard.bindings]]
-action = "ClearLogNotice"
-key = "L"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ScrollPageUp"
-key = "PageUp"
-mode = "~Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "ScrollPageDown"
-key = "PageDown"
-mode = "~Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "ScrollToTop"
-key = "Home"
-mode = "~Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "End"
-mode = "~Alt"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "ToggleFullscreen"
-key = "F11"
-
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "Space"
-mode = "~Search"
-mods = "Shift|Control"
-
-[[keyboard.bindings]]
-action = "ScrollToBottom"
-key = "Space"
-mode = "Vi|~Search"
-mods = "Shift|Control"
-
-[[keyboard.bindings]]
-action = "ClearSelection"
-key = "Escape"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "ToggleViMode"
-key = "C"
-mode = "Vi|~Search"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "Copy"
-key = "Y"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "ToggleNormalSelection"
-key = "V"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "ToggleLineSelection"
-key = "V"
-mode = "Vi|~Search"
-mods = "Shift"
-
-[[keyboard.bindings]]
-action = "ToggleBlockSelection"
-key = "V"
-mode = "Vi|~Search"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "ToggleSemanticSelection"
-key = "V"
-mode = "Vi|~Search"
-mods = "Alt"
-
-[[keyboard.bindings]]
-action = "Open"
-key = "Return"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "Up"
-key = "Up"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "Down"
-key = "Down"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "Left"
-key = "Left"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "Right"
-key = "Right"
-mode = "Vi|~Search"
-
-[[keyboard.bindings]]
-action = "SearchConfirm"
-key = "Return"
-mode = "Search|Vi"
-
-[[keyboard.bindings]]
-action = "SearchCancel"
-key = "Escape"
-mode = "Search"
-
-[[keyboard.bindings]]
-action = "SearchCancel"
-key = "C"
-mode = "Search"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "SearchClear"
-key = "U"
-mode = "Search"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "SearchDeleteWord"
-key = "W"
-mode = "Search"
-mods = "Control"
-
-[[keyboard.bindings]]
-action = "SearchHistoryPrevious"
-key = "Up"
-mode = "Search"
-
-[[keyboard.bindings]]
-action = "SearchHistoryNext"
-key = "Down"
-mode = "Search"
-
-[[keyboard.bindings]]
-action = "SearchFocusNext"
-key = "Return"
-mode = "Search|~Vi"
-
-[[keyboard.bindings]]
-action = "SearchFocusPrevious"
-key = "Return"
-mode = "Search|~Vi"
-mods = "Shift"
-
 [general]
 live_config_reload = true
-import = ["~/.config/alacritty/catppuccin-mocha.toml"]
+import = ["~/.config/alacritty/catppuccin-mocha.toml", "~/.config/alacritty/bindings.toml"]
 
 [cursor]
 thickness = 0.15
@@ -209,7 +43,10 @@ semantic_escape_chars = ''',│`|:"' ()[]{}<>	'''
 
 [window]
 dynamic_title = true
-opacity = 0.5
+opacity = 0.97
+decorations = "None"
+startup_mode = "Maximized"
+option_as_alt = "Both"
 
 [window.dimensions]
 columns = 0
@@ -217,10 +54,8 @@ lines = 0
 
 [window.padding]
 x = 0
-y = 0
+y = 19
 
 [window.position]
 x = 0
 y = 0
-
-[keyboard]
