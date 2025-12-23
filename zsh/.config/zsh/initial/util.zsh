@@ -104,9 +104,9 @@ __initial_util__restore_log_level() {
 __initial_util__safe_source(){
     local output="$1"
     local to_source="$2"
-    if [ -f $to_source ]; then
+    if [ -f "$to_source" ]; then
         __initial_util__log_info "Sourcing $to_source"
-        source $to_source
+        source "$to_source"
         : ${(P)output::=1}
     else
         __initial_util__log_warning "File $to_source not found, not sourcing"

@@ -4,14 +4,14 @@
         message="$(fortune)"
     fi
     if command -v cowsay &> /dev/null; then
-        message="$(cowsay $message)"
+        message="$(cowsay "$message")"
     fi
     if command -v lolcat &> /dev/null; then
-        echo $message | lolcat
+        echo "$message" | lolcat
         echo
         echo
     else
-        echo $message
+        echo "$message"
         echo
         echo
     fi
