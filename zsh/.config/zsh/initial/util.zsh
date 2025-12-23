@@ -81,7 +81,7 @@ __initial_util__set_log_verbocity_warning() {
     __initial_util__set_log_verbocity $__INITIAL_UTIL__WARNING
 }
 
-__initial_util__set_verbocity_error() {
+__initial_util__set_log_verbocity_error() {
     __initial_util__set_log_verbocity $__INITIAL_UTIL__ERROR
 }
 
