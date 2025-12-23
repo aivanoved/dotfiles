@@ -25,19 +25,3 @@ jobs:
       - name: Run linting checks
         run: |
           pixi run -e lint pre-commit-run --color always
-  tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - name: Setup pixi
-        uses: prefix-dev/setup-pixi@v0.9.3
-        with:
-          environments: >-
-            default
-            test
-            lint
-      - name: Run precommit checks
-        run: |
-          pixi run -e lint pre-commit-run -a
