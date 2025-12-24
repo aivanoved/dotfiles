@@ -5,7 +5,7 @@
 
 [user]
     name = Alexander Ivanov
-    email = 54221777+aivanoved@users.noreply.github.com
+    email = gitlab.racoon756@passinbox.com
 
 [init]
     defaultBranch = main
@@ -53,3 +53,6 @@
 
 [includeIf "gitdir:~/quantco/"]
     path = ~/.gitconfigs/work.gitconfig
+
+[includeIf "gitdir:~/github/"]
+    path = ~/.gitconfigs/github.gitconfig
